@@ -2382,7 +2382,7 @@ class _VideoScreenState extends State<VideoScreen> {
   TextEditingController moduleNameController = TextEditingController();
   // int? selectAssignment;
   // int? selectAssignmentSectionIndex;
-  Widget _buildVideoDetails() {
+    Widget _buildVideoDetails() {
     return StreamBuilder<Map<String, dynamic>?>(
         stream: Counter.counterStreamVideos,
         builder: (context, AsyncSnapshot snapshot) {
@@ -2416,180 +2416,180 @@ class _VideoScreenState extends State<VideoScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children:
-                    List.generate(listOfSectionData[widget.courseName].length,
+                List.generate(listOfSectionData[widget.courseName].length,
                         (sectionIndex) {
-                  // var listOfDraggable = List<List>.generate(listOfSectionSort.length, (index) => []);
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      sectionIndex == 0
-                          ? Padding(
-                              padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                              child: Column(
-                                children: [
-                                  pathwaydata.isEmpty
-                                      ? Container()
-                                      : Container(
-                                          child: ExpansionTile(
-                                            title: Text(
-                                              'Important Instructions',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            children: List.generate(
-                                              pathwaydata.length,
-                                              (index1) {
-                                                Map valueMap = json.decode(
-                                                    pathwaydata[index1]);
-                                                // print("ppppp ${valueMap}");
-                                                return Column(
-                                                  children: [
-                                                    // videoPercentageList.length != 0 ?
-                                                    // Text(videoPercentageList[index][courseData.entries.elementAt(index).key][courseData.entries.elementAt(index).value[index1].videoTitle].toString()) : SizedBox(),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        print(valueMap['name']);
-                                                        showAssignment = false;
-                                                        setState(() {
-                                                          currentPosition = 0;
-                                                          videoTitle =
-                                                              valueMap['name'];
-                                                          totalDuration = 0;
-                                                        });
-                                                        if (valueMap['type'] ==
-                                                            "video") {
-                                                          setState(() {
-                                                            htmlbool = false;
-                                                            enablePauseScreen =
-                                                                false;
-                                                          });
-
-                                                          selectedIndexOfVideo =
-                                                              index1;
-                                                          // initPlayer(valueMap['data']);
-                                                          //  iFrameKey.currentState!.setState(() {
-
-                                                          //  });;
-                                                          // VideoScreen.currentSpeed
-                                                          //     .value = 1.0;
-
-                                                          // initializeVidController(
-                                                          // valueMap['data'],
-                                                          // valueMap['name'],
-                                                          // "",
-                                                          // "",
-                                                          //     "");
-                                                        } else {
-                                                          setState(() {
-                                                            htmltext = valueMap[
-                                                                'data'];
-                                                            enablePauseScreen =
-                                                                false;
-                                                            htmlbool = true;
-                                                          });
-                                                        }
-                                                      },
-                                                      child: Container(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 60,
-                                                                top: 15,
-                                                                bottom: 15),
-                                                        child: Align(
-                                                          alignment: Alignment
-                                                              .centerLeft,
-                                                          child: Text(
-                                                            valueMap['name'],
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                ],
-                              ),
-                            )
-                          : SizedBox(),
-                      // SizedBox(),
-                      Text(
-                        " ",
-                        style: TextStyle(fontSize: 0.5),
-                      ),
-                      Container(
-                        child: ExpansionTile(
-                            expandedCrossAxisAlignment:
-                                CrossAxisAlignment.stretch,
-                            // initiallyExpanded: (widget.courseName == 'Instruction For Mega Combo Course' || widget.courseName == 'Course Introduction For All In One Super Combo') && sectionIndex == 0 ? true : false,
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // var listOfDraggable = List<List>.generate(listOfSectionSort.length, (index) => []);
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          sectionIndex == 0
+                              ? Padding(
+                            padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                            child: Column(
                               children: [
-                                Expanded(
-                                  child: editModule && sectionIndex == editIndex
-                                      ? Container(
-                                          child: TextField(
-                                            controller: moduleNameController,
-                                            decoration: InputDecoration(
-                                                hintText:
-                                                    'Enter updated module name',
-                                                suffix: IconButton(
-                                                    onPressed: () {
-                                                      // print('hey ${moduleNameController.text}');
-                                                      // print('sectionIndex is $editIndex');
-                                                      listOfSectionData[widget
-                                                                      .courseName]
-                                                                  [editIndex]
-                                                              ['modulename'] =
-                                                          moduleNameController
-                                                              .text;
+                                pathwaydata.isEmpty
+                                    ? Container()
+                                    : Container(
+                                  child: ExpansionTile(
+                                    title: Text(
+                                      'Important Instructions',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    children: List.generate(
+                                      pathwaydata.length,
+                                          (index1) {
+                                        Map valueMap = json.decode(
+                                            pathwaydata[index1]);
+                                        // print("ppppp ${valueMap}");
+                                        return Column(
+                                          children: [
+                                            // videoPercentageList.length != 0 ?
+                                            // Text(videoPercentageList[index][courseData.entries.elementAt(index).key][courseData.entries.elementAt(index).value[index1].videoTitle].toString()) : SizedBox(),
+                                            GestureDetector(
+                                              onTap: () {
+                                                print(valueMap['name']);
+                                                showAssignment = false;
+                                                setState(() {
+                                                  currentPosition = 0;
+                                                  videoTitle =
+                                                  valueMap['name'];
+                                                  totalDuration = 0;
+                                                });
+                                                if (valueMap['type'] ==
+                                                    "video") {
+                                                  setState(() {
+                                                    htmlbool = false;
+                                                    enablePauseScreen =
+                                                    false;
+                                                  });
 
-                                                      try {
-                                                        FirebaseFirestore
-                                                            .instance
-                                                            .collection(
-                                                                'courses')
-                                                            .doc(widget.cID)
-                                                            .update({
-                                                          'curriculum1': {
-                                                            '${widget.courseName}':
-                                                                listOfSectionData[
-                                                                    widget
-                                                                        .courseName],
-                                                          }
-                                                        }).whenComplete(() =>
-                                                                Toast.show(
-                                                                    'Module name updated successfully.'));
-                                                      } catch (e) {
-                                                        print(e.toString());
-                                                      }
-                                                      setState(() {
-                                                        editModule = false;
-                                                        moduleNameController
-                                                            .clear();
-                                                        streamVideoData();
-                                                      });
-                                                      print(
-                                                          'hello ${moduleNameController.text}');
-                                                      // sectionIndex = sectionIndex;
-                                                    },
-                                                    icon: Icon(Icons.update))),
-                                          ),
-                                        )
-                                      : Text(
-                                          listOfSectionData[widget.courseName]
-                                                  [sectionIndex]["modulename"]
-                                              .toString(),
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
+                                                  selectedIndexOfVideo =
+                                                      index1;
+                                                  // initPlayer(valueMap['data']);
+                                                  //  iFrameKey.currentState!.setState(() {
+
+                                                  //  });;
+                                                  // VideoScreen.currentSpeed
+                                                  //     .value = 1.0;
+
+                                                  // initializeVidController(
+                                                  // valueMap['data'],
+                                                  // valueMap['name'],
+                                                  // "",
+                                                  // "",
+                                                  //     "");
+                                                } else {
+                                                  setState(() {
+                                                    htmltext = valueMap[
+                                                    'data'];
+                                                    enablePauseScreen =
+                                                    false;
+                                                    htmlbool = true;
+                                                  });
+                                                }
+                                              },
+                                              child: Container(
+                                                padding:
+                                                EdgeInsets.only(
+                                                    left: 60,
+                                                    top: 15,
+                                                    bottom: 15),
+                                                child: Align(
+                                                  alignment: Alignment
+                                                      .centerLeft,
+                                                  child: Text(
+                                                    valueMap['name'],
+                                                    textAlign:
+                                                    TextAlign.start,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ),
+                                  ),
                                 ),
-                                role == 'mentor'
-                                    ? PopupMenuButton<int>(
+                              ],
+                            ),
+                          )
+                              : SizedBox(),
+                          // SizedBox(),
+                          Text(
+                            " ",
+                            style: TextStyle(fontSize: 0.5),
+                          ),
+                          Container(
+                            child: ExpansionTile(
+                                expandedCrossAxisAlignment:
+                                CrossAxisAlignment.stretch,
+                                // initiallyExpanded: (widget.courseName == 'Instruction For Mega Combo Course' || widget.courseName == 'Course Introduction For All In One Super Combo') && sectionIndex == 0 ? true : false,
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: editModule && sectionIndex == editIndex
+                                          ? Container(
+                                        child: TextField(
+                                          controller: moduleNameController,
+                                          decoration: InputDecoration(
+                                              hintText:
+                                              'Enter updated module name',
+                                              suffix: IconButton(
+                                                  onPressed: () {
+                                                    // print('hey ${moduleNameController.text}');
+                                                    // print('sectionIndex is $editIndex');
+                                                    listOfSectionData[widget
+                                                        .courseName]
+                                                    [editIndex]
+                                                    ['modulename'] =
+                                                        moduleNameController
+                                                            .text;
+
+                                                    try {
+                                                      FirebaseFirestore
+                                                          .instance
+                                                          .collection(
+                                                          'courses')
+                                                          .doc(widget.cID)
+                                                          .update({
+                                                        'curriculum1': {
+                                                          '${widget.courseName}':
+                                                          listOfSectionData[
+                                                          widget
+                                                              .courseName],
+                                                        }
+                                                      }).whenComplete(() =>
+                                                          Toast.show(
+                                                              'Module name updated successfully.'));
+                                                    } catch (e) {
+                                                      print(e.toString());
+                                                    }
+                                                    setState(() {
+                                                      editModule = false;
+                                                      moduleNameController
+                                                          .clear();
+                                                      streamVideoData();
+                                                    });
+                                                    print(
+                                                        'hello ${moduleNameController.text}');
+                                                    // sectionIndex = sectionIndex;
+                                                  },
+                                                  icon: Icon(Icons.update))),
+                                        ),
+                                      )
+                                          : Text(
+                                        listOfSectionData[widget.courseName]
+                                        [sectionIndex]["modulename"]
+                                            .toString(),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    role == 'mentor'
+                                        ? PopupMenuButton<int>(
                                         onSelected: (item) {
                                           if (item == 0) {
                                             setState(() {
@@ -2600,7 +2600,7 @@ class _VideoScreenState extends State<VideoScreen> {
                                                 builder: (context) {
                                                   return AlertDialog(
                                                     alignment:
-                                                        Alignment.centerLeft,
+                                                    Alignment.centerLeft,
                                                     content: Container(
                                                       height: 450,
                                                       width: 350,
@@ -2609,11 +2609,11 @@ class _VideoScreenState extends State<VideoScreen> {
                                                           TextField(
                                                             decoration: InputDecoration(
                                                                 border:
-                                                                    OutlineInputBorder(),
+                                                                OutlineInputBorder(),
                                                                 hintText:
-                                                                    'Enter video name'),
+                                                                'Enter video name'),
                                                             controller:
-                                                                addVideoName,
+                                                            addVideoName,
                                                           ),
                                                           SizedBox(
                                                             height: 10,
@@ -2621,11 +2621,11 @@ class _VideoScreenState extends State<VideoScreen> {
                                                           TextField(
                                                             decoration: InputDecoration(
                                                                 border:
-                                                                    OutlineInputBorder(),
+                                                                OutlineInputBorder(),
                                                                 hintText:
-                                                                    'Enter video url'),
+                                                                'Enter video url'),
                                                             controller:
-                                                                addVideoUrl,
+                                                            addVideoUrl,
                                                           ),
                                                           SizedBox(
                                                             height: 20,
@@ -2636,11 +2636,11 @@ class _VideoScreenState extends State<VideoScreen> {
                                                                   onPressed:
                                                                       () {
                                                                     Random
-                                                                        number =
-                                                                        Random();
+                                                                    number =
+                                                                    Random();
                                                                     int min = 1;
                                                                     int max =
-                                                                        1000;
+                                                                    1000;
                                                                     int randomNumber = min +
                                                                         number.nextInt(max -
                                                                             min);
@@ -2654,31 +2654,31 @@ class _VideoScreenState extends State<VideoScreen> {
                                                                         '${listOfSectionData[widget.courseName][editIndex]['videos'].length}');
 
                                                                     if (addVideoName
-                                                                            .text
-                                                                            .isNotEmpty &&
+                                                                        .text
+                                                                        .isNotEmpty &&
                                                                         addVideoUrl
                                                                             .text
                                                                             .isNotEmpty) {
                                                                       listOfSectionData[widget.courseName][editIndex]
-                                                                              [
-                                                                              'videos']
+                                                                      [
+                                                                      'videos']
                                                                           .add({
                                                                         'name':
-                                                                            addVideoName.text,
+                                                                        addVideoName.text,
                                                                         'id': '$id' +
                                                                             'V' +
                                                                             '${listOfSectionData[widget.courseName][editIndex].length}' +
                                                                             '$randomNumber',
                                                                         'weburl':
-                                                                            addVideoUrl.text,
+                                                                        addVideoUrl.text,
                                                                         'url': addVideoUrl
                                                                             .text,
                                                                         'type':
-                                                                            'video',
+                                                                        'video',
                                                                         'offline':
-                                                                            false,
+                                                                        false,
                                                                         'demo':
-                                                                            false,
+                                                                        false,
                                                                         'sr': listOfSectionData[widget.courseName][editIndex]['videos']
                                                                             .length,
                                                                       });
@@ -2686,17 +2686,17 @@ class _VideoScreenState extends State<VideoScreen> {
                                                                         FirebaseFirestore
                                                                             .instance
                                                                             .collection(
-                                                                                'courses')
+                                                                            'courses')
                                                                             .doc(widget
-                                                                                .cID)
+                                                                            .cID)
                                                                             .update({
                                                                           'curriculum1':
-                                                                              {
+                                                                          {
                                                                             widget.courseName:
-                                                                                listOfSectionData[widget.courseName],
+                                                                            listOfSectionData[widget.courseName],
                                                                           }
                                                                         }).whenComplete(() =>
-                                                                                Toast.show('New video added'));
+                                                                            Toast.show('New video added'));
                                                                       } catch (e) {
                                                                         print(e
                                                                             .toString());
@@ -2706,19 +2706,19 @@ class _VideoScreenState extends State<VideoScreen> {
                                                                         'added new video name ${addVideoName.text}');
 
                                                                     setState(
-                                                                        () {
-                                                                      addVideoId
-                                                                          .clear();
-                                                                      addVideoUrl
-                                                                          .clear();
-                                                                      addVideoName
-                                                                          .clear();
-                                                                      Navigator.of(
+                                                                            () {
+                                                                          addVideoId
+                                                                              .clear();
+                                                                          addVideoUrl
+                                                                              .clear();
+                                                                          addVideoName
+                                                                              .clear();
+                                                                          Navigator.of(
                                                                               context)
-                                                                          .pop();
-                                                                      getProgressData();
-                                                                      streamVideoData();
-                                                                    });
+                                                                              .pop();
+                                                                          getProgressData();
+                                                                          streamVideoData();
+                                                                        });
                                                                   },
                                                                   child: Text(
                                                                       'Submit')),
@@ -2728,15 +2728,15 @@ class _VideoScreenState extends State<VideoScreen> {
                                                                   onPressed:
                                                                       () {
                                                                     Navigator.of(
-                                                                            context)
+                                                                        context)
                                                                         .pop();
                                                                   },
                                                                   child: Text(
                                                                       'Close'))
                                                             ],
                                                             mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
+                                                            MainAxisAlignment
+                                                                .center,
                                                           )
                                                         ],
                                                       ),
@@ -2763,7 +2763,7 @@ class _VideoScreenState extends State<VideoScreen> {
                                               builder: (BuildContext context) {
                                                 return addAssigmentPopUp(
                                                     listOfSectionData:
-                                                        listOfSectionData);
+                                                    listOfSectionData);
                                               },
                                             );
                                           }
@@ -2773,7 +2773,7 @@ class _VideoScreenState extends State<VideoScreen> {
                                                 builder: (context) {
                                                   return AlertDialog(
                                                     alignment:
-                                                        Alignment.centerLeft,
+                                                    Alignment.centerLeft,
                                                     content: Container(
                                                       height: 250,
                                                       width: 350,
@@ -2782,11 +2782,11 @@ class _VideoScreenState extends State<VideoScreen> {
                                                           TextField(
                                                             decoration: InputDecoration(
                                                                 border:
-                                                                    OutlineInputBorder(),
+                                                                OutlineInputBorder(),
                                                                 hintText:
-                                                                    'Enter module name'),
+                                                                'Enter module name'),
                                                             controller:
-                                                                newModuleName,
+                                                            newModuleName,
                                                           ),
                                                           SizedBox(
                                                             height: 20,
@@ -2797,11 +2797,11 @@ class _VideoScreenState extends State<VideoScreen> {
                                                                   onPressed:
                                                                       () {
                                                                     Random
-                                                                        number =
-                                                                        Random();
+                                                                    number =
+                                                                    Random();
                                                                     int min = 2;
                                                                     int max =
-                                                                        1000;
+                                                                    1000;
                                                                     int randomNumber = min +
                                                                         number.nextInt(max -
                                                                             min);
@@ -2812,14 +2812,14 @@ class _VideoScreenState extends State<VideoScreen> {
                                                                         .text
                                                                         .isNotEmpty) {
                                                                       listOfSectionData[
-                                                                              widget.courseName]
+                                                                      widget.courseName]
                                                                           .add({
                                                                         'modulename':
-                                                                            newModuleName.text,
+                                                                        newModuleName.text,
                                                                         'id': '${listOfSectionData[widget.courseName][0]['id']}' +
                                                                             '$randomNumber',
                                                                         'videos':
-                                                                            [],
+                                                                        [],
                                                                         'sr': listOfSectionData[widget.courseName].length +
                                                                             1,
                                                                       });
@@ -2827,17 +2827,17 @@ class _VideoScreenState extends State<VideoScreen> {
                                                                         FirebaseFirestore
                                                                             .instance
                                                                             .collection(
-                                                                                'courses')
+                                                                            'courses')
                                                                             .doc(widget
-                                                                                .cID)
+                                                                            .cID)
                                                                             .update({
                                                                           'curriculum1':
-                                                                              {
+                                                                          {
                                                                             widget.courseName:
-                                                                                listOfSectionData[widget.courseName],
+                                                                            listOfSectionData[widget.courseName],
                                                                           }
                                                                         }).whenComplete(() =>
-                                                                                Toast.show('New module added'));
+                                                                            Toast.show('New module added'));
                                                                       } catch (e) {
                                                                         print(e
                                                                             .toString());
@@ -2845,15 +2845,15 @@ class _VideoScreenState extends State<VideoScreen> {
                                                                     }
 
                                                                     setState(
-                                                                        () {
-                                                                      newModuleName
-                                                                          .clear();
-                                                                      Navigator.of(
+                                                                            () {
+                                                                          newModuleName
+                                                                              .clear();
+                                                                          Navigator.of(
                                                                               context)
-                                                                          .pop();
-                                                                      getProgressData();
-                                                                      streamVideoData();
-                                                                    });
+                                                                              .pop();
+                                                                          getProgressData();
+                                                                          streamVideoData();
+                                                                        });
                                                                   },
                                                                   child: Text(
                                                                       'Submit')),
@@ -2863,15 +2863,15 @@ class _VideoScreenState extends State<VideoScreen> {
                                                                   onPressed:
                                                                       () {
                                                                     Navigator.of(
-                                                                            context)
+                                                                        context)
                                                                         .pop();
                                                                   },
                                                                   child: Text(
                                                                       'Close'))
                                                             ],
                                                             mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
+                                                            MainAxisAlignment
+                                                                .center,
                                                           )
                                                         ],
                                                       ),
@@ -2881,845 +2881,845 @@ class _VideoScreenState extends State<VideoScreen> {
                                           }
                                         },
                                         itemBuilder: (context) => [
-                                              PopupMenuItem<int>(
-                                                  value: 0,
-                                                  child:
-                                                      Text('Add a new video')),
-                                              PopupMenuItem<int>(
-                                                  value: 1,
-                                                  child:
-                                                      Text('Edit module name')),
-                                              PopupMenuItem<int>(
-                                                  value: 2,
-                                                  child:
-                                                      Text('Add Assignment')),
-                                              PopupMenuItem<int>(
-                                                  value: 3,
-                                                  child:
-                                                      Text('Add a new module'))
-                                            ])
-                                    : SizedBox(),
-                              ],
-                            ),
-                            children: List.generate(
-                                listOfSectionData[widget.courseName]
-                                        [sectionIndex]["videos"]
-                                    .length, (subsectionIndex) {
-                              listOfSectionData[widget.courseName][sectionIndex]
-                                      ["videos"]
-                                  .sort((a, b) {
-                                // print("a=====${a["sr"]}");
-                                if (a["sr"] > b["sr"]) {
-                                  return 1;
-                                }
-                                return -1;
-                              });
+                                          PopupMenuItem<int>(
+                                              value: 0,
+                                              child:
+                                              Text('Add a new video')),
+                                          PopupMenuItem<int>(
+                                              value: 1,
+                                              child:
+                                              Text('Edit module name')),
+                                          PopupMenuItem<int>(
+                                              value: 2,
+                                              child:
+                                              Text('Add Assignment')),
+                                          PopupMenuItem<int>(
+                                              value: 3,
+                                              child:
+                                              Text('Add a new module'))
+                                        ])
+                                        : SizedBox(),
+                                  ],
+                                ),
+                                children: List.generate(
+                                    listOfSectionData[widget.courseName]
+                                    [sectionIndex]["videos"]
+                                        .length, (subsectionIndex) {
+                                  listOfSectionData[widget.courseName][sectionIndex]
+                                  ["videos"]
+                                      .sort((a, b) {
+                                    // print("a=====${a["sr"]}");
+                                    if (a["sr"] > b["sr"]) {
+                                      return 1;
+                                    }
+                                    return -1;
+                                  });
 
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  if (subIndex != null &&
-                                      subIndex == subsectionIndex &&
-                                      index == sectionIndex)
-                                    Draggable(
-                                      data: 0,
-                                      child: Container(
-                                        color: Colors.purpleAccent,
-                                        child: GestureDetector(
-                                            onTap: () {
-                                              print(
-                                                  'vdo = $videoPercentageList');
-                                              htmlbool = false;
-                                              showAssignment = false;
-                                              if (listOfSectionData[widget
-                                                                      .courseName]
-                                                                  [sectionIndex]
-                                                              ["videos"]
-                                                          [subsectionIndex]
-                                                      ["type"] ==
-                                                  "video") {
-                                                setState(() {
-                                                  currentPosition = 0;
-                                                  videoTitle = listOfSectionData[
-                                                                      widget
-                                                                          .courseName]
-                                                                  [sectionIndex]
-                                                              ["videos"][
-                                                          subsectionIndex]["name"]
-                                                      .toString();
-                                                  totalDuration = 0;
-                                                });
-
-                                                // On Vid Change
-
-                                                initPlayer(listOfSectionData[widget
-                                                                    .courseName]
-                                                                [sectionIndex]
-                                                            ["videos"][
-                                                        subsectionIndex]["weburl"]
-                                                    .toString());
-                                                iFrameKey.currentState!
-                                                    .setState(() {});
-                                                ;
-
-                                                // VideoScreen.currentSpeed.value =
-                                                //     1.0;
-                                                // initializeVidController(
-                                                //     listOfSectionData[widget.courseName][sectionIndex]["videos"]
-                                                //                 [subsectionIndex]
-                                                //             ["url"]
-                                                //         .toString(),
-                                                //     listOfSectionData[widget.courseName][sectionIndex]
-                                                //                 ["videos"][subsectionIndex]
-                                                //             ["name"]
-                                                //         .toString(),
-                                                //     listOfSectionData[widget.courseName]
-                                                //                 [sectionIndex]
-                                                //             ["modulename"]
-                                                //         .toString(),
-                                                //     listOfSectionData[widget.courseName]
-                                                //             [sectionIndex]["id"]
-                                                //         .toString(),
-                                                //     listOfSectionData[widget.courseName]
-                                                //                 [sectionIndex]["videos"]
-                                                //             [subsectionIndex]["id"]
-                                                //         .toString());
-                                              } else if (listOfSectionData[widget
-                                                                  .courseName]
-                                                              [sectionIndex]
-                                                          ["videos"]
-                                                      [subsectionIndex]["type"] ==
-                                                  "quiz") {
-                                                //QuizentrypageWidget
-                                                print(
-                                                    "sdjfosjdfoisjdofjsodifjsoijdfoisdfsodfiosjiofdjosdjfoisidfjiowjofowejojiojbdf");
-                                                //  GoRouter.of(context).pushNamed('quizpage');
-                                                setState(() {
-                                                  quizdata = listOfSectionData[
-                                                              widget.courseName]
-                                                          [sectionIndex][
-                                                      "videos"][subsectionIndex];
-                                                  quizbool = true;
-                                                  print("iwoe");
-                                                  htmlbool = true;
-                                                });
-                                                checkQuizScore(
-                                                    quizdata['name']);
-                                              } else {
-                                                // showAssignment = true;
-                                                setState(() {
-                                                  assignmentUrl = listOfSectionData[
-                                                                      widget
-                                                                          .courseName]
-                                                                  [sectionIndex]
-                                                              ["videos"][
-                                                          subsectionIndex]["url"]
-                                                      .toString();
-
-                                                  assignmentName = listOfSectionData[
-                                                                      widget
-                                                                          .courseName]
-                                                                  [sectionIndex]
-                                                              ["videos"][
-                                                          subsectionIndex]["name"]
-                                                      .toString();
-                                                  print(assignmentName);
-                                                  solutionUrl = listOfSectionData[
-                                                                      widget
-                                                                          .courseName]
-                                                                  [sectionIndex]
-                                                              ["videos"][
-                                                          subsectionIndex]["pdf"]
-                                                      .toString();
-                                                  dataSetUrl = listOfSectionData[
-                                                              widget.courseName]
-                                                          [
-                                                          sectionIndex]["videos"]
-                                                      [
-                                                      subsectionIndex]["dataset"];
-                                                });
-
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            AssignmentScreen(
-                                                              selectedSection:
-                                                                  selectedSection,
-                                                              courseData:
-                                                                  courseData,
-                                                              courseName: widget
-                                                                  .courseName,
-                                                              assignmentUrl:
-                                                                  assignmentUrl,
-                                                              dataSetUrl:
-                                                                  dataSetUrl,
-                                                              solutionUrl:
-                                                                  solutionUrl,
-                                                              assignmentName:
-                                                                  assignmentName,
-                                                              assignmentDescription:
-                                                                  assignmentDescription,
-                                                              assignmentSolutionVideo:
-                                                                  assignmentSolutionVideo,
-                                                              assignmentTrackBoolMap:
-                                                                  assignmentTrackBoolMap,
-                                                              showDescription:
-                                                                  assignmentDescriptionShow,
-                                                            )));
-                                                print("Eagle");
-                                              }
-                                            },
-                                            child: Container(
-                                                padding: EdgeInsets.only(
-                                                    left: 60,
-                                                    top: 15,
-                                                    bottom: 15),
-                                                child: Align(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: Row(
-                                                    children: [
-                                                      listOfSectionData[widget.courseName]
-                                                                              [sectionIndex]
-                                                                          ["videos"]
-                                                                      [subsectionIndex]
-                                                                  ["type"] ==
-                                                              "video"
-                                                          ? Icon(
-                                                              Icons.play_circle)
-                                                          : listOfSectionData[widget.courseName]
-                                                                              [sectionIndex]
-                                                                          [
-                                                                          "videos"][subsectionIndex]
-                                                                      [
-                                                                      "type"] ==
-                                                                  "quiz"
-                                                              ? Icon(Icons.quiz)
-                                                              : Icon(Icons
-                                                                  .assessment),
-                                                      SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      Expanded(
-                                                          child: Text(
-                                                        listOfSectionData[widget.courseName][sectionIndex]
-                                                                            ["videos"]
-                                                                        [subsectionIndex]
-                                                                    ["type"] ==
-                                                                "video"
-                                                            ? listOfSectionData[widget.courseName]
-                                                                            [sectionIndex]
-                                                                        ["videos"][subsectionIndex]
-                                                                    ["name"]
-                                                                .toString()
-                                                            : listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] ==
-                                                                    "quiz"
-                                                                ? "Quiz : " +
-                                                                    listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"]
-                                                                        .toString()
-                                                                : "Assignment : " +
-                                                                    listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]
-                                                                            ["name"]
-                                                                        .toString(),
-                                                        style: TextStyle(
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis),
-                                                      ))
-                                                    ],
-                                                  ),
-                                                ))),
-                                      ),
-                                      feedback: SizedBox(
-                                        height: 50,
-                                        child: Container(
-                                            padding: EdgeInsets.only(
-                                                left: 60, top: 15, bottom: 15),
-                                            child: Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Row(
-                                                children: [
-                                                  listOfSectionData[widget.courseName]
-                                                                          [
-                                                                          index]
-                                                                      [
-                                                                      "videos"]
-                                                                  [subIndex]
-                                                              ["type"] ==
-                                                          "video"
-                                                      ? Icon(Icons.play_circle)
-                                                      : Icon(Icons.assessment),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  DefaultTextStyle(
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        overflow: TextOverflow
-                                                            .ellipsis),
-                                                    child:
-                                                        // Expanded(
-                                                        //   child:
-                                                        Text(
-                                                      listOfSectionData[widget.courseName][index]["videos"]
-                                                                      [subIndex]
-                                                                  ["type"] ==
-                                                              "video"
-                                                          ? listOfSectionData[widget.courseName][index]
-                                                                          ["videos"]
-                                                                      [subIndex]
-                                                                  ["name"]
-                                                              .toString()
-                                                          : listOfSectionData[widget.courseName][index]["videos"][subIndex]["type"] ==
-                                                                  "quiz"
-                                                              ? "Quiz : " +
-                                                                  listOfSectionData[widget.courseName][index]["videos"][subIndex]["name"]
-                                                                      .toString()
-                                                              : "Assignment : " +
-                                                                  listOfSectionData[widget.courseName][index]["videos"][subIndex]
-                                                                          ["name"]
-                                                                      .toString(),
-                                                      style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 17,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          overflow: TextOverflow
-                                                              .ellipsis),
-                                                    ),
-                                                    // )
-                                                  )
-                                                ],
-                                              ),
-                                            )),
-                                        // width: 50,
-                                        // height: 50,
-                                      ),
-                                    )
-                                  else
-                                    DragTarget<int>(
-                                      builder: (context, _, __) =>
-                                          GestureDetector(
-                                              onDoubleTap: () {
-                                                print("doubletap");
-                                                if (role != null) {
-                                                  if (role == "mentor") {
-                                                    setState(() {
-                                                      // selectAssignment = null;
-                                                      subIndex =
-                                                          subsectionIndex;
-                                                      index = sectionIndex;
-                                                    });
-                                                  }
-                                                }
-                                                print(subsectionIndex);
-                                              },
-                                              onTap: () {
-                                                // _videoController!.pause();
-                                                setState(() {
-                                                  currentPlayingVideoName =
-                                                      listOfSectionData[widget
-                                                                          .courseName]
-                                                                      [
-                                                                      sectionIndex]
-                                                                  ["videos"][
-                                                              subsectionIndex]["name"]
-                                                          .toString();
-                                                });
-                                                if (listOfSectionData[widget.courseName]
-                                                                    [sectionIndex]
-                                                                ["videos"]
-                                                            [subsectionIndex]
-                                                        ["type"] ==
-                                                    "video") {
+                                  return Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      if (subIndex != null &&
+                                          subIndex == subsectionIndex &&
+                                          index == sectionIndex)
+                                        Draggable(
+                                          data: 0,
+                                          child: Container(
+                                            color: Colors.purpleAccent,
+                                            child: GestureDetector(
+                                                onTap: () {
                                                   print(
                                                       'vdo = $videoPercentageList');
                                                   htmlbool = false;
                                                   showAssignment = false;
-                                                  submitResume = false;
-                                                  setState(() {
-                                                    currentPosition = 0;
-                                                    videoTitle = listOfSectionData[
-                                                                        widget
-                                                                            .courseName]
-                                                                    [
-                                                                    sectionIndex]
-                                                                ["videos"][
-                                                            subsectionIndex]["name"]
-                                                        .toString();
-                                                    totalDuration = 0;
-                                                  });
-                                                  // On Vid Change
+                                                  if (listOfSectionData[widget
+                                                      .courseName]
+                                                  [sectionIndex]
+                                                  ["videos"]
+                                                  [subsectionIndex]
+                                                  ["type"] ==
+                                                      "video") {
+                                                    setState(() {
+                                                      currentPosition = 0;
+                                                      videoTitle = listOfSectionData[
+                                                      widget
+                                                          .courseName]
+                                                      [sectionIndex]
+                                                      ["videos"][
+                                                      subsectionIndex]["name"]
+                                                          .toString();
+                                                      totalDuration = 0;
+                                                    });
 
-                                                  initPlayer(listOfSectionData[
-                                                                      widget
-                                                                          .courseName]
-                                                                  [sectionIndex]
-                                                              ["videos"][
-                                                          subsectionIndex]["weburl"]
-                                                      .toString());
-                                                  iFrameKey.currentState!
-                                                      .setState(() {});
-                                                  ;
-                                                  // VideoScreen
-                                                  //     .currentSpeed.value = 1.0;
+                                                    // On Vid Change
 
-                                                  // initializeVidController(
-                                                  //     listOfSectionData[widget.courseName][sectionIndex]["videos"]
-                                                  //                 [subsectionIndex]
-                                                  //             ["url"]
-                                                  //         .toString(),
-                                                  //     listOfSectionData[widget.courseName]
-                                                  //                     [sectionIndex]["videos"]
-                                                  //                 [subsectionIndex]
-                                                  //             ["name"]
-                                                  //         .toString(),
-                                                  //     listOfSectionData[widget.courseName]
-                                                  //                 [sectionIndex]
-                                                  //             ["modulename"]
-                                                  //         .toString(),
-                                                  //     listOfSectionData[widget.courseName]
-                                                  //                 [sectionIndex]
-                                                  //             ["id"]
-                                                  //         .toString(),
-                                                  //     listOfSectionData[widget.courseName]
-                                                  //                 [sectionIndex]["videos"]
-                                                  //             [subsectionIndex]["id"]
-                                                  //         .toString());
-                                                } else if (listOfSectionData[widget.courseName]
-                                                                    [sectionIndex]
-                                                                ["videos"]
-                                                            [subsectionIndex]
-                                                        ["type"] ==
-                                                    "quiz") {
-                                                  print(
-                                                      "ll;;;;;;;;;;;;;;;;;;;");
-                                                  submitResume = false;
-                                                  setState(() {
-                                                    quizdata = listOfSectionData[
-                                                                widget
-                                                                    .courseName]
-                                                            [sectionIndex][
-                                                        "videos"][subsectionIndex];
-                                                    htmlbool = true;
-                                                    quizbool = true;
-                                                  });
-                                                  checkQuizScore(
-                                                      quizdata['name']);
-                                                } else if (listOfSectionData[widget.courseName]
-                                                                    [sectionIndex]
-                                                                ["videos"]
-                                                            [subsectionIndex]
-                                                        ["type"] ==
-                                                    "resume") {
-                                                  setState(() {
-                                                    quizbool = false;
-                                                    !submitResume
-                                                        ? submitResume = true
-                                                        : null;
-                                                  });
-                                                } else {
-                                                  submitResume = false;
-                                                  // showAssignment = true;
+                                                    initPlayer(listOfSectionData[widget
+                                                        .courseName]
+                                                    [sectionIndex]
+                                                    ["videos"][
+                                                    subsectionIndex]["weburl"]
+                                                        .toString());
+                                                    iFrameKey.currentState!
+                                                        .setState(() {});
+                                                    ;
 
-                                                  setState(() {
-                                                    assignmentUrl = listOfSectionData[
-                                                                        widget
-                                                                            .courseName]
-                                                                    [
-                                                                    sectionIndex]
-                                                                ["videos"][
-                                                            subsectionIndex]["url"]
-                                                        .toString();
-                                                    assignmentName = listOfSectionData[
-                                                                        widget
-                                                                            .courseName]
-                                                                    [
-                                                                    sectionIndex]
-                                                                ["videos"][
-                                                            subsectionIndex]["name"]
-                                                        .toString();
-                                                    solutionUrl = listOfSectionData[
-                                                                        widget
-                                                                            .courseName]
-                                                                    [
-                                                                    sectionIndex]
-                                                                ["videos"][
-                                                            subsectionIndex]["pdf"]
-                                                        .toString();
-                                                    dataSetUrl = listOfSectionData[widget.courseName]
-                                                                            [sectionIndex]
-                                                                        ["videos"]
-                                                                    [subsectionIndex]
-                                                                ["dataset"] !=
-                                                            null
-                                                        ? listOfSectionData[widget
-                                                                        .courseName]
-                                                                    [
-                                                                    sectionIndex]
-                                                                ["videos"][
-                                                            subsectionIndex]["dataset"]
-                                                        : [];
-                                                  });
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              AssignmentScreen(
-                                                                selectedSection:
-                                                                    selectedSection,
-                                                                courseData:
-                                                                    courseData,
-                                                                courseName: widget
-                                                                    .courseName,
-                                                                assignmentUrl:
-                                                                    assignmentUrl,
-                                                                dataSetUrl:
-                                                                    dataSetUrl,
-                                                                solutionUrl:
-                                                                    solutionUrl,
-                                                                assignmentName:
-                                                                    assignmentName,
-                                                                assignmentDescription:
-                                                                    assignmentDescription,
-                                                                assignmentSolutionVideo:
-                                                                    assignmentSolutionVideo,
-                                                                assignmentTrackBoolMap:
-                                                                    assignmentTrackBoolMap,
-                                                                showDescription:
-                                                                    assignmentDescriptionShow,
-                                                              )));
-                                                  print("Eagle");
-                                                }
-                                              },
-                                              child: Container(
-                                                  color: currentPlayingVideoName ==
+                                                    // VideoScreen.currentSpeed.value =
+                                                    //     1.0;
+                                                    // initializeVidController(
+                                                    //     listOfSectionData[widget.courseName][sectionIndex]["videos"]
+                                                    //                 [subsectionIndex]
+                                                    //             ["url"]
+                                                    //         .toString(),
+                                                    //     listOfSectionData[widget.courseName][sectionIndex]
+                                                    //                 ["videos"][subsectionIndex]
+                                                    //             ["name"]
+                                                    //         .toString(),
+                                                    //     listOfSectionData[widget.courseName]
+                                                    //                 [sectionIndex]
+                                                    //             ["modulename"]
+                                                    //         .toString(),
+                                                    //     listOfSectionData[widget.courseName]
+                                                    //             [sectionIndex]["id"]
+                                                    //         .toString(),
+                                                    //     listOfSectionData[widget.courseName]
+                                                    //                 [sectionIndex]["videos"]
+                                                    //             [subsectionIndex]["id"]
+                                                    //         .toString());
+                                                  } else if (listOfSectionData[widget
+                                                      .courseName]
+                                                  [sectionIndex]
+                                                  ["videos"]
+                                                  [subsectionIndex]["type"] ==
+                                                      "quiz") {
+                                                    //QuizentrypageWidget
+                                                    print(
+                                                        "sdjfosjdfoisjdofjsodifjsoijdfoisdfsodfiosjiofdjosdjfoisidfjiowjofowejojiojbdf");
+                                                    //  GoRouter.of(context).pushNamed('quizpage');
+                                                    setState(() {
+                                                      quizdata = listOfSectionData[
+                                                      widget.courseName]
+                                                      [sectionIndex][
+                                                      "videos"][subsectionIndex];
+                                                      quizbool = true;
+                                                      print("iwoe");
+                                                      htmlbool = true;
+                                                    });
+                                                    checkQuizScore(
+                                                        quizdata['name']);
+                                                  } else {
+                                                    // showAssignment = true;
+                                                    setState(() {
+                                                      assignmentUrl = listOfSectionData[
+                                                      widget
+                                                          .courseName]
+                                                      [sectionIndex]
+                                                      ["videos"][
+                                                      subsectionIndex]["url"]
+                                                          .toString();
+
+                                                      assignmentName = listOfSectionData[
+                                                      widget
+                                                          .courseName]
+                                                      [sectionIndex]
+                                                      ["videos"][
+                                                      subsectionIndex]["name"]
+                                                          .toString();
+                                                      print(assignmentName);
+                                                      solutionUrl = listOfSectionData[
+                                                      widget
+                                                          .courseName]
+                                                      [sectionIndex]
+                                                      ["videos"][
+                                                      subsectionIndex]["pdf"]
+                                                          .toString();
+                                                      dataSetUrl = listOfSectionData[
+                                                      widget.courseName]
+                                                      [
+                                                      sectionIndex]["videos"]
+                                                      [
+                                                      subsectionIndex]["dataset"];
+                                                    });
+
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                AssignmentScreen(
+                                                                  selectedSection:
+                                                                  selectedSection,
+                                                                  courseData:
+                                                                  courseData,
+                                                                  courseName: widget
+                                                                      .courseName,
+                                                                  assignmentUrl:
+                                                                  assignmentUrl,
+                                                                  dataSetUrl:
+                                                                  dataSetUrl,
+                                                                  solutionUrl:
+                                                                  solutionUrl,
+                                                                  assignmentName:
+                                                                  assignmentName,
+                                                                  assignmentDescription:
+                                                                  assignmentDescription,
+                                                                  assignmentSolutionVideo:
+                                                                  assignmentSolutionVideo,
+                                                                  assignmentTrackBoolMap:
+                                                                  assignmentTrackBoolMap,
+                                                                  showDescription:
+                                                                  assignmentDescriptionShow,
+                                                                )));
+                                                    print("Eagle");
+                                                  }
+                                                },
+                                                child: Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 60,
+                                                        top: 15,
+                                                        bottom: 15),
+                                                    child: Align(
+                                                      alignment:
+                                                      Alignment.centerLeft,
+                                                      child: Row(
+                                                        children: [
                                                           listOfSectionData[widget.courseName]
-                                                                              [sectionIndex]
-                                                                          ["videos"]
-                                                                      [subsectionIndex]
-                                                                  ["name"]
-                                                              .toString()
-                                                      ? HexColor("#fbedfc")
-                                                      : Colors.white,
-                                                  //     Colors.red,
-
-                                                  padding: EdgeInsets.only(
-                                                      left: listOfSectionData[widget.courseName]
-                                                                          [sectionIndex]
-                                                                      ["videos"]
-                                                                  [subsectionIndex]["type"] ==
+                                                          [sectionIndex]
+                                                          ["videos"]
+                                                          [subsectionIndex]
+                                                          ["type"] ==
                                                               "video"
-                                                          ? 60
-                                                          : 60,
-                                                      top: 15,
-                                                      bottom: 15),
-                                                  child: Align(
-                                                    alignment:
+                                                              ? Icon(
+                                                              Icons.play_circle)
+                                                              : listOfSectionData[widget.courseName]
+                                                          [sectionIndex]
+                                                          [
+                                                          "videos"][subsectionIndex]
+                                                          [
+                                                          "type"] ==
+                                                              "quiz"
+                                                              ? Icon(Icons.quiz)
+                                                              : Icon(Icons
+                                                              .assessment),
+                                                          SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Expanded(
+                                                              child: Text(
+                                                                listOfSectionData[widget.courseName][sectionIndex]
+                                                                ["videos"]
+                                                                [subsectionIndex]
+                                                                ["type"] ==
+                                                                    "video"
+                                                                    ? listOfSectionData[widget.courseName]
+                                                                [sectionIndex]
+                                                                ["videos"][subsectionIndex]
+                                                                ["name"]
+                                                                    .toString()
+                                                                    : listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] ==
+                                                                    "quiz"
+                                                                    ? "Quiz : " +
+                                                                    listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"]
+                                                                        .toString()
+                                                                    : "Assignment : " +
+                                                                    listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]
+                                                                    ["name"]
+                                                                        .toString(),
+                                                                style: TextStyle(
+                                                                    overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis),
+                                                              ))
+                                                        ],
+                                                      ),
+                                                    ))),
+                                          ),
+                                          feedback: SizedBox(
+                                            height: 50,
+                                            child: Container(
+                                                padding: EdgeInsets.only(
+                                                    left: 60, top: 15, bottom: 15),
+                                                child: Align(
+                                                  alignment: Alignment.centerLeft,
+                                                  child: Row(
+                                                    children: [
+                                                      listOfSectionData[widget.courseName]
+                                                      [
+                                                      index]
+                                                      [
+                                                      "videos"]
+                                                      [subIndex]
+                                                      ["type"] ==
+                                                          "video"
+                                                          ? Icon(Icons.play_circle)
+                                                          : Icon(Icons.assessment),
+                                                      SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      DefaultTextStyle(
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            overflow: TextOverflow
+                                                                .ellipsis),
+                                                        child:
+                                                        // Expanded(
+                                                        //   child:
+                                                        Text(
+                                                          listOfSectionData[widget.courseName][index]["videos"]
+                                                          [subIndex]
+                                                          ["type"] ==
+                                                              "video"
+                                                              ? listOfSectionData[widget.courseName][index]
+                                                          ["videos"]
+                                                          [subIndex]
+                                                          ["name"]
+                                                              .toString()
+                                                              : listOfSectionData[widget.courseName][index]["videos"][subIndex]["type"] ==
+                                                              "quiz"
+                                                              ? "Quiz : " +
+                                                              listOfSectionData[widget.courseName][index]["videos"][subIndex]["name"]
+                                                                  .toString()
+                                                              : "Assignment : " +
+                                                              listOfSectionData[widget.courseName][index]["videos"][subIndex]
+                                                              ["name"]
+                                                                  .toString(),
+                                                          style: TextStyle(
+                                                              color: Colors.black,
+                                                              fontSize: 17,
+                                                              fontWeight:
+                                                              FontWeight.normal,
+                                                              overflow: TextOverflow
+                                                                  .ellipsis),
+                                                        ),
+                                                        // )
+                                                      )
+                                                    ],
+                                                  ),
+                                                )),
+                                            // width: 50,
+                                            // height: 50,
+                                          ),
+                                        )
+                                      else
+                                        DragTarget<int>(
+                                          builder: (context, _, __) =>
+                                              GestureDetector(
+                                                  onDoubleTap: () {
+                                                    print("doubletap");
+                                                    if (role != null) {
+                                                      if (role == "mentor") {
+                                                        setState(() {
+                                                          // selectAssignment = null;
+                                                          subIndex =
+                                                              subsectionIndex;
+                                                          index = sectionIndex;
+                                                        });
+                                                      }
+                                                    }
+                                                    print(subsectionIndex);
+                                                  },
+                                                  onTap: () {
+                                                    // _videoController!.pause();
+                                                    setState(() {
+                                                      currentPlayingVideoName =
+                                                          listOfSectionData[widget
+                                                              .courseName]
+                                                          [
+                                                          sectionIndex]
+                                                          ["videos"][
+                                                          subsectionIndex]["name"]
+                                                              .toString();
+                                                    });
+                                                    if (listOfSectionData[widget.courseName]
+                                                    [sectionIndex]
+                                                    ["videos"]
+                                                    [subsectionIndex]
+                                                    ["type"] ==
+                                                        "video") {
+                                                      print(
+                                                          'vdo = $videoPercentageList');
+                                                      htmlbool = false;
+                                                      showAssignment = false;
+                                                      submitResume = false;
+                                                      setState(() {
+                                                        currentPosition = 0;
+                                                        videoTitle = listOfSectionData[
+                                                        widget
+                                                            .courseName]
+                                                        [
+                                                        sectionIndex]
+                                                        ["videos"][
+                                                        subsectionIndex]["name"]
+                                                            .toString();
+                                                        totalDuration = 0;
+                                                      });
+                                                      // On Vid Change
+
+                                                      initPlayer(listOfSectionData[
+                                                      widget
+                                                          .courseName]
+                                                      [sectionIndex]
+                                                      ["videos"][
+                                                      subsectionIndex]["weburl"]
+                                                          .toString());
+                                                      iFrameKey.currentState!
+                                                          .setState(() {});
+                                                      ;
+                                                      // VideoScreen
+                                                      //     .currentSpeed.value = 1.0;
+
+                                                      // initializeVidController(
+                                                      //     listOfSectionData[widget.courseName][sectionIndex]["videos"]
+                                                      //                 [subsectionIndex]
+                                                      //             ["url"]
+                                                      //         .toString(),
+                                                      //     listOfSectionData[widget.courseName]
+                                                      //                     [sectionIndex]["videos"]
+                                                      //                 [subsectionIndex]
+                                                      //             ["name"]
+                                                      //         .toString(),
+                                                      //     listOfSectionData[widget.courseName]
+                                                      //                 [sectionIndex]
+                                                      //             ["modulename"]
+                                                      //         .toString(),
+                                                      //     listOfSectionData[widget.courseName]
+                                                      //                 [sectionIndex]
+                                                      //             ["id"]
+                                                      //         .toString(),
+                                                      //     listOfSectionData[widget.courseName]
+                                                      //                 [sectionIndex]["videos"]
+                                                      //             [subsectionIndex]["id"]
+                                                      //         .toString());
+                                                    } else if (listOfSectionData[widget.courseName]
+                                                    [sectionIndex]
+                                                    ["videos"]
+                                                    [subsectionIndex]
+                                                    ["type"] ==
+                                                        "quiz") {
+                                                      print(
+                                                          "ll;;;;;;;;;;;;;;;;;;;");
+                                                      submitResume = false;
+                                                      setState(() {
+                                                        quizdata = listOfSectionData[
+                                                        widget
+                                                            .courseName]
+                                                        [sectionIndex][
+                                                        "videos"][subsectionIndex];
+                                                        htmlbool = true;
+                                                        quizbool = true;
+                                                      });
+                                                      checkQuizScore(
+                                                          quizdata['name']);
+                                                    } else if (listOfSectionData[widget.courseName]
+                                                    [sectionIndex]
+                                                    ["videos"]
+                                                    [subsectionIndex]
+                                                    ["type"] ==
+                                                        "resume") {
+                                                      setState(() {
+                                                        quizbool = false;
+                                                        !submitResume
+                                                            ? submitResume = true
+                                                            : null;
+                                                      });
+                                                    } else {
+                                                      submitResume = false;
+                                                      // showAssignment = true;
+
+                                                      setState(() {
+                                                        assignmentUrl = listOfSectionData[
+                                                        widget
+                                                            .courseName]
+                                                        [
+                                                        sectionIndex]
+                                                        ["videos"][
+                                                        subsectionIndex]["url"]
+                                                            .toString();
+                                                        assignmentName = listOfSectionData[
+                                                        widget
+                                                            .courseName]
+                                                        [
+                                                        sectionIndex]
+                                                        ["videos"][
+                                                        subsectionIndex]["name"]
+                                                            .toString();
+                                                        solutionUrl = listOfSectionData[
+                                                        widget
+                                                            .courseName]
+                                                        [
+                                                        sectionIndex]
+                                                        ["videos"][
+                                                        subsectionIndex]["pdf"]
+                                                            .toString();
+                                                        dataSetUrl = listOfSectionData[widget.courseName]
+                                                        [sectionIndex]
+                                                        ["videos"]
+                                                        [subsectionIndex]
+                                                        ["dataset"] !=
+                                                            null
+                                                            ? listOfSectionData[widget
+                                                            .courseName]
+                                                        [
+                                                        sectionIndex]
+                                                        ["videos"][
+                                                        subsectionIndex]["dataset"]
+                                                            : [];
+                                                      });
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  AssignmentScreen(
+                                                                    selectedSection:
+                                                                    selectedSection,
+                                                                    courseData:
+                                                                    courseData,
+                                                                    courseName: widget
+                                                                        .courseName,
+                                                                    assignmentUrl:
+                                                                    assignmentUrl,
+                                                                    dataSetUrl:
+                                                                    dataSetUrl,
+                                                                    solutionUrl:
+                                                                    solutionUrl,
+                                                                    assignmentName:
+                                                                    assignmentName,
+                                                                    assignmentDescription:
+                                                                    assignmentDescription,
+                                                                    assignmentSolutionVideo:
+                                                                    assignmentSolutionVideo,
+                                                                    assignmentTrackBoolMap:
+                                                                    assignmentTrackBoolMap,
+                                                                    showDescription:
+                                                                    assignmentDescriptionShow,
+                                                                  )));
+                                                      print("Eagle");
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                      color: currentPlayingVideoName ==
+                                                          listOfSectionData[widget.courseName]
+                                                          [sectionIndex]
+                                                          ["videos"]
+                                                          [subsectionIndex]
+                                                          ["name"]
+                                                              .toString()
+                                                          ? HexColor("#fbedfc")
+                                                          : Colors.white,
+                                                      //     Colors.red,
+
+                                                      padding: EdgeInsets.only(
+                                                          left: listOfSectionData[widget.courseName]
+                                                          [sectionIndex]
+                                                          ["videos"]
+                                                          [subsectionIndex]["type"] ==
+                                                              "video"
+                                                              ? 60
+                                                              : 60,
+                                                          top: 15,
+                                                          bottom: 15),
+                                                      child: Align(
+                                                        alignment:
                                                         Alignment.centerLeft,
-                                                    child: Row(
-                                                      mainAxisAlignment:
+                                                        child: Row(
+                                                          mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .center,
-                                                      crossAxisAlignment:
+                                                          crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .center,
-                                                      children: [
-                                                        listOfSectionData[widget.courseName][sectionIndex]
-                                                                            ["videos"]
-                                                                        [subsectionIndex]
-                                                                    ["type"] ==
+                                                          children: [
+                                                            listOfSectionData[widget.courseName][sectionIndex]
+                                                            ["videos"]
+                                                            [subsectionIndex]
+                                                            ["type"] ==
                                                                 "video"
-                                                            ? Icon(Icons.play_circle,
+                                                                ? Icon(Icons.play_circle,
                                                                 color:
-                                                                    Colors.black
-                                                                // :null,
-                                                                )
-                                                            : listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] ==
-                                                                    "resume"
+                                                                Colors.black
+                                                              // :null,
+                                                            )
+                                                                : listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] ==
+                                                                "resume"
                                                                 ? Icon(Icons
-                                                                    .reviews)
+                                                                .reviews)
                                                                 : Icon(Icons.assessment,
-                                                                    color: listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "assignment" && assignmentMap[listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()] == listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()
-                                                                        ? Colors
-                                                                            .green
-                                                                        : Colors
-                                                                            .purple
-                                                                    // :null,
-                                                                    ),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        _getVideoPercentageList !=
-                                                                    null &&
+                                                                color: listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "assignment" && assignmentMap[listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()] == listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()
+                                                                    ? Colors
+                                                                    .green
+                                                                    : Colors
+                                                                    .purple
+                                                              // :null,
+                                                            ),
+                                                            SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            _getVideoPercentageList !=
+                                                                null &&
                                                                 CourseID != null
-                                                            ? listOfSectionData[widget.courseName][sectionIndex]["videos"]
-                                                                            [
-                                                                            subsectionIndex]
-                                                                        [
-                                                                        "type"] ==
-                                                                    "video"
-                                                                ? Expanded(
-                                                                    child:
-                                                                        Column(
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
-                                                                      children: List.generate(
-                                                                          _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()]
-                                                                              .length,
-                                                                          (index) {
-                                                                        if (_getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] !=
-                                                                            null) {
-                                                                          return updateVideoName && updateVideoIndex == subsectionIndex
-                                                                              ? TextField(
-                                                                                  controller: updateVideoNameController,
-                                                                                  decoration: InputDecoration(
-                                                                                      hintText: '${listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"]}',
-                                                                                      suffix: IconButton(
-                                                                                        onPressed: () {
-                                                                                          listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['name'] = updateVideoNameController.text;
-                                                                                          try {
-                                                                                            FirebaseFirestore.instance.collection('courses').doc(widget.cID).update({
-                                                                                              'curriculum1': {
-                                                                                                widget.courseName: listOfSectionData[widget.courseName],
-                                                                                              }
-                                                                                            });
-                                                                                          } catch (e) {
-                                                                                            print(e.toString());
-                                                                                          }
-
-                                                                                          setState(() {
-                                                                                            streamVideoData();
-                                                                                            updateVideoNameController.clear();
-                                                                                            updateVideoName = false;
-                                                                                          });
-                                                                                        },
-                                                                                        icon: Icon(Icons.update_outlined),
-                                                                                      )),
-                                                                                )
-                                                                              : Text(
-                                                                                  listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "video"
-                                                                                      ? listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()
-                                                                                      : listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "quiz"
-                                                                                          ? "Quiz : " + listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()
-                                                                                          : listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "resume"
-                                                                                              ? ''
-                                                                                              : "Assignment : " + listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString(),
-                                                                                  style: TextStyle(overflow: TextOverflow.ellipsis, color: _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] == 100 ? Colors.green : Colors.black),
-                                                                                );
-                                                                        } else {
-                                                                          return SizedBox();
-                                                                        }
-                                                                      }),
-                                                                    ),
-                                                                  )
-                                                                : SizedBox()
-                                                            : SizedBox(),
-                                                        listOfSectionData[widget.courseName]
-                                                                            [
-                                                                            sectionIndex]
-                                                                        [
-                                                                        "videos"]
-                                                                    [
-                                                                    subsectionIndex]["type"] !=
+                                                                ? listOfSectionData[widget.courseName][sectionIndex]["videos"]
+                                                            [
+                                                            subsectionIndex]
+                                                            [
+                                                            "type"] ==
                                                                 "video"
-                                                            ? Expanded(
-                                                                child: editAssignmentName &&
-                                                                        updateVideoIndex ==
-                                                                            subsectionIndex
-                                                                    ? TextField(
-                                                                        controller:
-                                                                            updateVideoNameController,
-                                                                        decoration: InputDecoration(
-                                                                            hintText: '${listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"]}',
-                                                                            suffix: IconButton(
-                                                                              onPressed: () {
-                                                                                listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['name'] = updateVideoNameController.text;
-                                                                                try {
-                                                                                  FirebaseFirestore.instance.collection('courses').doc(widget.cID).update({
-                                                                                    'curriculum1': {
-                                                                                      widget.courseName: listOfSectionData[widget.courseName],
-                                                                                    }
-                                                                                  });
-                                                                                } catch (e) {
-                                                                                  print(e.toString());
-                                                                                }
-
-                                                                                setState(() {
-                                                                                  streamVideoData();
-                                                                                  updateVideoNameController.clear();
-                                                                                  editAssignmentName = false;
-                                                                                });
-                                                                              },
-                                                                              icon: Icon(Icons.update_outlined),
-                                                                            )),
-                                                                      )
-                                                                    : Text(
-                                                                        listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] ==
-                                                                                "video"
-                                                                            ? ''
-                                                                            : listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "quiz"
-                                                                                ? "Quiz : " + listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()
-                                                                                : listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "resume"
-                                                                                    ? listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()
-                                                                                    : "Assignment : " + listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString(),
-                                                                        style: TextStyle(
-                                                                            overflow: TextOverflow
-                                                                                .ellipsis,
-                                                                            color: listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "assignment" && assignmentMap[listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()] == listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()
-                                                                                ? Colors.green
-                                                                                : Colors.purple
-                                                                            // :null
-                                                                            ),
-                                                                      ),
-                                                              )
-                                                            : SizedBox(),
-                                                        _getVideoPercentageList !=
-                                                                null
-                                                            ? listOfSectionData[widget.courseName][sectionIndex]["videos"]
-                                                                            [
-                                                                            subsectionIndex]
-                                                                        [
-                                                                        "type"] ==
-                                                                    "video"
-                                                                ? Column(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: List.generate(
-                                                                        _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()]
-                                                                            .length,
+                                                                ? Expanded(
+                                                              child:
+                                                              Column(
+                                                                crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                                mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                                children: List.generate(
+                                                                    _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()]
+                                                                        .length,
                                                                         (index) {
-                                                                      if (_getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index]
-                                                                              [
-                                                                              listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] !=
+                                                                      if (_getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] !=
                                                                           null) {
-                                                                        return Row(
-                                                                          children: [
-                                                                            Text(
-                                                                              _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()].toString() + "%",
-                                                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] == 100 ? Colors.green : Colors.black),
-                                                                            ),
-                                                                            //UI
+                                                                        return updateVideoName && updateVideoIndex == subsectionIndex
+                                                                            ? TextField(
+                                                                          controller: updateVideoNameController,
+                                                                          decoration: InputDecoration(
+                                                                              hintText: '${listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"]}',
+                                                                              suffix: IconButton(
+                                                                                onPressed: () {
+                                                                                  listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['name'] = updateVideoNameController.text;
+                                                                                  try {
+                                                                                    FirebaseFirestore.instance.collection('courses').doc(widget.cID).update({
+                                                                                      'curriculum1': {
+                                                                                        widget.courseName: listOfSectionData[widget.courseName],
+                                                                                      }
+                                                                                    });
+                                                                                  } catch (e) {
+                                                                                    print(e.toString());
+                                                                                  }
 
-                                                                            Column(
-                                                                              children: [
-                                                                                Transform.scale(
-                                                                                  scale: 1,
-                                                                                  child: Checkbox(
-                                                                                    checkColor: _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] == 100 ? Colors.white : Colors.white,
-                                                                                    fillColor: _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] == 100
-                                                                                        ? MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-                                                                                            if (states.contains(MaterialState.disabled)) {
-                                                                                              return Colors.green;
-                                                                                            }
-                                                                                            return Colors.green;
-                                                                                          })
-                                                                                        : null,
-                                                                                    value: _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] == 100 ? true : false,
-                                                                                    shape: CircleBorder(),
-                                                                                    onChanged: (bool? value) {
-                                                                                      setState(() {
-                                                                                        if (_getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] == 100) {
-                                                                                          _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] = 0;
-                                                                                        } else {
-                                                                                          _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] = 100;
-                                                                                        }
-
-                                                                                        updateVideoProgress(_getVideoPercentageList);
-                                                                                      });
-                                                                                    },
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  "Mark As Complete",
-                                                                                  style: TextStyle(fontSize: 10),
-                                                                                )
-                                                                              ],
-                                                                            )
-                                                                          ],
+                                                                                  setState(() {
+                                                                                    streamVideoData();
+                                                                                    updateVideoNameController.clear();
+                                                                                    updateVideoName = false;
+                                                                                  });
+                                                                                },
+                                                                                icon: Icon(Icons.update_outlined),
+                                                                              )),
+                                                                        )
+                                                                            : Text(
+                                                                          listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "video"
+                                                                              ? listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()
+                                                                              : listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "quiz"
+                                                                              ? "Quiz : " + listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()
+                                                                              : listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "resume"
+                                                                              ? ''
+                                                                              : "Assignment : " + listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString(),
+                                                                          style: TextStyle(overflow: TextOverflow.ellipsis, color: _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] == 100 ? Colors.green : Colors.black),
                                                                         );
-                                                                        // ,
-                                                                        // );
                                                                       } else {
                                                                         return SizedBox();
                                                                       }
                                                                     }),
-                                                                  )
+                                                              ),
+                                                            )
                                                                 : SizedBox()
-                                                            : SizedBox(),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        role == 'mentor' &&
-                                                                listOfSectionData[widget.courseName][sectionIndex]["videos"]
-                                                                            [
-                                                                            subsectionIndex]
-                                                                        [
-                                                                        "type"] ==
+                                                                : SizedBox(),
+                                                            listOfSectionData[widget.courseName]
+                                                            [
+                                                            sectionIndex]
+                                                            [
+                                                            "videos"]
+                                                            [
+                                                            subsectionIndex]["type"] !=
+                                                                "video"
+                                                                ? Expanded(
+                                                              child: editAssignmentName &&
+                                                                  updateVideoIndex ==
+                                                                      subsectionIndex
+                                                                  ? TextField(
+                                                                controller:
+                                                                updateVideoNameController,
+                                                                decoration: InputDecoration(
+                                                                    hintText: '${listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"]}',
+                                                                    suffix: IconButton(
+                                                                      onPressed: () {
+                                                                        listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['name'] = updateVideoNameController.text;
+                                                                        try {
+                                                                          FirebaseFirestore.instance.collection('courses').doc(widget.cID).update({
+                                                                            'curriculum1': {
+                                                                              widget.courseName: listOfSectionData[widget.courseName],
+                                                                            }
+                                                                          });
+                                                                        } catch (e) {
+                                                                          print(e.toString());
+                                                                        }
+
+                                                                        setState(() {
+                                                                          streamVideoData();
+                                                                          updateVideoNameController.clear();
+                                                                          editAssignmentName = false;
+                                                                        });
+                                                                      },
+                                                                      icon: Icon(Icons.update_outlined),
+                                                                    )),
+                                                              )
+                                                                  : Text(
+                                                                listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] ==
                                                                     "video"
-                                                            ? PopupMenuButton<
-                                                                    int>(
+                                                                    ? ''
+                                                                    : listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "quiz"
+                                                                    ? "Quiz : " + listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()
+                                                                    : listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "resume"
+                                                                    ? listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()
+                                                                    : "Assignment : " + listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString(),
+                                                                style: TextStyle(
+                                                                    overflow: TextOverflow
+                                                                        .ellipsis,
+                                                                    color: listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["type"] == "assignment" && assignmentMap[listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()] == listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"].toString()
+                                                                        ? Colors.green
+                                                                        : Colors.purple
+                                                                  // :null
+                                                                ),
+                                                              ),
+                                                            )
+                                                                : SizedBox(),
+                                                            _getVideoPercentageList !=
+                                                                null
+                                                                ? listOfSectionData[widget.courseName][sectionIndex]["videos"]
+                                                            [
+                                                            subsectionIndex]
+                                                            [
+                                                            "type"] ==
+                                                                "video"
+                                                                ? Column(
+                                                              crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                              mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                              children: List.generate(
+                                                                  _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()]
+                                                                      .length,
+                                                                      (index) {
+                                                                    if (_getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index]
+                                                                    [
+                                                                    listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] !=
+                                                                        null) {
+                                                                      return Row(
+                                                                        children: [
+                                                                          Text(
+                                                                            _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()].toString() + "%",
+                                                                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] == 100 ? Colors.green : Colors.black),
+                                                                          ),
+                                                                          //UI
+
+                                                                          Column(
+                                                                            children: [
+                                                                              Transform.scale(
+                                                                                scale: 1,
+                                                                                child: Checkbox(
+                                                                                  checkColor: _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] == 100 ? Colors.white : Colors.white,
+                                                                                  fillColor: _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] == 100
+                                                                                      ? MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                                                                                    if (states.contains(MaterialState.disabled)) {
+                                                                                      return Colors.green;
+                                                                                    }
+                                                                                    return Colors.green;
+                                                                                  })
+                                                                                      : null,
+                                                                                  value: _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] == 100 ? true : false,
+                                                                                  shape: CircleBorder(),
+                                                                                  onChanged: (bool? value) {
+                                                                                    setState(() {
+                                                                                      if (_getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] == 100) {
+                                                                                        _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] = 0;
+                                                                                      } else {
+                                                                                        _getVideoPercentageList![sectionIndex][listOfSectionData[widget.courseName][sectionIndex]["id"].toString()][index][listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["id"].toString()] = 100;
+                                                                                      }
+
+                                                                                      updateVideoProgress(_getVideoPercentageList);
+                                                                                    });
+                                                                                  },
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                "Mark As Complete",
+                                                                                style: TextStyle(fontSize: 10),
+                                                                              )
+                                                                            ],
+                                                                          )
+                                                                        ],
+                                                                      );
+                                                                      // ,
+                                                                      // );
+                                                                    } else {
+                                                                      return SizedBox();
+                                                                    }
+                                                                  }),
+                                                            )
+                                                                : SizedBox()
+                                                                : SizedBox(),
+                                                            SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            role == 'mentor' &&
+                                                                listOfSectionData[widget.courseName][sectionIndex]["videos"]
+                                                                [
+                                                                subsectionIndex]
+                                                                [
+                                                                "type"] ==
+                                                                    "video"
+                                                                ? PopupMenuButton<
+                                                                int>(
                                                                 onSelected:
                                                                     (item) {
                                                                   if (item ==
                                                                       1) {
                                                                     setState(
-                                                                        () {
-                                                                      updateVideoNameController
-                                                                          .text = listOfSectionData[widget.courseName][sectionIndex]["videos"]
-                                                                              [
-                                                                              subsectionIndex]
+                                                                            () {
+                                                                          updateVideoNameController
+                                                                              .text = listOfSectionData[widget.courseName][sectionIndex]["videos"]
+                                                                          [
+                                                                          subsectionIndex]
                                                                           [
                                                                           "name"];
-                                                                      updateVideoName =
+                                                                          updateVideoName =
                                                                           true;
-                                                                      editIndex =
-                                                                          sectionIndex;
-                                                                      updateVideoIndex =
-                                                                          subsectionIndex;
-                                                                    });
+                                                                          editIndex =
+                                                                              sectionIndex;
+                                                                          updateVideoIndex =
+                                                                              subsectionIndex;
+                                                                        });
                                                                   }
                                                                   if (item ==
                                                                       2) {
                                                                     setState(
-                                                                        () {
-                                                                      updateVideoName =
+                                                                            () {
+                                                                          updateVideoName =
                                                                           false;
-                                                                      editIndex =
-                                                                          sectionIndex;
-                                                                      deleteVideoIndex =
-                                                                          subsectionIndex;
-                                                                    });
+                                                                          editIndex =
+                                                                              sectionIndex;
+                                                                          deleteVideoIndex =
+                                                                              subsectionIndex;
+                                                                        });
                                                                     listOfSectionData[widget.courseName][editIndex]
-                                                                            [
-                                                                            'videos']
+                                                                    [
+                                                                    'videos']
                                                                         .removeAt(
-                                                                            deleteVideoIndex);
+                                                                        deleteVideoIndex);
 
                                                                     try {
                                                                       FirebaseFirestore
                                                                           .instance
                                                                           .collection(
-                                                                              'courses')
+                                                                          'courses')
                                                                           .doc(widget
-                                                                              .cID)
+                                                                          .cID)
                                                                           .update({
                                                                         'curriculum1':
-                                                                            {
+                                                                        {
                                                                           widget.courseName:
-                                                                              listOfSectionData[widget.courseName],
+                                                                          listOfSectionData[widget.courseName],
                                                                         }
                                                                       }).whenComplete(() =>
-                                                                              Toast.show('Video deleted'));
+                                                                          Toast.show('Video deleted'));
 
                                                                       streamVideoData();
                                                                     } catch (e) {
@@ -3730,24 +3730,24 @@ class _VideoScreenState extends State<VideoScreen> {
                                                                   if (item ==
                                                                       3) {
                                                                     setState(
-                                                                        () {
-                                                                      updateVideoIndex =
-                                                                          subsectionIndex;
-                                                                      editIndex =
-                                                                          sectionIndex;
-                                                                      updateVideoName =
+                                                                            () {
+                                                                          updateVideoIndex =
+                                                                              subsectionIndex;
+                                                                          editIndex =
+                                                                              sectionIndex;
+                                                                          updateVideoName =
                                                                           false;
-                                                                    });
+                                                                        });
                                                                     showDialog(
                                                                         context:
-                                                                            context,
+                                                                        context,
                                                                         builder:
                                                                             (context) {
                                                                           return AlertDialog(
                                                                             alignment:
-                                                                                Alignment.centerLeft,
+                                                                            Alignment.centerLeft,
                                                                             content:
-                                                                                Container(
+                                                                            Container(
                                                                               height: 250,
                                                                               width: 350,
                                                                               child: Column(
@@ -3807,710 +3807,683 @@ class _VideoScreenState extends State<VideoScreen> {
                                                                 },
                                                                 itemBuilder:
                                                                     (context) =>
-                                                                        [
-                                                                          PopupMenuItem<int>(
-                                                                              value: 1,
-                                                                              child: Text('Edit video name')),
-                                                                          PopupMenuItem<int>(
-                                                                              value: 2,
-                                                                              child: Text('Delete video')),
-                                                                          PopupMenuItem<int>(
-                                                                              value: 3,
-                                                                              child: Text('Update video URL')),
-                                                                        ])
-                                                            : SizedBox(),
-                                                        role == 'mentor' &&
-                                                                listOfSectionData[widget.courseName][sectionIndex]["videos"]
-                                                                            [
-                                                                            subsectionIndex]
-                                                                        [
-                                                                        "type"] ==
-                                                                    "assignment"
-                                                            ? PopupMenuButton<
-                                                                int>(
-                                                                onSelected:
-                                                                    (item) {
-                                                                  if (item ==
-                                                                      1) {
-                                                                    setState(
-                                                                        () {
-                                                                      updateVideoName =
-                                                                          false;
-                                                                      editIndex =
-                                                                          sectionIndex;
-                                                                      deleteVideoIndex =
-                                                                          subsectionIndex;
-                                                                    });
-                                                                    listOfSectionData[widget.courseName][editIndex]
-                                                                            [
-                                                                            'videos']
-                                                                        .removeAt(
-                                                                            deleteVideoIndex);
-
-                                                                    try {
-                                                                      FirebaseFirestore
-                                                                          .instance
-                                                                          .collection(
-                                                                              'courses')
-                                                                          .doc(widget
-                                                                              .cID)
-                                                                          .update({
-                                                                        'curriculum1':
-                                                                            {
-                                                                          widget.courseName:
-                                                                              listOfSectionData[widget.courseName],
-                                                                        }
-                                                                      });
-
-                                                                      streamVideoData();
-                                                                    } catch (e) {
-                                                                      print(e
-                                                                          .toString());
-                                                                    }
-                                                                  }
-                                                                  if (item ==
-                                                                      2) {
-                                                                    setState(
-                                                                        () {
-                                                                      updateVideoNameController
-                                                                          .text = listOfSectionData[widget.courseName][sectionIndex]["videos"]
-                                                                              [
-                                                                              subsectionIndex]
-                                                                          [
-                                                                          "name"];
-                                                                      editAssignmentName =
-                                                                          true;
-                                                                      editIndex =
-                                                                          sectionIndex;
-                                                                      updateVideoIndex =
-                                                                          subsectionIndex;
-                                                                    });
-                                                                  }
-                                                                  if (item ==
-                                                                      3) {
-                                                                    setState(
-                                                                        () {
-                                                                      updateVideoIndex =
-                                                                          subsectionIndex;
-                                                                      editIndex =
-                                                                          sectionIndex;
-                                                                      updateVideoName =
-                                                                          false;
-                                                                    });
-                                                                    showDialog(
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (context) {
-                                                                          return AlertDialog(
-                                                                            alignment:
-                                                                                Alignment.centerLeft,
-                                                                            content:
-                                                                                Container(
-                                                                              height: 250,
-                                                                              width: 350,
-                                                                              child: Column(
-                                                                                children: [
-                                                                                  TextField(
-                                                                                    controller: updateVideoUrl,
-                                                                                    decoration: InputDecoration(
-                                                                                      border: OutlineInputBorder(),
-                                                                                      hintText: 'Enter updated assignment URL',
-                                                                                    ),
-                                                                                  ),
-                                                                                  SizedBox(
-                                                                                    height: 20,
-                                                                                  ),
-                                                                                  Row(
-                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                                    children: [
-                                                                                      ElevatedButton(
-                                                                                          onPressed: () {
-                                                                                            if (updateVideoUrl.text.isNotEmpty && listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['dataset'] != null) {
-                                                                                              listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['dataset'][0]['url'] = updateVideoUrl.text;
-                                                                                              try {
-                                                                                                FirebaseFirestore.instance.collection('courses').doc(widget.cID).update({
-                                                                                                  'curriculum1': {
-                                                                                                    widget.courseName: listOfSectionData[widget.courseName],
-                                                                                                  }
-                                                                                                }).whenComplete(() => Toast.show('Assignment URL updated.'));
-                                                                                              } catch (e) {
-                                                                                                print(e.toString());
-                                                                                              }
-                                                                                              setState(() {
-                                                                                                updateVideoUrl.clear();
-                                                                                                Navigator.of(context).pop();
-                                                                                                streamVideoData();
-                                                                                              });
-                                                                                            } else if (updateVideoUrl.text.isNotEmpty) {
-                                                                                              listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['url'] = updateVideoUrl.text;
-                                                                                              try {
-                                                                                                FirebaseFirestore.instance.collection('courses').doc(widget.cID).update({
-                                                                                                  'curriculum1': {
-                                                                                                    widget.courseName: listOfSectionData[widget.courseName],
-                                                                                                  }
-                                                                                                }).whenComplete(() => Toast.show('Assignment URL updated.'));
-                                                                                              } catch (e) {
-                                                                                                print(e.toString());
-                                                                                              }
-                                                                                              setState(() {
-                                                                                                updateVideoUrl.clear();
-                                                                                                Navigator.of(context).pop();
-                                                                                                streamVideoData();
-                                                                                              });
-                                                                                            } else {
-                                                                                              Toast.show('Please enter URL');
-                                                                                            }
-                                                                                          },
-                                                                                          child: Text('Submit')),
-                                                                                      SizedBox(width: 20),
-                                                                                      ElevatedButton(
-                                                                                        onPressed: () {
-                                                                                          Navigator.of(context).pop();
-                                                                                        },
-                                                                                        child: Text('Close'),
-                                                                                      )
-                                                                                    ],
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ),
-                                                                          );
-                                                                        });
-                                                                  }
-                                                                  if (item ==
-                                                                      4) {
-                                                                    setState(
-                                                                        () {
-                                                                      updateVideoIndex =
-                                                                          subsectionIndex;
-                                                                      editIndex =
-                                                                          sectionIndex;
-                                                                      updateVideoName =
-                                                                          false;
-                                                                    });
-                                                                    showDialog(
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (context) {
-                                                                          return AlertDialog(
-                                                                            alignment:
-                                                                                Alignment.centerLeft,
-                                                                            content:
-                                                                                Container(
-                                                                              height: 700,
-                                                                              width: 350,
-                                                                              child: Column(
-                                                                                children: [
-                                                                                  TextField(
-                                                                                    controller: updateDescription,
-                                                                                    maxLines: 6,
-                                                                                    decoration: InputDecoration(
-                                                                                      border: OutlineInputBorder(),
-                                                                                      hintText: 'Enter description',
-                                                                                    ),
-                                                                                  ),
-                                                                                  SizedBox(
-                                                                                    height: 20,
-                                                                                  ),
-                                                                                  Row(
-                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                                    children: [
-                                                                                      ElevatedButton(
-                                                                                          onPressed: () {
-                                                                                            if (updateDescription.text.isNotEmpty && listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex] != null) {
-                                                                                              listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['description'] = updateDescription.text;
-                                                                                              try {
-                                                                                                FirebaseFirestore.instance.collection('courses').doc(widget.cID).update({
-                                                                                                  'curriculum1': {
-                                                                                                    widget.courseName: listOfSectionData[widget.courseName],
-                                                                                                  }
-                                                                                                }).whenComplete(() => Toast.show('Assignment Description Updated.'));
-                                                                                              } catch (e) {
-                                                                                                print(e.toString());
-                                                                                              }
-                                                                                              setState(() {
-                                                                                                updateDescription.clear();
-                                                                                                getAssignmentDescription();
-                                                                                                Navigator.of(context).pop();
-                                                                                                streamVideoData();
-                                                                                              });
-                                                                                            } else {
-                                                                                              Toast.show('Please enter URL');
-                                                                                            }
-                                                                                          },
-                                                                                          child: Text('Submit')),
-                                                                                      SizedBox(width: 20),
-                                                                                      ElevatedButton(
-                                                                                        onPressed: () {
-                                                                                          Navigator.of(context).pop();
-                                                                                        },
-                                                                                        child: Text('Close'),
-                                                                                      )
-                                                                                    ],
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ),
-                                                                          );
-                                                                        });
-                                                                  }
-                                                                  if (item ==
-                                                                      5) {
-                                                                    setState(
-                                                                        () {
-                                                                      updateVideoIndex =
-                                                                          subsectionIndex;
-                                                                      editIndex =
-                                                                          sectionIndex;
-                                                                      updateVideoName =
-                                                                          false;
-                                                                    });
-                                                                    showDialog(
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (context) {
-                                                                          return AlertDialog(
-                                                                            alignment:
-                                                                                Alignment.centerLeft,
-                                                                            content:
-                                                                                Container(
-                                                                              height: 350,
-                                                                              width: 350,
-                                                                              child: Column(
-                                                                                children: [
-                                                                                  TextField(
-                                                                                    controller: updateSolutionVideo,
-                                                                                    maxLines: 2,
-                                                                                    decoration: InputDecoration(
-                                                                                      border: OutlineInputBorder(),
-                                                                                      hintText: 'Enter Solution Url',
-                                                                                    ),
-                                                                                  ),
-                                                                                  SizedBox(
-                                                                                    height: 20,
-                                                                                  ),
-                                                                                  Row(
-                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                                    children: [
-                                                                                      ElevatedButton(
-                                                                                          onPressed: () {
-                                                                                            if (updateSolutionVideo.text.isNotEmpty && listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex] != null) {
-                                                                                              listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['videoUrl'] = updateSolutionVideo.text;
-                                                                                              try {
-                                                                                                FirebaseFirestore.instance.collection('courses').doc(widget.cID).update({
-                                                                                                  'curriculum1': {
-                                                                                                    widget.courseName: listOfSectionData[widget.courseName],
-                                                                                                  }
-                                                                                                }).whenComplete(() => Toast.show('Assignment solution Updated.'));
-                                                                                              } catch (e) {
-                                                                                                print(e.toString());
-                                                                                              }
-                                                                                              setState(() {
-                                                                                                updateSolutionVideo.clear();
-                                                                                                getAssignmentSolutionVideo();
-                                                                                                Navigator.of(context).pop();
-                                                                                                streamVideoData();
-                                                                                              });
-                                                                                            } else {
-                                                                                              Toast.show('Please enter URL');
-                                                                                            }
-                                                                                          },
-                                                                                          child: Text('Submit')),
-                                                                                      SizedBox(width: 20),
-                                                                                      ElevatedButton(
-                                                                                        onPressed: () {
-                                                                                          Navigator.of(context).pop();
-                                                                                        },
-                                                                                        child: Text('Close'),
-                                                                                      )
-                                                                                    ],
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ),
-                                                                          );
-                                                                        });
-                                                                  }
-                                                                  if (item ==
-                                                                      6) {
-                                                                    setState(
-                                                                        () {
-                                                                      updateVideoIndex =
-                                                                          subsectionIndex;
-                                                                      editIndex =
-                                                                          sectionIndex;
-                                                                      updateVideoName =
-                                                                          false;
-                                                                    });
-                                                                    try {
-                                                                      if (listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['showDescription'] ==
-                                                                              null ||
-                                                                          listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['showDescription'] ==
-                                                                              true) {
-                                                                        listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['showDescription'] =
-                                                                            false;
-                                                                      } else {
-                                                                        listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['showDescription'] =
-                                                                            true;
-                                                                      }
-                                                                      FirebaseFirestore
-                                                                          .instance
-                                                                          .collection(
-                                                                              'courses')
-                                                                          .doc(widget
-                                                                              .cID)
-                                                                          .update({
-                                                                        'curriculum1':
-                                                                            {
-                                                                          widget.courseName:
-                                                                              listOfSectionData[widget.courseName],
-                                                                        }
-                                                                      }).whenComplete(() =>
-                                                                              Toast.show('Description visibility updated.'));
-                                                                      assignmentDescriptionShowCheck();
-                                                                    } catch (e) {
-                                                                      print(
-                                                                          'Description visibility  ${e.toString()}');
-                                                                    }
-                                                                  }
-                                                                },
-                                                                itemBuilder:
-                                                                    (context) =>
-                                                                        [
-                                                                  PopupMenuItem<
-                                                                          int>(
+                                                                [
+                                                                  PopupMenuItem<int>(
                                                                       value: 1,
-                                                                      child: Text(
-                                                                          'Delete assignment')),
-                                                                  PopupMenuItem<
-                                                                          int>(
+                                                                      child: Text('Edit video name')),
+                                                                  PopupMenuItem<int>(
                                                                       value: 2,
-                                                                      child: Text(
-                                                                          'Edit assignment name')),
-                                                                  PopupMenuItem<
-                                                                          int>(
+                                                                      child: Text('Delete video')),
+                                                                  PopupMenuItem<int>(
                                                                       value: 3,
-                                                                      child: Text(
-                                                                          'Update assignment URL')),
-                                                                  PopupMenuItem<
-                                                                          int>(
-                                                                      value: 4,
-                                                                      child: Text(
-                                                                          'Update assignment Description')),
-                                                                  PopupMenuItem<
-                                                                          int>(
-                                                                      value: 5,
-                                                                      child: Text(
-                                                                          'Update solution video')),
-                                                                  PopupMenuItem<
-                                                                          int>(
-                                                                      value: 6,
-                                                                      child: Text(
-                                                                          'Toggle Description Visibility'))
-                                                                ],
-                                                              )
-                                                            : SizedBox(),
-                                                        listOfSectionData[widget.courseName][sectionIndex]["videos"]
-                                                                            [
-                                                                            subsectionIndex]
-                                                                        [
-                                                                        "type"] ==
-                                                                    "quiz" &&
-                                                                quizScoreMap[listOfSectionData[widget.courseName][sectionIndex]["videos"]
-                                                                            [subsectionIndex]
-                                                                        [
-                                                                        "name"]] !=
-                                                                    null
-                                                            ? Text(
-                                                                '${quizScoreMap[listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"]]} %')
-                                                            : Container(),
-                                                        role == 'mentor' &&
+                                                                      child: Text('Update video URL')),
+                                                                ])
+                                                                : SizedBox(),
+                                                            role == 'mentor' &&
                                                                 listOfSectionData[widget.courseName][sectionIndex]["videos"]
-                                                                            [
-                                                                            subsectionIndex]
-                                                                        [
-                                                                        "type"] ==
-                                                                    "quiz"
-                                                            ? PopupMenuButton<
+                                                                [
+                                                                subsectionIndex]
+                                                                [
+                                                                "type"] ==
+                                                                    "assignment"
+                                                                ? PopupMenuButton<
                                                                 int>(
-                                                                onSelected:
-                                                                    (item) {
-                                                                  if (item ==
-                                                                      1) {
-                                                                    setState(
-                                                                        () {
-                                                                      updateVideoName =
-                                                                          false;
-                                                                      editIndex =
-                                                                          sectionIndex;
-                                                                      deleteVideoIndex =
-                                                                          subsectionIndex;
+                                                              onSelected:
+                                                                  (item) {
+                                                                if (item ==
+                                                                    1) {
+                                                                  setState(
+                                                                          () {
+                                                                        updateVideoName =
+                                                                        false;
+                                                                        editIndex =
+                                                                            sectionIndex;
+                                                                        deleteVideoIndex =
+                                                                            subsectionIndex;
+                                                                      });
+                                                                  listOfSectionData[widget.courseName][editIndex]
+                                                                  [
+                                                                  'videos']
+                                                                      .removeAt(
+                                                                      deleteVideoIndex);
+
+                                                                  try {
+                                                                    FirebaseFirestore
+                                                                        .instance
+                                                                        .collection(
+                                                                        'courses')
+                                                                        .doc(widget
+                                                                        .cID)
+                                                                        .update({
+                                                                      'curriculum1':
+                                                                      {
+                                                                        widget.courseName:
+                                                                        listOfSectionData[widget.courseName],
+                                                                      }
                                                                     });
-                                                                    listOfSectionData[widget.courseName][editIndex]
-                                                                            [
-                                                                            'videos']
-                                                                        .removeAt(
-                                                                            deleteVideoIndex);
 
-                                                                    try {
-                                                                      FirebaseFirestore
-                                                                          .instance
-                                                                          .collection(
-                                                                              'courses')
-                                                                          .doc(widget
-                                                                              .cID)
-                                                                          .update({
-                                                                        'curriculum1':
-                                                                            {
-                                                                          widget.courseName:
-                                                                              listOfSectionData[widget.courseName],
-                                                                        }
-                                                                      })
-                                                                        ..whenComplete(() =>
-                                                                            Toast.show('Quiz deleted'));
-
-                                                                      streamVideoData();
-                                                                    } catch (e) {
-                                                                      print(e
-                                                                          .toString());
-                                                                    }
+                                                                    streamVideoData();
+                                                                  } catch (e) {
+                                                                    print(e
+                                                                        .toString());
                                                                   }
-                                                                },
-                                                                itemBuilder:
-                                                                    (context) =>
+                                                                }
+                                                                if (item ==
+                                                                    2) {
+                                                                  setState(
+                                                                          () {
+                                                                        updateVideoNameController
+                                                                            .text = listOfSectionData[widget.courseName][sectionIndex]["videos"]
                                                                         [
-                                                                  PopupMenuItem<
-                                                                          int>(
-                                                                      value: 1,
-                                                                      child: Text(
-                                                                          'Delete quiz')),
-                                                                ],
-                                                              )
-                                                            : SizedBox(),
-                                                      ],
-                                                    ),
-                                                  ))),
-                                      onAccept: (data) async {
-                                        print("data---------");
-                                        // print(data);
-                                        print("selected sectionIndex=${index}");
-                                        print(
-                                            "selected subsectionIndex = ${subIndex}");
-                                        print(
-                                            "subsectionIndex = ${subsectionIndex}");
-                                        print("section index= ${sectionIndex}");
-                                        print(subsectionIndex);
-                                        int count = 0;
-                                        if (subIndex != null &&
-                                            index != null &&
-                                            index == sectionIndex) {
-                                          if (subIndex! < subsectionIndex) {
-                                            print(true);
-                                            for (int i = 0;
+                                                                        subsectionIndex]
+                                                                        [
+                                                                        "name"];
+                                                                        editAssignmentName =
+                                                                        true;
+                                                                        editIndex =
+                                                                            sectionIndex;
+                                                                        updateVideoIndex =
+                                                                            subsectionIndex;
+                                                                      });
+                                                                }
+                                                                if (item ==
+                                                                    3) {
+                                                                  setState(
+                                                                          () {
+                                                                        updateVideoIndex =
+                                                                            subsectionIndex;
+                                                                        editIndex =
+                                                                            sectionIndex;
+                                                                        updateVideoName =
+                                                                        false;
+                                                                      });
+                                                                  showDialog(
+                                                                      context:
+                                                                      context,
+                                                                      builder:
+                                                                          (context) {
+                                                                        return AlertDialog(
+                                                                          alignment:
+                                                                          Alignment.centerLeft,
+                                                                          content:
+                                                                          Container(
+                                                                            height: 250,
+                                                                            width: 350,
+                                                                            child: Column(
+                                                                              children: [
+                                                                                TextField(
+                                                                                  controller: updateVideoUrl,
+                                                                                  decoration: InputDecoration(
+                                                                                    border: OutlineInputBorder(),
+                                                                                    hintText: 'Enter updated assignment URL',
+                                                                                  ),
+                                                                                ),
+                                                                                SizedBox(
+                                                                                  height: 20,
+                                                                                ),
+                                                                                Row(
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    ElevatedButton(
+                                                                                        onPressed: () {
+                                                                                          if (updateVideoUrl.text.isNotEmpty && listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['dataset'] != null) {
+                                                                                            listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['dataset'][0]['url'] = updateVideoUrl.text;
+                                                                                            try {
+                                                                                              FirebaseFirestore.instance.collection('courses').doc(widget.cID).update({
+                                                                                                'curriculum1': {
+                                                                                                  widget.courseName: listOfSectionData[widget.courseName],
+                                                                                                }
+                                                                                              }).whenComplete(() => Toast.show('Assignment URL updated.'));
+                                                                                            } catch (e) {
+                                                                                              print(e.toString());
+                                                                                            }
+                                                                                            setState(() {
+                                                                                              updateVideoUrl.clear();
+                                                                                              Navigator.of(context).pop();
+                                                                                              streamVideoData();
+                                                                                            });
+                                                                                          } else if (updateVideoUrl.text.isNotEmpty) {
+                                                                                            listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['url'] = updateVideoUrl.text;
+                                                                                            try {
+                                                                                              FirebaseFirestore.instance.collection('courses').doc(widget.cID).update({
+                                                                                                'curriculum1': {
+                                                                                                  widget.courseName: listOfSectionData[widget.courseName],
+                                                                                                }
+                                                                                              }).whenComplete(() => Toast.show('Assignment URL updated.'));
+                                                                                            } catch (e) {
+                                                                                              print(e.toString());
+                                                                                            }
+                                                                                            setState(() {
+                                                                                              updateVideoUrl.clear();
+                                                                                              Navigator.of(context).pop();
+                                                                                              streamVideoData();
+                                                                                            });
+                                                                                          } else {
+                                                                                            Toast.show('Please enter URL');
+                                                                                          }
+                                                                                        },
+                                                                                        child: Text('Submit')),
+                                                                                    SizedBox(width: 20),
+                                                                                    ElevatedButton(
+                                                                                      onPressed: () {
+                                                                                        Navigator.of(context).pop();
+                                                                                      },
+                                                                                      child: Text('Close'),
+                                                                                    )
+                                                                                  ],
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      });
+                                                                }
+                                                                if (item ==
+                                                                    4) {
+                                                                  setState(
+                                                                          () {
+                                                                        updateVideoIndex =
+                                                                            subsectionIndex;
+                                                                        editIndex =
+                                                                            sectionIndex;
+                                                                        updateVideoName =
+                                                                        false;
+                                                                      });
+                                                                  showDialog(
+                                                                      context:
+                                                                      context,
+                                                                      builder:
+                                                                          (context) {
+                                                                        return AlertDialog(
+                                                                          alignment:
+                                                                          Alignment.centerLeft,
+                                                                          content:
+                                                                          Container(
+                                                                            height: 700,
+                                                                            width: 350,
+                                                                            child: Column(
+                                                                              children: [
+                                                                                TextField(
+                                                                                  controller: updateDescription,
+                                                                                  maxLines: 6,
+                                                                                  decoration: InputDecoration(
+                                                                                    border: OutlineInputBorder(),
+                                                                                    hintText: 'Enter description',
+                                                                                  ),
+                                                                                ),
+                                                                                SizedBox(
+                                                                                  height: 20,
+                                                                                ),
+                                                                                Row(
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    ElevatedButton(
+                                                                                        onPressed: () {
+                                                                                          if (updateDescription.text.isNotEmpty && listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex] != null) {
+                                                                                            listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['description'] = updateDescription.text;
+                                                                                            try {
+                                                                                              FirebaseFirestore.instance.collection('courses').doc(widget.cID).update({
+                                                                                                'curriculum1': {
+                                                                                                  widget.courseName: listOfSectionData[widget.courseName],
+                                                                                                }
+                                                                                              }).whenComplete(() => Toast.show('Assignment Description Updated.'));
+                                                                                            } catch (e) {
+                                                                                              print(e.toString());
+                                                                                            }
+                                                                                            setState(() {
+                                                                                              updateDescription.clear();
+                                                                                              getAssignmentDescription();
+                                                                                              Navigator.of(context).pop();
+                                                                                              streamVideoData();
+                                                                                            });
+                                                                                          } else {
+                                                                                            Toast.show('Please enter URL');
+                                                                                          }
+                                                                                        },
+                                                                                        child: Text('Submit')),
+                                                                                    SizedBox(width: 20),
+                                                                                    ElevatedButton(
+                                                                                      onPressed: () {
+                                                                                        Navigator.of(context).pop();
+                                                                                      },
+                                                                                      child: Text('Close'),
+                                                                                    )
+                                                                                  ],
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      });
+                                                                }
+                                                                if (item ==
+                                                                    5) {
+                                                                  setState(
+                                                                          () {
+                                                                        updateVideoIndex =
+                                                                            subsectionIndex;
+                                                                        editIndex =
+                                                                            sectionIndex;
+                                                                        updateVideoName =
+                                                                        false;
+                                                                      });
+                                                                  showDialog(
+                                                                      context:
+                                                                      context,
+                                                                      builder:
+                                                                          (context) {
+                                                                        return AlertDialog(
+                                                                          alignment:
+                                                                          Alignment.centerLeft,
+                                                                          content:
+                                                                          Container(
+                                                                            height: 350,
+                                                                            width: 350,
+                                                                            child: Column(
+                                                                              children: [
+                                                                                TextField(
+                                                                                  controller: updateSolutionVideo,
+                                                                                  maxLines: 2,
+                                                                                  decoration: InputDecoration(
+                                                                                    border: OutlineInputBorder(),
+                                                                                    hintText: 'Enter Solution Url',
+                                                                                  ),
+                                                                                ),
+                                                                                SizedBox(
+                                                                                  height: 20,
+                                                                                ),
+                                                                                Row(
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    ElevatedButton(
+                                                                                        onPressed: () {
+                                                                                          if (updateSolutionVideo.text.isNotEmpty && listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex] != null) {
+                                                                                            listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['videoUrl'] = updateSolutionVideo.text;
+                                                                                            try {
+                                                                                              FirebaseFirestore.instance.collection('courses').doc(widget.cID).update({
+                                                                                                'curriculum1': {
+                                                                                                  widget.courseName: listOfSectionData[widget.courseName],
+                                                                                                }
+                                                                                              }).whenComplete(() => Toast.show('Assignment solution Updated.'));
+                                                                                            } catch (e) {
+                                                                                              print(e.toString());
+                                                                                            }
+                                                                                            setState(() {
+                                                                                              updateSolutionVideo.clear();
+                                                                                              getAssignmentSolutionVideo();
+                                                                                              Navigator.of(context).pop();
+                                                                                              streamVideoData();
+                                                                                            });
+                                                                                          } else {
+                                                                                            Toast.show('Please enter URL');
+                                                                                          }
+                                                                                        },
+                                                                                        child: Text('Submit')),
+                                                                                    SizedBox(width: 20),
+                                                                                    ElevatedButton(
+                                                                                      onPressed: () {
+                                                                                        Navigator.of(context).pop();
+                                                                                      },
+                                                                                      child: Text('Close'),
+                                                                                    )
+                                                                                  ],
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      });
+                                                                }
+                                                                if (item ==
+                                                                    6) {
+                                                                  setState(
+                                                                          () {
+                                                                        updateVideoIndex =
+                                                                            subsectionIndex;
+                                                                        editIndex =
+                                                                            sectionIndex;
+                                                                        updateVideoName =
+                                                                        false;
+                                                                      });
+                                                                  try {
+                                                                    if (listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['showDescription'] ==
+                                                                        null ||
+                                                                        listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['showDescription'] ==
+                                                                            true) {
+                                                                      listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['showDescription'] =
+                                                                      false;
+                                                                    } else {
+                                                                      listOfSectionData[widget.courseName][editIndex]['videos'][updateVideoIndex]['showDescription'] =
+                                                                      true;
+                                                                    }
+                                                                    FirebaseFirestore
+                                                                        .instance
+                                                                        .collection(
+                                                                        'courses')
+                                                                        .doc(widget
+                                                                        .cID)
+                                                                        .update({
+                                                                      'curriculum1':
+                                                                      {
+                                                                        widget.courseName:
+                                                                        listOfSectionData[widget.courseName],
+                                                                      }
+                                                                    }).whenComplete(() =>
+                                                                        Toast.show('Description visibility updated.'));
+                                                                    assignmentDescriptionShowCheck();
+                                                                  } catch (e) {
+                                                                    print(
+                                                                        'Description visibility  ${e.toString()}');
+                                                                  }
+                                                                }
+                                                              },
+                                                              itemBuilder:
+                                                                  (context) =>
+                                                              [
+                                                                PopupMenuItem<
+                                                                    int>(
+                                                                    value: 1,
+                                                                    child: Text(
+                                                                        'Delete assignment')),
+                                                                PopupMenuItem<
+                                                                    int>(
+                                                                    value: 2,
+                                                                    child: Text(
+                                                                        'Edit assignment name')),
+                                                                PopupMenuItem<
+                                                                    int>(
+                                                                    value: 3,
+                                                                    child: Text(
+                                                                        'Update assignment URL')),
+                                                                PopupMenuItem<
+                                                                    int>(
+                                                                    value: 4,
+                                                                    child: Text(
+                                                                        'Update assignment Description')),
+                                                                PopupMenuItem<
+                                                                    int>(
+                                                                    value: 5,
+                                                                    child: Text(
+                                                                        'Update solution video')),
+                                                                PopupMenuItem<
+                                                                    int>(
+                                                                    value: 6,
+                                                                    child: Text(
+                                                                        'Toggle Description Visibility'))
+                                                              ],
+                                                            )
+                                                                : SizedBox(),
+                                                            listOfSectionData[widget.courseName][sectionIndex]["videos"]
+                                                            [
+                                                            subsectionIndex]
+                                                            [
+                                                            "type"] ==
+                                                                "quiz" &&
+                                                                quizScoreMap[listOfSectionData[widget.courseName][sectionIndex]["videos"]
+                                                                [subsectionIndex]
+                                                                [
+                                                                "name"]] !=
+                                                                    null
+                                                                ? Text(
+                                                                '${quizScoreMap[listOfSectionData[widget.courseName][sectionIndex]["videos"][subsectionIndex]["name"]]} %')
+                                                                : Container(),
+                                                            role == 'mentor' &&
+                                                                listOfSectionData[widget.courseName][sectionIndex]["videos"]
+                                                                [
+                                                                subsectionIndex]
+                                                                [
+                                                                "type"] ==
+                                                                    "quiz"
+                                                                ? PopupMenuButton<
+                                                                int>(
+                                                              onSelected:
+                                                                  (item) {
+                                                                if (item ==
+                                                                    1) {
+                                                                  setState(
+                                                                          () {
+                                                                        updateVideoName =
+                                                                        false;
+                                                                        editIndex =
+                                                                            sectionIndex;
+                                                                        deleteVideoIndex =
+                                                                            subsectionIndex;
+                                                                      });
+                                                                  listOfSectionData[widget.courseName][editIndex]
+                                                                  [
+                                                                  'videos']
+                                                                      .removeAt(
+                                                                      deleteVideoIndex);
+
+                                                                  try {
+                                                                    FirebaseFirestore
+                                                                        .instance
+                                                                        .collection(
+                                                                        'courses')
+                                                                        .doc(widget
+                                                                        .cID)
+                                                                        .update({
+                                                                      'curriculum1':
+                                                                      {
+                                                                        widget.courseName:
+                                                                        listOfSectionData[widget.courseName],
+                                                                      }
+                                                                    })
+                                                                      ..whenComplete(() =>
+                                                                          Toast.show('Quiz deleted'));
+
+                                                                    streamVideoData();
+                                                                  } catch (e) {
+                                                                    print(e
+                                                                        .toString());
+                                                                  }
+                                                                }
+                                                              },
+                                                              itemBuilder:
+                                                                  (context) =>
+                                                              [
+                                                                PopupMenuItem<
+                                                                    int>(
+                                                                    value: 1,
+                                                                    child: Text(
+                                                                        'Delete quiz')),
+                                                              ],
+                                                            )
+                                                                : SizedBox(),
+                                                          ],
+                                                        ),
+                                                      ))),
+                                          onAccept: (data) async {
+                                            print("data---------");
+                                            // print(data);
+                                            print("selected sectionIndex=${index}");
+                                            print(
+                                                "selected subsectionIndex = ${subIndex}");
+                                            print(
+                                                "subsectionIndex = ${subsectionIndex}");
+                                            print("section index= ${sectionIndex}");
+                                            print(subsectionIndex);
+                                            int count = 0;
+                                            if (subIndex != null &&
+                                                index != null &&
+                                                index == sectionIndex) {
+                                              if (subIndex! < subsectionIndex) {
+                                                print(true);
+                                                for (int i = 0;
                                                 i <= subsectionIndex;
                                                 i++) {
-                                              print("count===");
-                                              if (i == subIndex) {
-                                                listOfSectionData[widget
-                                                                .courseName]
-                                                            [sectionIndex]
-                                                        ["videos"][i]
+                                                  print("count===");
+                                                  if (i == subIndex) {
+                                                    listOfSectionData[widget
+                                                        .courseName]
+                                                    [sectionIndex]
+                                                    ["videos"][i]
                                                     ["sr"] = listOfSectionData[
-                                                            widget.courseName]
-                                                        [sectionIndex]["videos"]
+                                                    widget.courseName]
+                                                    [sectionIndex]["videos"]
                                                     [subsectionIndex]["sr"];
-                                                continue;
-                                              }
-                                              print("count===${count}");
-                                              listOfSectionData[widget
+                                                    continue;
+                                                  }
+                                                  print("count===${count}");
+                                                  listOfSectionData[widget
                                                       .courseName][sectionIndex]
                                                   ["videos"][i]["sr"] = count;
-                                              count++;
-                                            }
-                                          } else {
-                                            print(false);
-                                            count = 0;
+                                                  count++;
+                                                }
+                                              } else {
+                                                print(false);
+                                                count = 0;
 
-                                            ///
-                                            for (int j = subsectionIndex;
+                                                ///
+                                                for (int j = subsectionIndex;
                                                 j <= subIndex!;
                                                 j++) {
-                                              // print("count===${count}");
-                                              print("j======${j}");
-                                              if (j == subIndex) {
-                                                listOfSectionData[
-                                                            widget.courseName]
-                                                        [sectionIndex]["videos"]
+                                                  // print("count===${count}");
+                                                  print("j======${j}");
+                                                  if (j == subIndex) {
+                                                    listOfSectionData[
+                                                    widget.courseName]
+                                                    [sectionIndex]["videos"]
                                                     [j]["sr"] = subsectionIndex;
-                                                print(
-                                                    "a = ${listOfSectionData[widget.courseName][sectionIndex]["videos"][j]["sr"]}");
-                                              } else {
-                                                listOfSectionData[
-                                                            widget.courseName]
-                                                        [sectionIndex]["videos"]
+                                                    print(
+                                                        "a = ${listOfSectionData[widget.courseName][sectionIndex]["videos"][j]["sr"]}");
+                                                  } else {
+                                                    listOfSectionData[
+                                                    widget.courseName]
+                                                    [sectionIndex]["videos"]
                                                     [j]["sr"] = j + 1;
-                                                print(
-                                                    "b = ${listOfSectionData[widget.courseName][sectionIndex]["videos"][j]["sr"]}");
+                                                    print(
+                                                        "b = ${listOfSectionData[widget.courseName][sectionIndex]["videos"][j]["sr"]}");
+                                                  }
+                                                }
                                               }
+                                              await FirebaseFirestore.instance
+                                                  .collection("courses")
+                                                  .doc(widget.cID)
+                                                  .update({
+                                                "curriculum1": listOfSectionData
+                                              });
+                                              setState(() {
+                                                listOfSectionData;
+                                                subIndex = null;
+                                                index = null;
+                                              });
                                             }
-                                          }
-                                          await FirebaseFirestore.instance
-                                              .collection("courses")
-                                              .doc(widget.cID)
-                                              .update({
-                                            "curriculum1": listOfSectionData
-                                          });
-                                          setState(() {
-                                            listOfSectionData;
-                                            subIndex = null;
-                                            index = null;
-                                          });
-                                        }
-                                      },
+                                          },
+                                        ),
+                                    ],
+                                  );
+                                })),
+                          ),
+
+                          true
+                              ? sectionIndex ==
+                              listOfSectionData[widget.courseName].length -
+                                  1
+                              ? coursequiz.runtimeType != Null
+                              ? Padding(
+                            padding:
+                            const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                            child: Column(
+                              children: [
+                                Container(
+                                  color: Color.fromARGB(
+                                      255, 255, 255, 255),
+                                  child: ExpansionTile(
+                                    title: Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment
+                                          .spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Certificate Quiz',
+                                          style: TextStyle(
+                                              fontWeight:
+                                              FontWeight.bold),
+                                        ),
+                                        true
+                                            ? Icon(Icons.lock_open)
+                                            : Icon(Icons.lock)
+                                      ],
                                     ),
-                                ],
-                              );
-                            })),
-                      ),
-
-                      true
-                          ? sectionIndex ==
-                                  listOfSectionData[widget.courseName].length -
-                                      1
-                              ? coursequiz.isNotEmpty
-                                  ? Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            color: Color.fromARGB(
-                                                255, 255, 255, 255),
-                                            child: ExpansionTile(
-                                              title: Row(
+                                    children: true
+                                        ? List.generate(
+                                      coursequiz.length,
+                                          (index1) {
+                                        // print("ppppp ${valueMap}");
+                                        return Column(
+                                          children: [
+                                            // videoPercentageList.length != 0 ?
+                                            // Text(videoPercentageList[index][courseData.entries.elementAt(index).key][courseData.entries.elementAt(index).value[index1].videoTitle].toString()) : SizedBox(),
+                                            GestureDetector(
+                                              onTap: () {
+                                                setState(() {
+                                                  quizdata =
+                                                  coursequiz[
+                                                  index1];
+                                                  quizbool =
+                                                  true;
+                                                  htmlbool =
+                                                  true;
+                                                });
+                                              },
+                                              child: Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                MainAxisAlignment
+                                                    .spaceBetween,
                                                 children: [
-                                                  Text(
-                                                    'Certificate Quiz',
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                                  Container(
+                                                    padding: EdgeInsets.only(
+                                                        left:
+                                                        60,
+                                                        top: 15,
+                                                        bottom:
+                                                        15),
+                                                    child:
+                                                    Align(
+                                                      alignment:
+                                                      Alignment
+                                                          .centerLeft,
+                                                      child:
+                                                      Text(
+                                                        coursequiz[index1]
+                                                        [
+                                                        'name'],
+                                                        textAlign:
+                                                        TextAlign.start,
+                                                      ),
+                                                    ),
                                                   ),
-                                                  true
-                                                      ? Icon(Icons.lock_open)
-                                                      : Icon(Icons.lock),
-                                                  PopupMenuButton<int>(
-                                                    onSelected: (item)  async {
-                                                      if(item == 1) {
-                                                        print('courseID $courseId $mainCourseId');
-
-                                                      try{
-
-                                                        await FirebaseFirestore.instance.collection('courses').doc(widget.cID).update({
-                                                          'coursequiz': FieldValue.delete(),
-                                                        });
-
-                                                        setState(() {
-
-                                                        });
-
-                                                      }catch(e) {
-                                                        print('certificate quiz delete $e');
-                                                      }
-                                                         
-                                                      }
-                                                    },
-                                                      itemBuilder: (context) => [
-                                                    PopupMenuItem<int>(
-                                                        child: Text('Delete Quiz'),
-                                                        value: 1,
-                                                    )
-                                                  ])
                                                 ],
                                               ),
-                                              children: true
-                                                  ? List.generate(
-                                                      coursequiz.length,
-                                                      (index1) {
-                                                        // print("ppppp ${valueMap}");
-                                                        return Column(
-                                                          children: [
-                                                            // videoPercentageList.length != 0 ?
-                                                            // Text(videoPercentageList[index][courseData.entries.elementAt(index).key][courseData.entries.elementAt(index).value[index1].videoTitle].toString()) : SizedBox(),
-                                                            GestureDetector(
-                                                              onTap: () {
-                                                                setState(() {
-                                                                  quizdata =
-                                                                      coursequiz[
-                                                                          index1];
-                                                                  quizbool =
-                                                                      true;
-                                                                  htmlbool =
-                                                                      true;
-                                                                });
-                                                              },
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                children: [
-                                                                  Container(
-                                                                    padding: EdgeInsets.only(
-                                                                        left:
-                                                                            60,
-                                                                        top: 15,
-                                                                        bottom:
-                                                                            15),
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          Alignment
-                                                                              .centerLeft,
-                                                                      child:
-                                                                          Text(
-                                                                        coursequiz[index1]
-                                                                            [
-                                                                            'name'],
-                                                                        textAlign:
-                                                                            TextAlign.start,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
-                                                    )
-                                                  : [
-                                                      Container(
-                                                        child: Center(
-                                                          child: Text(
-                                                            "You need to clear all the quiz of this course to unlock this certificate quiz!",
-                                                            style: TextStyle(
-                                                                color:
-                                                                    Colors.red),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
                                             ),
-                                          ),
-                                        ],
-                                      ),
+                                          ],
+                                        );
+                                      },
                                     )
-                                  : Container()
+                                        : [
+                                      Container(
+                                        child: Center(
+                                          child: Text(
+                                            "You need to clear all the quiz of this course to unlock this certificate quiz!",
+                                            style: TextStyle(
+                                                color:
+                                                Colors.red),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
                               : Container()
-                          : Container()
-                    ],
-                  );
-                }),
+                              : Container()
+                              : Container()
+                        ],
+                      );
+                    }),
               ),
             );
           } else {
