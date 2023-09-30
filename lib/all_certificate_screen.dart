@@ -59,7 +59,7 @@ class _AllCertificateScreenState extends State<AllCertificateScreen> {
         body: Center(
           child: FutureBuilder<DocumentSnapshot>(
             future: FirebaseFirestore.instance
-                .collection("Users")
+                .collection("Users_dataly")
                 .doc(FirebaseAuth.instance.currentUser!.uid)
                 .get(),
             builder: (BuildContext context, snapshot) {

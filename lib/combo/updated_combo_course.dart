@@ -38,7 +38,7 @@ class _NewScreenState extends State<NewScreen> {
 
   getAllPaidCourses() async {
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Users_dataly")
         .doc()
         .get()
         .then((value) {

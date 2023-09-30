@@ -61,7 +61,7 @@ class _ChangeEmailState extends State<ChangeEmail> {
     try{
       currentuser!.reauthenticateWithCredential(cred).then((value) {
         currentuser!.updateEmail(newEmail.toString()).then((_) async{
-          _firestore.collection('Users')
+          _firestore.collection("Users_dataly")
               .doc(Provider.of<UserProvider>(context, listen: false).userModel!.id)
               .update({
             'email':newEmail,
@@ -587,7 +587,7 @@ class _ChangeEmailState extends State<ChangeEmail> {
 //        //     },
 //        //   ).show();
 //        //   //showToast('Account Created Successfully');
-//        //   _firestore.collection('Users')
+//        //   _firestore.collection("Users_dataly")
 //        //       .doc(Provider.of<UserProvider>(context, listen: false).userModel!.id)
 //        //       .update({
 //        //     'email':newEmail,
@@ -642,7 +642,7 @@ class _ChangeEmailState extends State<ChangeEmail> {
 //   if (currentuser!.email==newEmail.toString()) timer?.cancel();
 //   // print("jsdshd  ${isVerified}");
 //   if (currentuser!.email==newEmail\) {
-//     // _firestore.collection('Users')
+//     // _firestore.collection("Users_dataly")
 //     //     .doc(Provider.of<UserProvider>(context, listen: false).userModel!.id)
 //     //     .update({
 //     //   'email':user.email,
@@ -668,7 +668,7 @@ class _ChangeEmailState extends State<ChangeEmail> {
 //       },
 //     ).show();
 //     //showToast('Account Created Successfully');
-//     _firestore.collection('Users')
+//     _firestore.collection("Users_dataly")
 //         .doc(Provider.of<UserProvider>(context, listen: false).userModel!.id)
 //         .update({
 //       'email':user.email,

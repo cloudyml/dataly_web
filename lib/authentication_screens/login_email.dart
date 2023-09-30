@@ -878,7 +878,7 @@ class _LoginEmailPageState extends State<LoginEmailPage> {
                                                     //         "sdjsdfgdohroeodjew");
                                                     //     await FirebaseFirestore
                                                     //         .instance
-                                                    //         .collection("Users")
+                                                    //         .collection("Users_dataly")
                                                     //         .doc(FirebaseAuth
                                                     //             .instance
                                                     //             .currentUser!
@@ -992,7 +992,7 @@ class _LoginEmailPageState extends State<LoginEmailPage> {
                                                             globals.credental);
                                                     await FirebaseFirestore
                                                         .instance
-                                                        .collection('Users')
+                                                        .collection("Users_dataly")
                                                         .doc(_auth
                                                             .currentUser!.uid)
                                                         .update({
@@ -1048,7 +1048,7 @@ class _LoginEmailPageState extends State<LoginEmailPage> {
                                                   //   try {
                                                   //     await FirebaseFirestore
                                                   //         .instance
-                                                  //         .collection("Users")
+                                                  //         .collection("Users_dataly")
                                                   //         .doc(FirebaseAuth
                                                   //             .instance
                                                   //             .currentUser!
@@ -1831,7 +1831,7 @@ class _LoginEmailPageState extends State<LoginEmailPage> {
                                             //         "sdjsdfgdohroeodjew");
                                             //     await FirebaseFirestore
                                             //         .instance
-                                            //         .collection("Users")
+                                            //         .collection("Users_dataly")
                                             //         .doc(FirebaseAuth
                                             //             .instance
                                             //             .currentUser!
@@ -1941,7 +1941,7 @@ class _LoginEmailPageState extends State<LoginEmailPage> {
                                                 .linkWithCredential(
                                                     globals.credental);
                                             await FirebaseFirestore.instance
-                                                .collection('Users')
+                                                .collection("Users_dataly")
                                                 .doc(_auth.currentUser!.uid)
                                                 .update({
                                               "linked": "true",
@@ -1993,7 +1993,7 @@ class _LoginEmailPageState extends State<LoginEmailPage> {
                                           //   try {
                                           //     await FirebaseFirestore
                                           //         .instance
-                                          //         .collection("Users")
+                                          //         .collection("Users_dataly")
                                           //         .doc(FirebaseAuth
                                           //             .instance
                                           //             .currentUser!

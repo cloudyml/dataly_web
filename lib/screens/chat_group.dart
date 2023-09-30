@@ -27,7 +27,7 @@ class _CourseScreenState extends State<CourseScreen> {
     setState(() {
       isLoading = true;
     });
-    await _firestore.collection("Users")
+    await _firestore.collection("Users_dataly")
     .where('id' , isEqualTo: _auth.currentUser!.uid )
     .orderBy('name')
     .get().then((value) {
@@ -61,7 +61,7 @@ class _CourseScreenState extends State<CourseScreen> {
 
   //   Fluttertoast.showToast(msg: "Creating group...");
 
-  //   await _firestore.collection("groups").add(groupData);
+  //   await _firestore.collection("groups_dataly").add(groupData);
 
   //   Fluttertoast.showToast(msg: "Group Created");
   // }

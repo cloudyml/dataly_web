@@ -168,7 +168,7 @@ class _AssignmentScreenState extends State<AssignmentScreen> {
       print('Assignment file link is here: $fileURL');
 
       await _reference
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser?.uid)
           .update({
         'assignmentTrack': FieldValue.arrayUnion([

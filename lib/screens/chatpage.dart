@@ -166,7 +166,7 @@ class _ChatPageState extends State<ChatPage> {
       updatelast();
       updatetime(time1, data);
       final post = await _firestore
-          .collection("groups")
+          .collection("groups_dataly")
           .doc(idcurr)
           .collection("chats")
           .add({
@@ -222,7 +222,7 @@ class _ChatPageState extends State<ChatPage> {
               updatelast();
               updatetime(time1, "image");
               _firestore
-                  .collection("groups")
+                  .collection("groups_dataly")
                   .doc(idcurr)
                   .collection("chats")
                   .add({
@@ -282,7 +282,7 @@ class _ChatPageState extends State<ChatPage> {
               updatetime(time1, "video");
 
               _firestore
-                  .collection("groups")
+                  .collection("groups_dataly")
                   .doc(idcurr)
                   .collection("chats")
                   .add({
@@ -337,7 +337,7 @@ class _ChatPageState extends State<ChatPage> {
             updatelast();
             updatetime(time1, "file");
             _firestore
-                .collection("groups")
+                .collection("groups_dataly")
                 .doc(idcurr)
                 .collection("chats")
                 .add({
@@ -369,16 +369,16 @@ class _ChatPageState extends State<ChatPage> {
   }
 
 //  void updatetime(DateTime time, String message) {
-//     _firestore.collection("groups").doc(widget.groupId).update({'time': time});
+//     _firestore.collection("groups_dataly").doc(widget.groupId).update({'time': time});
 //     _firestore
-//         .collection("groups")
+//         .collection("groups_dataly")
 //         .doc(widget.groupId)
 //         .update({'lastmessage': message});
 //   }
   void updatetime(DateTime time, String message) {
-    _firestore.collection("groups").doc(idcurr).update({'time': time});
+    _firestore.collection("groups_dataly").doc(idcurr).update({'time': time});
     _firestore
-        .collection("groups")
+        .collection("groups_dataly")
         .doc(idcurr)
         .update({'lastmessage': message});
   }
@@ -395,7 +395,7 @@ class _ChatPageState extends State<ChatPage> {
 
   void updatelast() {
     _firestore
-        .collection("groups")
+        .collection("groups_dataly")
         .doc(idcurr)
         .update({'last': FirebaseAuth.instance.currentUser!.uid.toString()});
   }
@@ -439,7 +439,7 @@ class _ChatPageState extends State<ChatPage> {
         print(time1.toString());
         updatelast();
         updatetime(time1, "audio note");
-        _firestore.collection("groups").doc(idcurr).collection("chats").add({
+        _firestore.collection("groups_dataly").doc(idcurr).collection("chats").add({
           'message': '${DateTime.now()}.mp3',
           'role': role,
           'sendBy': namecurrent,
@@ -523,7 +523,7 @@ class _ChatPageState extends State<ChatPage> {
   Stream<QuerySnapshot>? _messageStream;
   void listenToFirestoreChanges() async {
     final snapshot = await _firestore
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     final data = snapshot.data();
@@ -641,7 +641,7 @@ class _ChatPageState extends State<ChatPage> {
 
   Future<String> loadrole() async {
     final snapshot = await _firestore
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     final data = snapshot.data();
@@ -793,7 +793,7 @@ class _ChatPageState extends State<ChatPage> {
                                 onTap: () {
                                   setState(() {
                                     _messageStream = FirebaseFirestore.instance
-                                        .collection("groups")
+                                        .collection("groups_dataly")
                                         .doc(document.id)
                                         .collection("chats")
                                         .orderBy('time', descending: true)
@@ -1656,7 +1656,7 @@ class _MessageBubbleState extends State<MessageBubble> {
   }
    void deletemessage(String mid) {
     FirebaseFirestore.instance
-        .collection("groups")
+        .collection("groups_dataly")
         .doc(widget.gid)
         .collection("chats")
         .doc(mid)
@@ -1828,7 +1828,7 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
   }
    void deletemessage(String mid) {
     FirebaseFirestore.instance
-        .collection("groups")
+        .collection("groups_dataly")
         .doc(widget.gid)
         .collection("chats")
         .doc(mid)

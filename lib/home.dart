@@ -73,11 +73,11 @@ class _HomePageState extends State<HomePage> {
       final token = await FirebaseMessaging.instance.getToken();
 
       await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .update({"token": token});
       final data = await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid);
 
       final response = data.get().then((DocumentSnapshot doc) {
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
   void getuserdetails() async {
     try {
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) {
@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
   userData() async {
     try {
       ref = await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
 
@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
       //             //     color: HexColor('7B62DF'),
       //             //     child: StreamBuilder<QuerySnapshot>(
       //             //       stream: FirebaseFirestore.instance
-      //             //           .collection("Users")
+      //             //           .collection("Users_dataly")
       //             //           .snapshots(),
       //             //       builder: (BuildContext context,
       //             //           AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -480,7 +480,7 @@ class _HomePageState extends State<HomePage> {
 
 // StreamBuilder<QuerySnapshot>(
 // stream: FirebaseFirestore.instance
-//     .collection("Users")
+//     .collection("Users_dataly")
 // .snapshots(),
 // builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
 // if (!snapshot.hasData) return const SizedBox.shrink();

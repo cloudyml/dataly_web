@@ -78,7 +78,7 @@ class _RazorPayInternationalBtnState extends State<RazorPayInternationalBtn> {
       if (userData['trialCourseList'].contains(widget.courseId)) {
         trialCourseList = userData['trialCourseList'].remove(widget.courseId);
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({
           "trialCourseList": trialCourseList,
@@ -231,7 +231,7 @@ class _RazorPayInternationalBtnState extends State<RazorPayInternationalBtn> {
             title: widget.courseName,
             body: 'You bought ${widget.courseName}.Go to My courses.',
             bigPicture: widget.courseImageUrl,
-            largeIcon: 'asset://assets/logo2.png',
+            largeIcon: 'asset://assets/logo.png',
             notificationLayout: NotificationLayout.BigPicture,
             displayOnForeground: true));
 
@@ -259,7 +259,7 @@ class _RazorPayInternationalBtnState extends State<RazorPayInternationalBtn> {
     var sendersmoneyrefcode;
     try {
       await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) async {
@@ -279,7 +279,7 @@ class _RazorPayInternationalBtnState extends State<RazorPayInternationalBtn> {
           if (data.inDays <= 7) {
             print('herooo');
             await FirebaseFirestore.instance
-                .collection("Users")
+                .collection("Users_dataly")
                 .doc(sendermoneyrefuid.toString())
                 .update({
               "moneyreward":
@@ -301,7 +301,7 @@ class _RazorPayInternationalBtnState extends State<RazorPayInternationalBtn> {
     try {
       if (globals.cuponcode == 'applied') {
         await FirebaseFirestore.instance
-            .collection("Users")
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({
           "couponCodeDetails": FieldValue.arrayUnion([
@@ -368,7 +368,7 @@ class _RazorPayInternationalBtnState extends State<RazorPayInternationalBtn> {
     print('Statt AddCoursetoUser');
     try {
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .update({
         'paidCourseNames': FieldValue.arrayUnion([id])
@@ -439,7 +439,7 @@ class _RazorPayInternationalBtnState extends State<RazorPayInternationalBtn> {
 //       };
 
 //     }).whenComplete(() {
-//       _firestore.collection("groups").add(groupData);
+//       _firestore.collection("groups_dataly").add(groupData);
 //     });
 
 //    } catch (e) {
@@ -462,14 +462,14 @@ class _RazorPayInternationalBtnState extends State<RazorPayInternationalBtn> {
     if (!NoCouponApplied) {
       if (!couponCodeDetailsExists) {
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({
           'couponCodeDetails': {courseBaughtId: map}
         });
       } else {
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({
           'couponCodeDetails': {courseBaughtId: map}
@@ -482,7 +482,7 @@ class _RazorPayInternationalBtnState extends State<RazorPayInternationalBtn> {
     bool couponCodeDetailsExists;
 
     DocumentSnapshot userDs = await FirebaseFirestore.instance
-        .collection('Users')
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
 
@@ -566,7 +566,7 @@ class _RazorPayInternationalBtnState extends State<RazorPayInternationalBtn> {
 
   void getPayInPartsDetails() async {
     DocumentSnapshot userDs = await FirebaseFirestore.instance
-        .collection('Users')
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
 

@@ -134,16 +134,16 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void updatetime(DateTime time, String message) {
-    _firestore.collection("groups").doc(widget.groupId).update({'time': time});
+    _firestore.collection("groups_dataly").doc(widget.groupId).update({'time': time});
     _firestore
-        .collection("groups")
+        .collection("groups_dataly")
         .doc(widget.groupId)
         .update({'lastmessage': message});
   }
 
   void updatelast() {
     _firestore
-        .collection("groups")
+        .collection("groups_dataly")
         .doc(widget.groupId)
         .update({'last': FirebaseAuth.instance.currentUser!.uid.toString()});
   }
@@ -166,7 +166,7 @@ class _ChatScreenState extends State<ChatScreen> {
       updatelast();
       updatetime(time, "audio recieved");
       _firestore
-          .collection("groups")
+          .collection("groups_dataly")
           .doc(widget.groupId)
           .collection("chats")
           .add({
@@ -300,7 +300,7 @@ class _ChatScreenState extends State<ChatScreen> {
       updatetime(time, "image recieved");
 
       _firestore
-          .collection("groups")
+          .collection("groups_dataly")
           .doc(widget.groupId)
           .collection("chats")
           .add({
@@ -341,7 +341,7 @@ class _ChatScreenState extends State<ChatScreen> {
       updatetime(time, "image recieved");
 
       _firestore
-          .collection("groups")
+          .collection("groups_dataly")
           .doc(widget.groupId)
           .collection("chats")
           .add({
@@ -382,7 +382,7 @@ class _ChatScreenState extends State<ChatScreen> {
       updatetime(time, "video recieved");
 
       _firestore
-          .collection("groups")
+          .collection("groups_dataly")
           .doc(widget.groupId)
           .collection("chats")
           .add({
@@ -423,7 +423,7 @@ class _ChatScreenState extends State<ChatScreen> {
       updatetime(time, "video recieved");
 
       _firestore
-          .collection("groups")
+          .collection("groups_dataly")
           .doc(widget.groupId)
           .collection("chats")
           .add({
@@ -531,7 +531,7 @@ class _ChatScreenState extends State<ChatScreen> {
         updatelast();
         updatetime(time, "file recieved");
         _firestore
-            .collection("groups")
+            .collection("groups_dataly")
             .doc(widget.groupId)
             .collection("chats")
             .add({
@@ -615,7 +615,7 @@ class _ChatScreenState extends State<ChatScreen> {
       updatelast();
       updatetime(time, _textController.text);
       final post = await _firestore
-          .collection("groups")
+          .collection("groups_dataly")
           .doc(id)
           .collection("chats")
           .add({
@@ -639,7 +639,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Stream<QuerySnapshot> loadata() {
     return FirebaseFirestore.instance
-        .collection("groups")
+        .collection("groups_dataly")
         .doc(widget.groupId)
         .collection("chats")
         .orderBy('timestamp')
@@ -649,7 +649,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _collectionStream = FirebaseFirestore.instance
-        .collection("groups")
+        .collection("groups_dataly")
         .doc(widget.groupId)
         .collection("chats")
         .orderBy('time', descending: true)
@@ -737,7 +737,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       builder: (context, snapshot) {
                         print(
                           FirebaseFirestore.instance
-                              .collection("groups")
+                              .collection("groups_dataly")
                               .doc(widget.groupId)
                               .collection("chats")
                               .orderBy('time', descending: true)
@@ -1368,7 +1368,7 @@ class _MessageBubbleState extends State<MessageBubble> {
 
   void deletemessage(String messageid) {
     FirebaseFirestore.instance
-        .collection("groups")
+        .collection("groups_dataly")
         .doc(widget.gid)
         .collection("chats")
         .doc(messageid)
@@ -1527,7 +1527,7 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
 
   void deletemessage(String mid) {
     FirebaseFirestore.instance
-        .collection("groups")
+        .collection("groups_dataly")
         .doc(widget.gid)
         .collection("chats")
         .doc(mid)

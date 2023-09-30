@@ -151,7 +151,7 @@ class _QuizListState extends State<QuizList> {
           .doc(widget.cID)
           .get();
       userQuizTrack = await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(_auth.currentUser!.uid)
           .get();
 
@@ -222,7 +222,7 @@ class _QuizListState extends State<QuizList> {
   List videos = [];
   getUserRole() async {
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(_auth.currentUser!.uid)
         .get()
         .then((value) {
@@ -291,7 +291,7 @@ class _QuizListState extends State<QuizList> {
     List userquiztakenlist = [];
     bool showglobalquiz = true;
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get()
         .then((value) async {

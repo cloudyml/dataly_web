@@ -75,7 +75,7 @@ class _QuizPageState extends State<QuizPage> {
     // removing the quiz from the quiztrack list
     try {
       await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) async {
@@ -90,7 +90,7 @@ class _QuizPageState extends State<QuizPage> {
               await data.removeAt(customIndex);
               print("data $customIndex id iwjore9fjwj3r32r1 ${data.length}");
               await FirebaseFirestore.instance
-                  .collection("Users")
+                  .collection("Users_dataly")
                   .doc(FirebaseAuth.instance.currentUser!.uid)
                   .update({
                 "quiztrack": await data,
@@ -134,7 +134,7 @@ class _QuizPageState extends State<QuizPage> {
           widget.quizdata['quizlevel'] == "courselevel") {
         print("course quiz cleared");
         await FirebaseFirestore.instance
-            .collection("Users")
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .get()
             .then(
@@ -276,7 +276,7 @@ class _QuizPageState extends State<QuizPage> {
     try {
       print("update the quiztrack in user's doc ${quizTrackModel!.toJson()}");
       await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .update({
         "quiztrack": FieldValue.arrayUnion([quizTrackModel!.toJson()])
@@ -440,7 +440,7 @@ class _QuizPageState extends State<QuizPage> {
       var resultString = await handlingCasesAccoridingToTotal(
           total, quizdata, courseid, correctint);
       // await FirebaseFirestore.instance
-      //     .collection("Users")
+      //     .collection("Users_dataly")
       //     .doc(FirebaseAuth.instance.currentUser!.uid)
       //     .get()
       //     .then(

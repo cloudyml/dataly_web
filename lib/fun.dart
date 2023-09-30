@@ -846,12 +846,12 @@ Widget customMenuBar(BuildContext context) {
           child: Row(
             children: [
               Image.asset(
-                "assets/logo2.png",
+                "assets/logo.png",
                 width: 75,
                 height: 55,
               ),
               Text(
-                "CloudyML",
+                "Dataly",
                 style: textStyle,
               ),
             ],
@@ -1470,7 +1470,7 @@ Drawer dr(BuildContext context) {
             color: HexColor('7B62DF'),
             child: StreamBuilder<QuerySnapshot>(
               stream:
-                  FirebaseFirestore.instance.collection("Users").snapshots(),
+                  FirebaseFirestore.instance.collection("Users_dataly").snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) return const SizedBox.shrink();

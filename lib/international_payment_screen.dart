@@ -171,7 +171,7 @@ class _InternationalPaymentScreenState extends State<InternationalPaymentScreen>
       print("wewewewewew1");
       print(FirebaseAuth.instance.currentUser!.uid);
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) async {
@@ -226,7 +226,7 @@ class _InternationalPaymentScreenState extends State<InternationalPaymentScreen>
       });
 
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .update({
         "reward": 0,

@@ -81,7 +81,7 @@ class _HomeState extends State<Home> {
 
   void addCoursetoUser(String id) async {
     await FirebaseFirestore.instance
-        .collection('Users')
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .update({
       'paidCourseNames': FieldValue.arrayUnion([id])
@@ -118,7 +118,7 @@ class _HomeState extends State<Home> {
   void dbCheckerForPayInParts() async {
     try {
       DocumentSnapshot userDocs = await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
       // print(map['payInPartsDetails'][id]['outStandingAmtPaid']);
@@ -167,7 +167,7 @@ class _HomeState extends State<Home> {
   Future fetchCourses() async {
     try {
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) {
@@ -194,7 +194,7 @@ class _HomeState extends State<Home> {
     if (courses.length != 0) {
       try {
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .get()
             .then((value) async {
@@ -334,7 +334,7 @@ class _HomeState extends State<Home> {
   userData() async {
     try {
       ref = await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
 
@@ -354,7 +354,7 @@ class _HomeState extends State<Home> {
     print(
         "sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd $referralCode ddd");
     await FirebaseFirestore.instance
-        .collection('Users')
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get()
         .then((value) async {
@@ -387,7 +387,7 @@ class _HomeState extends State<Home> {
     var rewardexpireindays;
     try {
       await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) {
@@ -411,7 +411,7 @@ class _HomeState extends State<Home> {
       var data = DateTime.now().difference(rewardvalidfrom.toDate());
       if (data.inDays >= rewardexpireindays) {
         await FirebaseFirestore.instance
-            .collection("Users")
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({"reward": 0}).whenComplete(() {
           print('success');
@@ -441,7 +441,7 @@ class _HomeState extends State<Home> {
       // });
 
       // await FirebaseFirestore.instance
-      //     .collection("Users")
+      //     .collection("Users_dataly")
       //     .doc(FirebaseAuth.instance.currentUser!.uid)
       //     .update({
       //   'refer_link': referLink,
@@ -454,7 +454,7 @@ class _HomeState extends State<Home> {
       // Future<ReferalModel> getReferrerUser(String referCode) async {
       //   print("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii ${referCode}");
       //   final docSnapshots = await FirebaseFirestore.instance
-      //       .collection('Users')
+      //       .collection("Users_dataly")
       //       .where('refer_code', isEqualTo: referCode)
       //       .get();
 
@@ -478,7 +478,7 @@ class _HomeState extends State<Home> {
       //           "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii ${referer.id}");
 
       //       final checkIfUserAlreadyExist = await FirebaseFirestore.instance
-      //           .collection('Users')
+      //           .collection("Users_dataly")
       //           .doc(referer.id)
       //           .collection('referrers')
       //           .doc(currentUserUID)
@@ -486,7 +486,7 @@ class _HomeState extends State<Home> {
 
       //       if (!checkIfUserAlreadyExist.exists) {
       //         await FirebaseFirestore.instance
-      //             .collection('Users')
+      //             .collection("Users_dataly")
       //             .doc(referer.id)
       //             .collection('referrers')
       //             .doc(currentUserUID)
@@ -496,7 +496,7 @@ class _HomeState extends State<Home> {
       //         });
 
       //         await FirebaseFirestore.instance
-      //             .collection('Users')
+      //             .collection("Users_dataly")
       //             .doc(referer.id)
       //             .update({
       //           "reward": FieldValue.increment(50),
@@ -551,7 +551,7 @@ class _HomeState extends State<Home> {
           [_auth.currentUser!.uid]: 0
         },
       };
-      _firestore.collection("groups").add(groupData);
+      _firestore.collection("groups_dataly").add(groupData);
     });
   }
 
@@ -597,7 +597,7 @@ class _HomeState extends State<Home> {
     print("insertToken");
     final token = await FirebaseMessaging.instance.getToken();
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .update({"token": token});
     authorizationToken = await FirebaseAuth.instance.currentUser!.getIdToken();
@@ -698,7 +698,7 @@ class _HomeState extends State<Home> {
                             height: 40,
                           ),
                           Text(
-                            "CloudyML",
+                            "Dataly",
                             style: textStyle,
                           ),
                           Spacer(),
@@ -2136,7 +2136,7 @@ class _HomeState extends State<Home> {
                                                         //                                               print('paidCourseNames before ${userMap['paidCourseNames']}');
                                                         //                                               setState(() {
                                                         //                                                 userMap['paidCourseNames'].add(featuredCourse[index].courseId);
-                                                        //                                                 FirebaseFirestore.instance.collection('Users')
+                                                        //                                                 FirebaseFirestore.instance.collection("Users_dataly")
                                                         //                                                     .doc(FirebaseAuth.instance.currentUser!.uid)
                                                         //                                                     .update({
                                                         //                                                   'paidCourseNames': userMap['paidCourseNames'],

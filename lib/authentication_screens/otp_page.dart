@@ -948,7 +948,7 @@ class _OtpPageState extends State<OtpPage> {
           now.add(Duration(days: sessionExpiryDays['sessionExpiryDays']));
 
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .update({
         'sessionExpiryTime': Timestamp.fromDate(updatedTime),

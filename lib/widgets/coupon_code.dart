@@ -116,14 +116,14 @@ class CouponCodeMixin {
     if (!NoCouponApplied) {
       if (!couponCodeDetailsExists) {
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({
           'couponCodeDetails': {courseBaughtId: map}
         });
       } else {
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({
           'couponCodeDetails': {courseBaughtId: map}
@@ -137,7 +137,7 @@ class CouponCodeMixin {
     bool couponCodeDetailsExists;
 
     DocumentSnapshot userDs = await FirebaseFirestore.instance
-        .collection('Users')
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
 

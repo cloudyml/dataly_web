@@ -252,7 +252,7 @@ class _VideoScreenState extends State<VideoScreen> {
           .doc(widget.cID)
           .get();
       userQuizTrack = await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(_auth.currentUser!.uid)
           .get();
 
@@ -385,7 +385,7 @@ class _VideoScreenState extends State<VideoScreen> {
           .doc(widget.cID)
           .get();
       assignmentTrack = await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(_auth.currentUser!.uid)
           .get();
 
@@ -781,7 +781,7 @@ class _VideoScreenState extends State<VideoScreen> {
   List videos = [];
   getUserRole() async {
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(_auth.currentUser!.uid)
         .get()
         .then((value) {
@@ -887,7 +887,7 @@ class _VideoScreenState extends State<VideoScreen> {
     List userquiztakenlist = [];
     bool showglobalquiz = true;
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get()
         .then((value) async {
@@ -962,7 +962,7 @@ class _VideoScreenState extends State<VideoScreen> {
           now.add(Duration(days: learners['sessionExpiryDays']));
 
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .update({
         'sessionExpiryTime': Timestamp.fromDate(updatedTime),

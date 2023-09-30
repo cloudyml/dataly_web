@@ -399,7 +399,7 @@ class _SigninPasswordPageState extends State<SigninPasswordPage> {
                                       .instance.currentUser!.uid;
 
                                   await FirebaseFirestore.instance
-                                      .collection('Users')
+                                      .collection("Users_dataly")
                                       .doc(_auth.currentUser!.uid)
                                       .update({
                                     "linked": "true",
@@ -824,7 +824,7 @@ class _SigninPasswordPageState extends State<SigninPasswordPage> {
                                       .instance.currentUser!.uid;
 
                                   await FirebaseFirestore.instance
-                                      .collection('Users')
+                                      .collection("Users_dataly")
                                       .doc(_auth.currentUser!.uid)
                                       .update({
                                     "linked": "true",

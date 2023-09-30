@@ -112,7 +112,7 @@
 //   void lookformoneyref() async {
 //     try {
 //       await FirebaseFirestore.instance
-//           .collection('Users')
+//           .collection("Users_dataly")
 //           .doc(uid)
 //           .get()
 //           .then((value) => {moneyrefcode = value.data()!["moneyrefcode"]});
@@ -125,7 +125,7 @@
 //           await DeepLinkService.instance?.createReferLink(moneyreferalcode);
 //       print("this is the kings enargy: ${moneyreferallink}");
 //       if (moneyrefcode == null) {
-//         FirebaseFirestore.instance.collection("Users").doc(uid).update({
+//         FirebaseFirestore.instance.collection("Users_dataly").doc(uid).update({
 //           "moneyrefcode": "$moneyreferalcode",
 //         });
 //       }
@@ -159,7 +159,7 @@
 //   void dbCheckerForPayInParts() async {
 //     try {
 //       DocumentSnapshot userDocs = await FirebaseFirestore.instance
-//           .collection('Users')
+//           .collection("Users_dataly")
 //           .doc(FirebaseAuth.instance.currentUser!.uid)
 //           .get();
 //       // print(map['payInPartsDetails'][id]['outStandingAmtPaid']);
@@ -204,7 +204,7 @@
 //           [_auth.currentUser!.uid]: 0
 //         },
 //       };
-//       _firestore.collection("groups").add(groupData);
+//       _firestore.collection("groups_dataly").add(groupData);
 //     });
 //   }
 
@@ -258,7 +258,7 @@
 //     //
 //     //
 //     //     // userMap['paidCourseNames'].add(featuredCourse[int.parse(widget.id!)].courseId);
-//     //     // FirebaseFirestore.instance.collection('Users')
+//     //     // FirebaseFirestore.instance.collection("Users_dataly")
 //     //     //     .doc(FirebaseAuth.instance.currentUser!.uid)
 //     //     //     .update({
 //     //     //   'paidCourseNames': userMap['paidCourseNames'],
@@ -273,7 +273,7 @@
 //   }
 
 //   void checkl() async {
-//     CollectionReference users = FirebaseFirestore.instance.collection('Users');
+//     CollectionReference users = FirebaseFirestore.instance.collection("Users_dataly");
 //     var doc = await users.doc(FirebaseAuth.instance.currentUser!.uid).get();
 //     if (doc.exists) {
 //       Map<String, dynamic>? map = doc.data() as Map<String, dynamic>?;
@@ -284,7 +284,7 @@
 
 //       } else {
 //         FirebaseFirestore.instance
-//             .collection('Users')
+//             .collection("Users_dataly")
 //             .doc(FirebaseAuth.instance.currentUser!.uid)
 //             .update({
 //           'trialCourseList': "",
@@ -303,7 +303,7 @@
 
 //     // print("i am in trial if");
 
-//     //  FirebaseFirestore.instance.collection('Users')
+//     //  FirebaseFirestore.instance.collection("Users_dataly")
 //     //       .doc(FirebaseAuth.instance.currentUser!.uid)
 //     //       .update({'trialCourseList':"",});
 

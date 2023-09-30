@@ -445,7 +445,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                                   //Log.d(TAG, "providerId = " + providerId);
                                                 }
                                                 usernew.unlink('phone');
-                                                _firestore.collection('Users')
+                                                _firestore.collection("Users_dataly")
                                                     .doc(userprovider.userModel!.id)
                                                     .update({
                                                   'phoneVerified':false
@@ -550,14 +550,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     });
                                     String image=imageurl;
                                     (userprovider.userModel?.authType=='phoneAuth')?
-                                    _firestore.collection('Users')
+                                    _firestore.collection("Users_dataly")
                                         .doc(userprovider.userModel!.id)
                                         .update({
                                       'name':_username,
                                       'email':_phoneauthemail,
                                       'mobilenumber':_mobile,
                                       'image':image
-                                    }): _firestore.collection('Users')
+                                    }): _firestore.collection("Users_dataly")
                                         .doc(userprovider.userModel!.id)
                                         .update({
                                       'name':_username,
@@ -574,14 +574,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     // Fluttertoast.showToast(
                                     //     msg: 'Profile image must be provided');
                                     (userprovider.userModel?.authType=='phoneAuth') ?
-                                    _firestore.collection('Users')
+                                    _firestore.collection("Users_dataly")
                                         .doc(userprovider.userModel!.id)
                                         .update({
                                       'name': _username,
                                       'email': _phoneauthemail,
                                       'mobilenumber': _mobile,
                                     }):
-                                    _firestore.collection('Users')
+                                    _firestore.collection("Users_dataly")
                                         .doc(userprovider.userModel!.id)
                                         .update({
                                       'name':_username,

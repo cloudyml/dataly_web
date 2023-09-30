@@ -174,7 +174,7 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
       print("wewewewewew1");
       print(FirebaseAuth.instance.currentUser!.uid);
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) async {
@@ -213,7 +213,7 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
   //     });
   //
   //     await FirebaseFirestore.instance
-  //         .collection('Users')
+  //         .collection("Users_dataly")
   //         .doc(FirebaseAuth.instance.currentUser!.uid)
   //         .update({
   //       "reward": 0,

@@ -52,7 +52,7 @@ final Scrollcontroller = ScrollController();
   fetchCourses() async {
     try {
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) {
@@ -96,7 +96,7 @@ final Scrollcontroller = ScrollController();
   void dbCheckerForPayInParts() async {
     try {
       DocumentSnapshot userDocs = await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
       // print(map['payInPartsDetails'][id]['outStandingAmtPaid']);
@@ -150,7 +150,7 @@ final Scrollcontroller = ScrollController();
   userData() async {
     try {
       ref = await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
 
@@ -169,7 +169,7 @@ final Scrollcontroller = ScrollController();
     if (courses.length != 0) {
       try {
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .get()
             .then((value) async {

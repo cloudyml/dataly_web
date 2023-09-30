@@ -931,11 +931,11 @@ class _LoginPageState extends State<LoginPage> {
     try {
       print("1");
       docSnapshots = await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .where('mobilenumber', isEqualTo: phoneController.text.toString())
           .get();
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .where('mobilenumber', isEqualTo: phoneController.text.toString())
           .get()
           .then((QuerySnapshot snapshot) {
@@ -943,12 +943,12 @@ class _LoginPageState extends State<LoginPage> {
       });
       if (items.length == 0) {
         docSnapshots = await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .where('mobilenumber',
                 isEqualTo: int.parse(phoneController.text.toString()))
             .get();
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .where('mobilenumber',
                 isEqualTo: int.parse(phoneController.text.toString()))
             .get()
@@ -960,12 +960,12 @@ class _LoginPageState extends State<LoginPage> {
       if (items.length == 0) {
         if (phonenumber.toString().substring(0, 3) == "+91") {
           docSnapshots = await FirebaseFirestore.instance
-              .collection('Users')
+              .collection("Users_dataly")
               .where('mobilenumber',
                   isEqualTo: "+910" + phoneController.text.toString())
               .get();
           await FirebaseFirestore.instance
-              .collection('Users')
+              .collection("Users_dataly")
               .where('mobilenumber',
                   isEqualTo: "+910" + phoneController.text.toString())
               .get()
@@ -974,12 +974,12 @@ class _LoginPageState extends State<LoginPage> {
           });
           if (items.length == 0) {
             docSnapshots = await FirebaseFirestore.instance
-                .collection('Users')
+                .collection("Users_dataly")
                 .where('mobilenumber',
                     isEqualTo: "0" + phoneController.text.toString())
                 .get();
             await FirebaseFirestore.instance
-                .collection('Users')
+                .collection("Users_dataly")
                 .where('mobilenumber',
                     isEqualTo: "0" + phoneController.text.toString())
                 .get()
@@ -997,14 +997,14 @@ class _LoginPageState extends State<LoginPage> {
       if (items.length == 0) {
         print("3");
         docSnapshots = await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .where('mobilenumber', isEqualTo: phoneNumber)
             .get();
 
         print("4");
 
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .where('mobilenumber', isEqualTo: phoneNumber)
             .get()
             .then((QuerySnapshot snapshot) {
@@ -1015,14 +1015,14 @@ class _LoginPageState extends State<LoginPage> {
       // if (items.length == 0) {
       //   print("3");
       //   docSnapshots = await FirebaseFirestore.instance
-      //       .collection('Users')
+      //       .collection("Users_dataly")
       //       .where('mobilenumber', isEqualTo: "0"+phoneNumber)
       //       .get();
 
       //   print("4");
 
       //   await FirebaseFirestore.instance
-      //       .collection('Users')
+      //       .collection("Users_dataly")
       //       .where('mobilenumber', isEqualTo: "0"+phoneNumber)
       //       .get()
       //       .then((QuerySnapshot snapshot) {
@@ -1150,7 +1150,7 @@ class _LoginPageState extends State<LoginPage> {
 //         loading = false;
 //       });
 //       DocumentSnapshot userDocs = await FirebaseFirestore.instance
-//           .collection('Users')
+//           .collection("Users_dataly")
 //           .doc(FirebaseAuth.instance.currentUser!.uid)
 //           .get();
 //       if (userDocs.data() == null) {

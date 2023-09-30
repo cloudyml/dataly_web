@@ -70,7 +70,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
           final TaskSnapshot downloadUrl = await uploadTask;
           final String attachUrl = (await downloadUrl.ref.getDownloadURL());
           await FirebaseFirestore.instance
-              .collection("Users")
+              .collection("Users_dataly")
               .doc(_auth.currentUser!.uid).update({
             'image': attachUrl,
           });
@@ -153,7 +153,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
     var horizontalScale = width / mockUpWidth;
     return FutureBuilder<DocumentSnapshot>(
       future: FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get(),
       builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
@@ -655,6 +655,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                           margin: EdgeInsets.only(
                               top: 15.sp, bottom: 10.sp, right: 10.sp, left: 10.sp),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Align(
                                 alignment: Alignment.topLeft,
@@ -670,29 +671,20 @@ class _MyAccountPageState extends State<MyAccountPage> {
                               SizedBox(
                                 height: 10.sp,
                               ),
-                              Padding(
-                                padding:
-                                EdgeInsets.symmetric(horizontal: 0.sp),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      '${userData['email'] ?? 'Loading...'}',
-                                      style: TextStyle(
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.normal,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                    Text(
-                                      '${userData['mobilenumber'] ?? 'Loading...'}',
-                                      style: TextStyle(
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.normal,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
+                              Text(
+                                '${userData['email'] ?? 'Loading...'}',
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.normal,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              Text(
+                                '${userData['mobilenumber'] ?? 'Loading...'}',
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.normal,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                               SizedBox(

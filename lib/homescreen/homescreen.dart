@@ -137,7 +137,7 @@ class _LandingScreenState extends State<LandingScreen> {
 
   // void addCoursetoUser(String id) async {
   //   await FirebaseFirestore.instance
-  //       .collection('Users')
+  //       .collection("Users_dataly")
   //       .doc(FirebaseAuth.instance.currentUser!.uid)
   //       .update({
   //     'paidCourseNames': FieldValue.arrayUnion([id])
@@ -194,7 +194,7 @@ class _LandingScreenState extends State<LandingScreen> {
   void dbCheckerForPayInParts() async {
     try {
       DocumentSnapshot userDocs = await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
       // print(map['payInPartsDetails'][id]['outStandingAmtPaid']);
@@ -241,7 +241,7 @@ class _LandingScreenState extends State<LandingScreen> {
   Future fetchCourses() async {
     try {
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) {
@@ -268,7 +268,7 @@ class _LandingScreenState extends State<LandingScreen> {
     if (courses.length != 0) {
       try {
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .get()
             .then((value) async {
@@ -403,7 +403,7 @@ class _LandingScreenState extends State<LandingScreen> {
   userData() async {
     try {
       ref = await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
 
@@ -424,7 +424,7 @@ class _LandingScreenState extends State<LandingScreen> {
         DateTime now = DateTime.now();
         DateTime updatedTime = now.add(Duration(days: sessionExpiryDays));
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({
           'sessionExpiryTime': Timestamp.fromDate(updatedTime),
@@ -441,7 +441,7 @@ class _LandingScreenState extends State<LandingScreen> {
         DateTime updatedTime = now.add(Duration(days: sessionExpiryDays));
 
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({
           'sessionExpiryTime': Timestamp.fromDate(updatedTime),
@@ -462,7 +462,7 @@ class _LandingScreenState extends State<LandingScreen> {
     print(
         "sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd $referralCode ddd");
     await FirebaseFirestore.instance
-        .collection('Users')
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get()
         .then((value) async {
@@ -495,7 +495,7 @@ class _LandingScreenState extends State<LandingScreen> {
     var rewardexpireindays;
     try {
       await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) {
@@ -519,7 +519,7 @@ class _LandingScreenState extends State<LandingScreen> {
       var data = DateTime.now().difference(rewardvalidfrom.toDate());
       if (data.inDays >= rewardexpireindays) {
         await FirebaseFirestore.instance
-            .collection("Users")
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({"reward": 0}).whenComplete(() {
           print('success');
@@ -549,7 +549,7 @@ class _LandingScreenState extends State<LandingScreen> {
     //   });
 
     //   await FirebaseFirestore.instance
-    //       .collection("Users")
+    //       .collection("Users_dataly")
     //       .doc(FirebaseAuth.instance.currentUser!.uid)
     //       .update({
     //     'refer_link': referLink,
@@ -562,7 +562,7 @@ class _LandingScreenState extends State<LandingScreen> {
     //   Future<ReferalModel> getReferrerUser(String referCode) async {
     //     print("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii ${referCode}");
     //     final docSnapshots = await FirebaseFirestore.instance
-    //         .collection('Users')
+    //         .collection("Users_dataly")
     //         .where('refer_code', isEqualTo: referCode)
     //         .get();
 
@@ -586,7 +586,7 @@ class _LandingScreenState extends State<LandingScreen> {
     //             "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii ${referer.id}");
 
     //         final checkIfUserAlreadyExist = await FirebaseFirestore.instance
-    //             .collection('Users')
+    //             .collection("Users_dataly")
     //             .doc(referer.id)
     //             .collection('referrers')
     //             .doc(currentUserUID)
@@ -594,7 +594,7 @@ class _LandingScreenState extends State<LandingScreen> {
 
     //         if (!checkIfUserAlreadyExist.exists) {
     //           await FirebaseFirestore.instance
-    //               .collection('Users')
+    //               .collection("Users_dataly")
     //               .doc(referer.id)
     //               .collection('referrers')
     //               .doc(currentUserUID)
@@ -604,7 +604,7 @@ class _LandingScreenState extends State<LandingScreen> {
     //           });
 
     //           await FirebaseFirestore.instance
-    //               .collection('Users')
+    //               .collection("Users_dataly")
     //               .doc(referer.id)
     //               .update({
     //             "reward": FieldValue.increment(50),
@@ -659,7 +659,7 @@ class _LandingScreenState extends State<LandingScreen> {
           [_auth.currentUser!.uid]: 0
         },
       };
-      _firestore.collection("groups").add(groupData);
+      _firestore.collection("groups_dataly").add(groupData);
     });
   }
 
@@ -705,7 +705,7 @@ class _LandingScreenState extends State<LandingScreen> {
     print("insertToken");
     final token = await FirebaseMessaging.instance.getToken();
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .update({"token": token});
     authorizationToken = await FirebaseAuth.instance.currentUser!.getIdToken();
@@ -725,7 +725,7 @@ class _LandingScreenState extends State<LandingScreen> {
   getQuizDataAndUpdateScores() async {
     try {
       await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) async {
@@ -751,7 +751,7 @@ class _LandingScreenState extends State<LandingScreen> {
               print('nohu1 ${data.length}');
 
               await FirebaseFirestore.instance
-                  .collection("Users")
+                  .collection("Users_dataly")
                   .doc(FirebaseAuth.instance.currentUser!.uid)
                   .update({'quiztrack': FieldValue.arrayUnion(data)});
             }
@@ -763,7 +763,7 @@ class _LandingScreenState extends State<LandingScreen> {
       });
 
       await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) async {
@@ -775,7 +775,7 @@ class _LandingScreenState extends State<LandingScreen> {
         print('qizzzz data.length ${data2.length}');
 
         await FirebaseFirestore.instance
-            .collection("Users")
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({'quiztrack': data2});
       });
@@ -3487,12 +3487,12 @@ class _LandingScreenState extends State<LandingScreen> {
                                 child: Row(
                                   children: [
                                     Image.asset(
-                                      "assets/logo2.png",
+                                      "assets/logo.png",
                                       width: 60,
                                       height: 50,
                                     ),
                                     Text(
-                                      "CloudyML",
+                                      "Dataly",
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,

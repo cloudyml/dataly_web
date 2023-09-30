@@ -92,7 +92,7 @@ class DeepLinkService {
         try {
           if (FirebaseAuth.instance.currentUser?.uid != null) {
             await FirebaseFirestore.instance
-                .collection("Users")
+                .collection("Users_dataly")
                 .doc(FirebaseAuth.instance.currentUser!.uid)
                 .update({"sendersmoneyrefcode": splitingdatalink[1]});
           }

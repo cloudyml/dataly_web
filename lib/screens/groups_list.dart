@@ -53,7 +53,7 @@ class _GroupsListState extends State<GroupsList> {
       isLoading = true;
     });
     await _firestore
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(_auth.currentUser!.uid)
         .get()
         .then((value) {
@@ -74,14 +74,14 @@ class _GroupsListState extends State<GroupsList> {
   //   QuerySnapshot<Map<String, dynamic>> querySnapshot =
   //   userData!['role'] == 'student'
   //       ? await _firestore
-  //       .collection("groups")
+  //       .collection("groups_dataly")
   //       .where("student_id", isEqualTo: _auth.currentUser!.uid)
   //   // .orderBy('sr', descending: true)
   //       .limit(documentLimit)
   //       .get()
   //       .then((value) => value)
   //       : await _firestore
-  //       .collection("groups")
+  //       .collection("groups_dataly")
   //   // .where("mentors", arrayContains: _auth.currentUser!.uid)
   //       .orderBy('time', descending: true)
   //       .limit(documentLimit)
@@ -116,14 +116,14 @@ class _GroupsListState extends State<GroupsList> {
   //   QuerySnapshot<Map<String, dynamic>> querySnapshot =
   //   userData!['role'] == 'student'
   //       ? await _firestore
-  //       .collection("groups")
+  //       .collection("groups_dataly")
   //       .where("student_id", isEqualTo: _auth.currentUser!.uid)
   //       .startAfterDocument(_lastDocument!)
   //       .limit(documentLimit)
   //       .get()
   //       .then((value) => value)
   //       : await _firestore
-  //       .collection("groups")
+  //       .collection("groups_dataly")
   //       .orderBy('time', descending: true)
   //       .startAfterDocument(_lastDocument!)
   //       .limit(documentLimit)
@@ -150,7 +150,7 @@ class _GroupsListState extends State<GroupsList> {
   void getchatcount(List groupDetailsList) async {
     for (var group in groupDetailsList) {
       await _firestore
-          .collection("groups")
+          .collection("groups_dataly")
           .doc(group['id'])
           .collection("chats")
           .where('sendBy', isNotEqualTo: userData!["name"])
@@ -184,7 +184,7 @@ class _GroupsListState extends State<GroupsList> {
   //
   //   if(_lastDocument1==null)
   //   {
-  //     querySnapshot = await FirebaseFirestore.instance.collection("groups")
+  //     querySnapshot = await FirebaseFirestore.instance.collection("groups_dataly")
   //         .orderBy("time",descending: true).limit(documentLimit).get();
   //     _lastDocument1 = querySnapshot!.docs[querySnapshot!.docs.length-5];
   //     print("last");
@@ -205,7 +205,7 @@ class _GroupsListState extends State<GroupsList> {
   //   {
   //     print("Inside");
   //
-  //     querySnapshot = await FirebaseFirestore.instance.collection("groups")
+  //     querySnapshot = await FirebaseFirestore.instance.collection("groups_dataly")
   //         .orderBy("time",descending: true).startAfterDocument(_lastDocument1!).limit(documentLimit).get().then((value) => value);
   //
   //
@@ -237,7 +237,7 @@ class _GroupsListState extends State<GroupsList> {
   //     if (querySnapshot!.docs.length >= documentLimit &&
   //         (list!.length - 2) >= 0 && list != null) {
   //       print("True");
-  //       querySnapshot = await FirebaseFirestore.instance.collection("groups")
+  //       querySnapshot = await FirebaseFirestore.instance.collection("groups_dataly")
   //           .orderBy("time", descending: true).
   //       startAfterDocument(list![list!.length - 2]).
   //       limit(documentLimit).get().then((value) => value);
@@ -266,7 +266,7 @@ class _GroupsListState extends State<GroupsList> {
   async{
     print("insertToken");
     final token = await FirebaseMessaging.instance.getToken();
-    await FirebaseFirestore.instance.collection("Users").doc(FirebaseAuth.instance.currentUser!.uid).update(
+    await FirebaseFirestore.instance.collection("Users_dataly").doc(FirebaseAuth.instance.currentUser!.uid).update(
         {"token":token}
     );
     authorizationToken  = await FirebaseAuth.instance.currentUser!.getIdToken();
@@ -400,7 +400,7 @@ class _GroupsListState extends State<GroupsList> {
     print(searchValue);
     try{
       FirebaseFirestore.instance
-          .collection("groups").where("student_name",isGreaterThanOrEqualTo: searchValue.toString(),)
+          .collection("groups_dataly").where("student_name",isGreaterThanOrEqualTo: searchValue.toString(),)
       // .startAfterDocument(_lastDocument1!)
           .limit(10)
           .get().then((value) {
@@ -488,7 +488,7 @@ class _GroupsListState extends State<GroupsList> {
   listenChatData()
   async{
     var pageQuery = await  FirebaseFirestore.instance
-        .collection("groups")
+        .collection("groups_dataly")
     // .collection("chats")
     // .startAfterDocument(_lastDocument1!)
         .orderBy("time", descending: true).limit(5).snapshots();
@@ -808,7 +808,7 @@ class _GroupsListState extends State<GroupsList> {
                                                       .get()
                                                       .then((value) async {
                                                     await _firestore
-                                                        .collection("groups")
+                                                        .collection("groups_dataly")
                                                         .doc(snapshotGroupList.data![index].id)
                                                         .update({
                                                       'groupChatCount.${_auth.currentUser!.uid}':
@@ -819,7 +819,7 @@ class _GroupsListState extends State<GroupsList> {
 
                                                   // userprovider.userModel!.role == 'student'
                                                   //     ? await _firestore
-                                                  //         .collection("groups")
+                                                  //         .collection("groups_dataly")
                                                   //         .doc(groupsList![index]['id'])
                                                   //         .update({
                                                   //         'studentCount':
@@ -829,7 +829,7 @@ class _GroupsListState extends State<GroupsList> {
                                                   //                 : 0
                                                   //       })
                                                   //     : await _firestore
-                                                  //         .collection("groups")
+                                                  //         .collection("groups_dataly")
                                                   //         .doc(groupsList![index]['id'])
                                                   //         .update({
                                                   //         'mentorsCount.${_auth.currentUser!.uid}':
@@ -912,7 +912,7 @@ class _GroupsListState extends State<GroupsList> {
                                                             //   child:
                                                             StreamBuilder(
                                                               stream: FirebaseFirestore.instance
-                                                                  .collection("groups")
+                                                                  .collection("groups_dataly")
                                                                   .doc(snapshotGroupList.data![index].id)
                                                                   .snapshots(),
                                                               builder: (BuildContext context,
@@ -922,7 +922,7 @@ class _GroupsListState extends State<GroupsList> {
                                                                   documentSnapshot) {
                                                                 return StreamBuilder(
                                                                   stream: FirebaseFirestore.instance
-                                                                      .collection("groups")
+                                                                      .collection("groups_dataly")
                                                                       .doc(snapshotGroupList.data![index].id)
                                                                       .collection('chats')
                                                                       .where('sendBy',
@@ -1104,7 +1104,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //         .get()
                                             //         .then((value) async {
                                             //       await _firestore
-                                            //           .collection("groups")
+                                            //           .collection("groups_dataly")
                                             //           .doc(snapshotGroupList.data!.docs[index].id)
                                             //           .update({
                                             //         'groupChatCount.${_auth.currentUser!.uid}':
@@ -1114,7 +1114,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //
                                             //     // userprovider.userModel!.role == 'student'
                                             //     //     ? await _firestore
-                                            //     //         .collection("groups")
+                                            //     //         .collection("groups_dataly")
                                             //     //         .doc(groupsList![index]['id'])
                                             //     //         .update({
                                             //     //         'studentCount':
@@ -1124,7 +1124,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //     //                 : 0
                                             //     //       })
                                             //     //     : await _firestore
-                                            //     //         .collection("groups")
+                                            //     //         .collection("groups_dataly")
                                             //     //         .doc(groupsList![index]['id'])
                                             //     //         .update({
                                             //     //         'mentorsCount.${_auth.currentUser!.uid}':
@@ -1154,7 +1154,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //     width: 70,
                                             //     child: StreamBuilder(
                                             //       stream: FirebaseFirestore.instance
-                                            //           .collection("groups")
+                                            //           .collection("groups_dataly")
                                             //           .doc(snapshotGroupList.data!.docs[index].id)
                                             //           .snapshots(),
                                             //       builder: (BuildContext context,
@@ -1164,7 +1164,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //           documentSnapshot) {
                                             //         return StreamBuilder(
                                             //           stream: FirebaseFirestore.instance
-                                            //               .collection("groups")
+                                            //               .collection("groups_dataly")
                                             //               .doc(snapshotGroupList.data!.docs[index].id)
                                             //               .collection('chats')
                                             //               .where('sendBy',
@@ -1428,7 +1428,7 @@ class _GroupsListState extends State<GroupsList> {
                                                       .get()
                                                       .then((value) async {
                                                     await _firestore
-                                                        .collection("groups")
+                                                        .collection("groups_dataly")
                                                         .doc(snapshotGroupList.data![index]["id"])
                                                         .update({
                                                       'groupChatCount.${_auth.currentUser!.uid}':
@@ -1439,7 +1439,7 @@ class _GroupsListState extends State<GroupsList> {
 
                                                   // userprovider.userModel!.role == 'student'
                                                   //     ? await _firestore
-                                                  //         .collection("groups")
+                                                  //         .collection("groups_dataly")
                                                   //         .doc(groupsList![index]['id'])
                                                   //         .update({
                                                   //         'studentCount':
@@ -1449,7 +1449,7 @@ class _GroupsListState extends State<GroupsList> {
                                                   //                 : 0
                                                   //       })
                                                   //     : await _firestore
-                                                  //         .collection("groups")
+                                                  //         .collection("groups_dataly")
                                                   //         .doc(groupsList![index]['id'])
                                                   //         .update({
                                                   //         'mentorsCount.${_auth.currentUser!.uid}':
@@ -1665,7 +1665,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //         .get()
                                             //         .then((value) async {
                                             //       await _firestore
-                                            //           .collection("groups")
+                                            //           .collection("groups_dataly")
                                             //           .doc(snapshotGroupList.data!.docs[index].id)
                                             //           .update({
                                             //         'groupChatCount.${_auth.currentUser!.uid}':
@@ -1675,7 +1675,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //
                                             //     // userprovider.userModel!.role == 'student'
                                             //     //     ? await _firestore
-                                            //     //         .collection("groups")
+                                            //     //         .collection("groups_dataly")
                                             //     //         .doc(groupsList![index]['id'])
                                             //     //         .update({
                                             //     //         'studentCount':
@@ -1685,7 +1685,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //     //                 : 0
                                             //     //       })
                                             //     //     : await _firestore
-                                            //     //         .collection("groups")
+                                            //     //         .collection("groups_dataly")
                                             //     //         .doc(groupsList![index]['id'])
                                             //     //         .update({
                                             //     //         'mentorsCount.${_auth.currentUser!.uid}':
@@ -1715,7 +1715,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //     width: 70,
                                             //     child: StreamBuilder(
                                             //       stream: FirebaseFirestore.instance
-                                            //           .collection("groups")
+                                            //           .collection("groups_dataly")
                                             //           .doc(snapshotGroupList.data!.docs[index].id)
                                             //           .snapshots(),
                                             //       builder: (BuildContext context,
@@ -1725,7 +1725,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //           documentSnapshot) {
                                             //         return StreamBuilder(
                                             //           stream: FirebaseFirestore.instance
-                                            //               .collection("groups")
+                                            //               .collection("groups_dataly")
                                             //               .doc(snapshotGroupList.data!.docs[index].id)
                                             //               .collection('chats')
                                             //               .where('sendBy',
@@ -1930,12 +1930,12 @@ class _GroupsListState extends State<GroupsList> {
                                 userData!["role"]=="mentor"?
                                 !isLoading?
                                 _lastDocument1!=null?
-                                FirebaseFirestore.instance.collection("groups").orderBy("time",descending: true)
+                                FirebaseFirestore.instance.collection("groups_dataly").orderBy("time",descending: true)
                                     .startAfterDocument(_lastDocument1!).limit(documentLimit).snapshots():
-                                FirebaseFirestore.instance.collection("groups").orderBy("time",descending: true)
+                                FirebaseFirestore.instance.collection("groups_dataly").orderBy("time",descending: true)
                                     .limit(documentLimit).snapshots():
                                 null:
-                                FirebaseFirestore.instance.collection("groups")
+                                FirebaseFirestore.instance.collection("groups_dataly")
                                     .where("student_id", isEqualTo: _auth.currentUser!.uid)
                                 // .orderBy("time",descending: true)
                                     .snapshots(),
@@ -1994,7 +1994,7 @@ class _GroupsListState extends State<GroupsList> {
                                                       .get()
                                                       .then((value) async {
                                                     await _firestore
-                                                        .collection("groups")
+                                                        .collection("groups_dataly")
                                                         .doc(snapshotGroupList.data!.docs[index].id)
                                                         .update({
                                                       'groupChatCount.${_auth.currentUser!.uid}':
@@ -2005,7 +2005,7 @@ class _GroupsListState extends State<GroupsList> {
 
                                                   // userprovider.userModel!.role == 'student'
                                                   //     ? await _firestore
-                                                  //         .collection("groups")
+                                                  //         .collection("groups_dataly")
                                                   //         .doc(groupsList![index]['id'])
                                                   //         .update({
                                                   //         'studentCount':
@@ -2015,7 +2015,7 @@ class _GroupsListState extends State<GroupsList> {
                                                   //                 : 0
                                                   //       })
                                                   //     : await _firestore
-                                                  //         .collection("groups")
+                                                  //         .collection("groups_dataly")
                                                   //         .doc(groupsList![index]['id'])
                                                   //         .update({
                                                   //         'mentorsCount.${_auth.currentUser!.uid}':
@@ -2098,7 +2098,7 @@ class _GroupsListState extends State<GroupsList> {
                                                             //   child:
                                                             StreamBuilder(
                                                               stream: FirebaseFirestore.instance
-                                                                  .collection("groups")
+                                                                  .collection("groups_dataly")
                                                                   .doc(snapshotGroupList.data!.docs[index].id)
                                                                   .snapshots(),
                                                               builder: (BuildContext context,
@@ -2108,7 +2108,7 @@ class _GroupsListState extends State<GroupsList> {
                                                                   documentSnapshot) {
                                                                 return StreamBuilder(
                                                                   stream: FirebaseFirestore.instance
-                                                                      .collection("groups")
+                                                                      .collection("groups_dataly")
                                                                       .doc(snapshotGroupList.data!.docs[index].id)
                                                                       .collection('chats')
                                                                       .where('sendBy',
@@ -2289,7 +2289,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //         .get()
                                             //         .then((value) async {
                                             //       await _firestore
-                                            //           .collection("groups")
+                                            //           .collection("groups_dataly")
                                             //           .doc(snapshotGroupList.data!.docs[index].id)
                                             //           .update({
                                             //         'groupChatCount.${_auth.currentUser!.uid}':
@@ -2299,7 +2299,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //
                                             //     // userprovider.userModel!.role == 'student'
                                             //     //     ? await _firestore
-                                            //     //         .collection("groups")
+                                            //     //         .collection("groups_dataly")
                                             //     //         .doc(groupsList![index]['id'])
                                             //     //         .update({
                                             //     //         'studentCount':
@@ -2309,7 +2309,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //     //                 : 0
                                             //     //       })
                                             //     //     : await _firestore
-                                            //     //         .collection("groups")
+                                            //     //         .collection("groups_dataly")
                                             //     //         .doc(groupsList![index]['id'])
                                             //     //         .update({
                                             //     //         'mentorsCount.${_auth.currentUser!.uid}':
@@ -2339,7 +2339,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //     width: 70,
                                             //     child: StreamBuilder(
                                             //       stream: FirebaseFirestore.instance
-                                            //           .collection("groups")
+                                            //           .collection("groups_dataly")
                                             //           .doc(snapshotGroupList.data!.docs[index].id)
                                             //           .snapshots(),
                                             //       builder: (BuildContext context,
@@ -2349,7 +2349,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //           documentSnapshot) {
                                             //         return StreamBuilder(
                                             //           stream: FirebaseFirestore.instance
-                                            //               .collection("groups")
+                                            //               .collection("groups_dataly")
                                             //               .doc(snapshotGroupList.data!.docs[index].id)
                                             //               .collection('chats')
                                             //               .where('sendBy',

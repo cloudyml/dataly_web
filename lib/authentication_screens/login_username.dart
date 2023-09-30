@@ -277,7 +277,7 @@
 //                                             var user = _auth.currentUser;
 //                                             if (user != null) {
 //                                               await FirebaseFirestore.instance
-//                                                   .collection('Users')
+//                                                   .collection("Users_dataly")
 //                                                   .doc(FirebaseAuth
 //                                                   .instance.currentUser!.uid)
 //                                                   .update({
@@ -288,14 +288,14 @@
 //                                               try {
 //                                                 userDocs = await FirebaseFirestore
 //                                                     .instance
-//                                                     .collection('Users')
+//                                                     .collection("Users_dataly")
 //                                                     .doc(FirebaseAuth
 //                                                     .instance.currentUser!.uid)
 //                                                     .get();
 //                                               } catch (e) {
 //                                                 if (userDocs.data() == null) {
 //                                                   await FirebaseFirestore.instance
-//                                                       .collection('Users')
+//                                                       .collection("Users_dataly")
 //                                                       .doc(FirebaseAuth.instance
 //                                                       .currentUser!.uid)
 //                                                       .update({
@@ -351,7 +351,7 @@
 //                                         //         if (user != null) {
 //                                         // DocumentSnapshot userDocs = await FirebaseFirestore
 //                                         //     .instance
-//                                         //     .collection('Users')
+//                                         //     .collection("Users_dataly")
 //                                         //     .doc(FirebaseAuth.instance.currentUser!.uid)
 //                                         //     .get();
 //                                         // if (userDocs.data() == null) {
@@ -655,7 +655,7 @@
 //                                         var user = _auth.currentUser;
 //                                         if (user != null) {
 //                                           await FirebaseFirestore.instance
-//                                               .collection('Users')
+//                                               .collection("Users_dataly")
 //                                               .doc(FirebaseAuth
 //                                               .instance.currentUser!.uid)
 //                                               .update({
@@ -665,14 +665,14 @@
 //                                           try {
 //                                             userDocs = await FirebaseFirestore
 //                                                 .instance
-//                                                 .collection('Users')
+//                                                 .collection("Users_dataly")
 //                                                 .doc(FirebaseAuth
 //                                                 .instance.currentUser!.uid)
 //                                                 .get();
 //                                           } catch (e) {
 //                                             if (userDocs.data() == null) {
 //                                               await FirebaseFirestore.instance
-//                                                   .collection('Users')
+//                                                   .collection("Users_dataly")
 //                                                   .doc(FirebaseAuth
 //                                                   .instance.currentUser!.uid)
 //                                                   .update({
@@ -728,7 +728,7 @@
 //                                     //         if (user != null) {
 //                                     // DocumentSnapshot userDocs = await FirebaseFirestore
 //                                     //     .instance
-//                                     //     .collection('Users')
+//                                     //     .collection("Users_dataly")
 //                                     //     .doc(FirebaseAuth.instance.currentUser!.uid)
 //                                     //     .get();
 //                                     // if (userDocs.data() == null) {

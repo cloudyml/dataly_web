@@ -97,7 +97,7 @@ class NotificationPopUp extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage('assets/logo2.png'), 
+                  image: AssetImage('assets/logo.png'),
                   fit: BoxFit.cover,
                 ),
               ),

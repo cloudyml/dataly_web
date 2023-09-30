@@ -89,7 +89,7 @@ class DatabaseServices {
 
   static Future<UserDetails> userDetails(BuildContext context) async {
     return await FirebaseFirestore.instance
-        .collection('Users')
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .get()
         .then(

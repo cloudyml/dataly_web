@@ -75,7 +75,7 @@ class _SeasonOfferState extends State<SeasonOffer> {
   void addCourseToUser(String id) async {
 
     await FirebaseFirestore.instance
-        .collection('Users')
+        .collection("Users_dataly")
         .doc(_auth.currentUser!.uid)
         .update({
       'paidCourseNames': Id,
@@ -96,7 +96,7 @@ class _SeasonOfferState extends State<SeasonOffer> {
         "student_name": _auth.currentUser!.displayName,
       };
 
-      _firestore.collection("groups").add(groupData);
+      _firestore.collection("groups_dataly").add(groupData);
 
     });
   }

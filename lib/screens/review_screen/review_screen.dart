@@ -76,7 +76,7 @@ class _Review1State extends State<ReviewsScreen> {
                       child: Row(
                         children: [
                           Image.asset(
-                            "assets/logo2.png",
+                            "assets/logo.png",
                             width: 75,
                             height: 55,
                           ),

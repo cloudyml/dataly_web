@@ -97,7 +97,7 @@ class _PhoneNameState extends State<PhoneName> {
               onPressed: () async{
                 if(_formKey.currentState!.validate()){
                   appprovider.changeIsLoading();
-                  _firestore.collection('Users')
+                  _firestore.collection("Users_dataly")
                       .doc(userprovider.userModel!.id)
                       .update({
                     'name':username.text,

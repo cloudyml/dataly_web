@@ -223,7 +223,7 @@ class GoogleSignInProvider extends ChangeNotifier {
         await FirebaseAuth.instance.currentUser!
             .linkWithCredential(globals.credental);
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({
           "linked": "true",
@@ -255,7 +255,7 @@ class GoogleSignInProvider extends ChangeNotifier {
               title: 'Welcome to CloudyML',
               body: 'It\'s great to have you on CloudyML',
               bigPicture: 'asset://assets/HomeImage.png',
-              largeIcon: 'asset://assets/logo2.png',
+              largeIcon: 'asset://assets/logo.png',
               notificationLayout: NotificationLayout.BigPicture,
               displayOnForeground: true),
         );
@@ -316,7 +316,7 @@ void userprofile({
 }) async {
   try {
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .update({
       "name": name,
@@ -325,7 +325,7 @@ void userprofile({
   } catch (e) {
     print("updatediiiiiiiiiiii: ${e}");
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .set({
       "name": name,

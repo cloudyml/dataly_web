@@ -218,7 +218,7 @@ class _MyAppState extends State<MyApp> {
                 routeInformationParser: router.routeInformationParser,
                 routeInformationProvider: router.routeInformationProvider,
                 debugShowCheckedModeBanner: false,
-                title: 'CloudyML',
+                title: 'Dataly',
                 scrollBehavior: MyCustomScrollBehavior(),
                 builder: (BuildContext context, child) {
                   child = MediaQuery(

@@ -153,12 +153,12 @@ class _StoreScreenState extends State<StoreScreen> {
                           child: Row(
                             children: [
                               Image.asset(
-                                "assets/logo2.png",
+                                "assets/logo.png",
                                 width: 75,
                                 height: 55,
                               ),
                               Text(
-                                "CloudyML",
+                                "Dataly",
                                 style: textStyle,
                               ),
                             ],

@@ -352,7 +352,7 @@ class _PaymentButtonState extends State<PaymentButton> with CouponCodeMixin {
     var sendersmoneyrefcode;
     try {
       await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) async {
@@ -372,7 +372,7 @@ class _PaymentButtonState extends State<PaymentButton> with CouponCodeMixin {
           if (data.inDays <= 7) {
             print('herooo');
             await FirebaseFirestore.instance
-                .collection("Users")
+                .collection("Users_dataly")
                 .doc(sendermoneyrefuid.toString())
                 .update({
               "moneyreward":
@@ -394,7 +394,7 @@ class _PaymentButtonState extends State<PaymentButton> with CouponCodeMixin {
     try {
       if (globals.cuponcode == 'applied') {
         await FirebaseFirestore.instance
-            .collection("Users")
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({
           "couponCodeDetails": FieldValue.arrayUnion([
@@ -428,7 +428,7 @@ class _PaymentButtonState extends State<PaymentButton> with CouponCodeMixin {
 
   // void addCoursetoUser(String id) async {
   //   await FirebaseFirestore.instance
-  //       .collection('Users')
+  //       .collection("Users_dataly")
   //       .doc(FirebaseAuth.instance.currentUser!.uid)
   //       .update({
   //     "paidCourseNames": FieldValue.arrayUnion([id]),
@@ -446,7 +446,7 @@ class _PaymentButtonState extends State<PaymentButton> with CouponCodeMixin {
       print('1');
 
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) {
@@ -476,7 +476,7 @@ class _PaymentButtonState extends State<PaymentButton> with CouponCodeMixin {
     if (couponbool) {
       print('8');
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .update({'Coupons': couponList}).whenComplete(() {
         print('complete we are here');
@@ -542,7 +542,7 @@ class _PaymentButtonState extends State<PaymentButton> with CouponCodeMixin {
       if (userData['trialCourseList'].contains(widget.courseId)) {
         trialCourseList = userData['trialCourseList'].remove(widget.courseId);
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({
           "trialCourseList": trialCourseList,
@@ -573,7 +573,7 @@ class _PaymentButtonState extends State<PaymentButton> with CouponCodeMixin {
 
   void getPayInPartsDetails() async {
     DocumentSnapshot userDs = await FirebaseFirestore.instance
-        .collection('Users')
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
 
@@ -638,12 +638,12 @@ class _PaymentButtonState extends State<PaymentButton> with CouponCodeMixin {
         // map['endDateOfLimitedAccess'] =
         //     DateTime.now().add(Duration(seconds: 60)).toString();
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({'payInPartsDetails.${widget.courseId}': map});
       } else if (isOutStandingAmountCheckerPressed) {
         // DocumentSnapshot userDs = await FirebaseFirestore.instance
-        //     .collection('Users')
+        //     .collection("Users_dataly")
         //     .doc(FirebaseAuth.instance.currentUser!.uid)
         //     .get();
         // Map userFields = userDs.data() as Map<String, dynamic>;
@@ -663,12 +663,12 @@ class _PaymentButtonState extends State<PaymentButton> with CouponCodeMixin {
             ['${widget.courseId}']['endDateOfLimitedAccess'];
         map['outStandingAmtPaid'] = true;
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update(
                 {'payInPartsDetails.${widget.courseId}': FieldValue.delete()});
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({'payInPartsDetails.${widget.courseId}': map});
       }

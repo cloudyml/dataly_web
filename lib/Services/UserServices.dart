@@ -6,7 +6,7 @@ class UserServices {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<UserModel> getUserById(String id) => _firestore
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((doc) {

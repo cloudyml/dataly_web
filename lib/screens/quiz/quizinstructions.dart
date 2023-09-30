@@ -29,7 +29,7 @@ class _InstructionspageWidgetState extends State<InstructionspageWidget> {
 
   checkQuizStatusOrNavigate() async {
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get()
         .then((value) {

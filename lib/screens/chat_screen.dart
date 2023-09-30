@@ -122,7 +122,7 @@ class _ChatScreenState extends State<ChatScreen> {
     //Loop over list of member ids in tagUserId to fetch Name and Image of Respective member
     for (var member in tagUserId) {
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(member)
           .get()
           .then((value) {
@@ -209,7 +209,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void _getChats() {
     count = 0;
     var pageChatQuery = _firestore
-        .collection("groups")
+        .collection("groups_dataly")
         .doc(gId)
         .collection("chats")
         .orderBy("time", descending: true)
@@ -255,7 +255,7 @@ class _ChatScreenState extends State<ChatScreen> {
   //   if(_lastDocument1!=null)
   //   {
   //     await  FirebaseFirestore.instance
-  //         .collection("groups")
+  //         .collection("groups_dataly")
   //         .doc(gData!.id)
   //         .collection("chats")
   //         .orderBy("time", descending: true).startAfterDocument(_lastDocument1!).limit(chatLimit).get().then((value) {
@@ -270,7 +270,7 @@ class _ChatScreenState extends State<ChatScreen> {
   //   else
   //   {
   //     await  FirebaseFirestore.instance
-  //         .collection("groups")
+  //         .collection("groups_dataly")
   //         .doc(gData!.id)
   //         .collection("chats")
   //     // .startAfterDocument(_lastDocument1!)
@@ -312,7 +312,7 @@ class _ChatScreenState extends State<ChatScreen> {
   //           .child(pickedFileName!);
   //
   //       var sentData = await FirebaseFirestore.instance
-  //           .collection("groups")
+  //           .collection("groups_dataly")
   //           .doc(gData!.id)
   //           .collection("chats")
   //           .add({
@@ -363,7 +363,7 @@ class _ChatScreenState extends State<ChatScreen> {
             .child(pickedFileName);
 
         var sentData = await FirebaseFirestore.instance
-            .collection("groups")
+            .collection("groups_dataly")
             .doc(gId)
             .collection("chats")
             .add({
@@ -409,7 +409,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Future uploadFile(type) async {
     try {
       var sentData = await _firestore
-          .collection("groups")
+          .collection("groups_dataly")
           .doc(gId)
           .collection("chats")
           .add({
@@ -462,13 +462,13 @@ class _ChatScreenState extends State<ChatScreen> {
       };
 
       await _firestore
-          .collection("groups")
+          .collection("groups_dataly")
           .doc(gId)
           .collection("chats")
           .add(message);
       print("GroupId = ${widget.groupId}");
       await _firestore
-          .collection("groups")
+          .collection("groups_dataly")
           .doc(widget.groupId)
           .update({"time": FieldValue.serverTimestamp()});
       print('count is-------$count');
@@ -568,11 +568,11 @@ class _ChatScreenState extends State<ChatScreen> {
 
   // getDetailsOfToken()
   // async {
-  //   final data1 = FirebaseFirestore.instance.collection("Users").doc("4tUBmnt068e1688kfrOCRhlNHo52").set(
+  //   final data1 = FirebaseFirestore.instance.collection("Users_dataly").doc("4tUBmnt068e1688kfrOCRhlNHo52").set(
   //     {"token":await FirebaseMessaging.instance.getToken()},SetOptions(merge: true)
   //   );
   //
-  //   final data = FirebaseFirestore.instance.collection("Users").doc("aJSYa3RkWQTzyA0TnyLhh72MzZc2");
+  //   final data = FirebaseFirestore.instance.collection("Users_dataly").doc("aJSYa3RkWQTzyA0TnyLhh72MzZc2");
   //
   //   final response = data.get().then((DocumentSnapshot doc){
   //     final data2 = doc.data() as Map<String,dynamic>;
@@ -592,14 +592,14 @@ class _ChatScreenState extends State<ChatScreen> {
   getUserGroupData() async {
 
     uData = await _firestore
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     uData = uData.data();
     print('udata ${uData}');
 
     await _firestore
-        .collection("groups")
+        .collection("groups_dataly")
         .doc(widget.groupId)
         .get().then((value) {
           print(' ${value.id}');
@@ -730,14 +730,14 @@ class _ChatScreenState extends State<ChatScreen> {
   //   QuerySnapshot<Map<String, dynamic>> querySnapshot =
   //   uData!['role'] == 'student'
   //       ? await _firestore
-  //       .collection("groups")
+  //       .collection("groups_dataly")
   //       .where("student_id", isEqualTo: _auth.currentUser!.uid)
   //   // .orderBy('sr', descending: true)
   //       .limit(documentLimit)
   //       .get()
   //       .then((value) => value)
   //       : await _firestore
-  //       .collection("groups")
+  //       .collection("groups_dataly")
   //   // .where("mentors", arrayContains: _auth.currentUser!.uid)
   //       .orderBy('time', descending: true)
   //       .limit(documentLimit)
@@ -780,7 +780,7 @@ class _ChatScreenState extends State<ChatScreen> {
   sendNotification(List listOfDocumentUsers, message) async {
     for (var documentId in listOfDocumentUsers) {
       await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(documentId)
           .get()
           .then(
@@ -838,7 +838,7 @@ class _ChatScreenState extends State<ChatScreen> {
   //   var list = [];
   //   for(int i=0;i<responseData["mentors"].length;i++)
   //   {
-  //     var res = FirebaseFirestore.instance.collection("Users").doc(responseData["mentors"][i]).get();
+  //     var res = FirebaseFirestore.instance.collection("Users_dataly").doc(responseData["mentors"][i]).get();
   //     listInstance.add(res);
   //   }
   //
@@ -862,13 +862,13 @@ class _ChatScreenState extends State<ChatScreen> {
   //   var listInstance = [];
   //   for(int i=0;i<responseData["mentors"].length;i++)
   //   {
-  //     var res = await FirebaseFirestore.instance.collection("Users").doc(responseData["mentors"][i]).get();
+  //     var res = await FirebaseFirestore.instance.collection("Users_dataly").doc(responseData["mentors"][i]).get();
   //     if(responseData["mentors"][i]!=senderId){
   //       listInstance.add(res);
   //     }
   //     if(i==responseData["mentors"].length-1)
   //     {
-  //       var res = await FirebaseFirestore.instance.collection("Users").doc(responseData["student_id"]).get();
+  //       var res = await FirebaseFirestore.instance.collection("Users_dataly").doc(responseData["student_id"]).get();
   //       sleep(Duration(milliseconds: 100));
   //       listInstance.add(res);
   //     }

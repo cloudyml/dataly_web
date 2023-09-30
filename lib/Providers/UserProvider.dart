@@ -83,14 +83,14 @@ class UserProvider with ChangeNotifier {
 
   void addToNotificationuserservice(
           {String? userId, UserNotificationModel? userNotificationModel}) =>
-      _firestore.collection('Users').doc(userId).update({
+      _firestore.collection("Users_dataly").doc(userId).update({
         "usernotification":
             FieldValue.arrayUnion([userNotificationModel?.toMap()])
       });
 
   void removeFromNotificationuserservice(
           {String? userId, UserNotificationModel? userNotificationModel}) =>
-      _firestore.collection('Users').doc(userId).update({
+      _firestore.collection("Users_dataly").doc(userId).update({
         "usernotification":
             FieldValue.arrayRemove([userNotificationModel?.toMap()])
       });

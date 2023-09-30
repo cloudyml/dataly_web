@@ -82,7 +82,7 @@ class _ComboStoreState extends State<ComboStore> with CouponCodeMixin {
   void lookformoneyref() async {
     try {
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(uid)
           .get()
           .then((value) => {moneyrefcode = value.data()!["moneyrefcode"]});
@@ -95,7 +95,7 @@ class _ComboStoreState extends State<ComboStore> with CouponCodeMixin {
       // await DeepLinkService.instance?.createReferLink(moneyreferalcode);
       // print("this is the kings enargy: ${moneyreferallink}");
       if (moneyrefcode == null) {
-        FirebaseFirestore.instance.collection("Users").doc(uid).update({
+        FirebaseFirestore.instance.collection("Users_dataly").doc(uid).update({
           "moneyrefcode": "$moneyreferalcode",
         });
       }

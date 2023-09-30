@@ -46,7 +46,7 @@ class _CheckboxPageState extends State<CheckboxPage> {
     // print("this the String:::" + _id1);
     try {
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .update(map);
       final prefs = await SharedPreferences.getInstance();

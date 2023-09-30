@@ -446,7 +446,7 @@ class _phoneVerifyState extends State<phoneVerify> {
 
                     var user = result.user;
                     if (user != null) {
-                        _firestore.collection('Users')
+                        _firestore.collection("Users_dataly")
                             .doc(userprovider.userModel!.id)
                             .update({
                         //'name':_username,

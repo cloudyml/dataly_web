@@ -72,7 +72,7 @@ class _QuizesOfEnrolledCoursesState extends State<QuizesOfEnrolledCourses> {
 
   void addCoursetoUser(String id) async {
     await FirebaseFirestore.instance
-        .collection('Users')
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .update({
       'paidCourseNames': FieldValue.arrayUnion([id])
@@ -109,7 +109,7 @@ class _QuizesOfEnrolledCoursesState extends State<QuizesOfEnrolledCourses> {
   void dbCheckerForPayInParts() async {
     try {
       DocumentSnapshot userDocs = await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
       setState(() {
@@ -142,7 +142,7 @@ class _QuizesOfEnrolledCoursesState extends State<QuizesOfEnrolledCourses> {
   Future fetchCourses() async {
     try {
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) {
@@ -170,7 +170,7 @@ class _QuizesOfEnrolledCoursesState extends State<QuizesOfEnrolledCourses> {
     if (courses.length != 0) {
       try {
         await FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .get()
             .then((value) async {
@@ -310,7 +310,7 @@ class _QuizesOfEnrolledCoursesState extends State<QuizesOfEnrolledCourses> {
   userData() async {
     try {
       ref = await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
 
@@ -330,7 +330,7 @@ class _QuizesOfEnrolledCoursesState extends State<QuizesOfEnrolledCourses> {
     print(
         "sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd $referralCode ddd");
     await FirebaseFirestore.instance
-        .collection('Users')
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get()
         .then((value) async {
@@ -363,7 +363,7 @@ class _QuizesOfEnrolledCoursesState extends State<QuizesOfEnrolledCourses> {
     var rewardexpireindays;
     try {
       await FirebaseFirestore.instance
-          .collection("Users")
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) {
@@ -387,7 +387,7 @@ class _QuizesOfEnrolledCoursesState extends State<QuizesOfEnrolledCourses> {
       var data = DateTime.now().difference(rewardvalidfrom.toDate());
       if (data.inDays >= rewardexpireindays) {
         await FirebaseFirestore.instance
-            .collection("Users")
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({"reward": 0}).whenComplete(() {
           print('success');
@@ -434,7 +434,7 @@ class _QuizesOfEnrolledCoursesState extends State<QuizesOfEnrolledCourses> {
           [_auth.currentUser!.uid]: 0
         },
       };
-      _firestore.collection("groups").add(groupData);
+      _firestore.collection("groups_dataly").add(groupData);
     });
   }
 
@@ -480,7 +480,7 @@ class _QuizesOfEnrolledCoursesState extends State<QuizesOfEnrolledCourses> {
     print("insertToken");
     final token = await FirebaseMessaging.instance.getToken();
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .update({"token": token});
     authorizationToken = await FirebaseAuth.instance.currentUser!.getIdToken();

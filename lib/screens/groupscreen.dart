@@ -104,7 +104,7 @@ class _GroupPageState extends State<GroupPage> {
     });
 
     final snapshot = await _firestore
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
 
@@ -133,7 +133,7 @@ class _GroupPageState extends State<GroupPage> {
 
   void listenToFirestoreChanges() async {
     final snapshot = await _firestore
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     final data = snapshot.data();
@@ -189,7 +189,7 @@ class _GroupPageState extends State<GroupPage> {
 
   void listenToFirestoreChanges1() async {
     final snapshot = await _firestore
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     final data = snapshot.data();
@@ -244,7 +244,7 @@ class _GroupPageState extends State<GroupPage> {
 
   Future<String> loadrole() async {
     final snapshot = await _firestore
-        .collection("Users")
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     final data = snapshot.data();

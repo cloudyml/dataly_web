@@ -59,7 +59,7 @@ class _NewFeatureState extends State<NewFeature> {
 
   getAllPaidCourses() async {
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Users_dataly")
         .doc()
         .get()
         .then((value) {
@@ -204,7 +204,7 @@ class _NewFeatureState extends State<NewFeature> {
     void dbCheckerForPayInParts() async {
     try {
       DocumentSnapshot userDocs = await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
       // print(map['payInPartsDetails'][id]['outStandingAmtPaid']);
@@ -219,7 +219,7 @@ class _NewFeatureState extends State<NewFeature> {
   }
 
     void checkl() async {
-    CollectionReference users = FirebaseFirestore.instance.collection('Users');
+    CollectionReference users = FirebaseFirestore.instance.collection("Users_dataly");
     var doc = await users.doc(FirebaseAuth.instance.currentUser!.uid).get();
     if (doc.exists) {
       Map<String, dynamic>? map = doc.data() as Map<String, dynamic>?;
@@ -230,7 +230,7 @@ class _NewFeatureState extends State<NewFeature> {
 
       } else {
         FirebaseFirestore.instance
-            .collection('Users')
+            .collection("Users_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({
           'trialCourseList': "",

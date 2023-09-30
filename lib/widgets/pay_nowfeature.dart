@@ -51,7 +51,7 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
   getuserdata() async {
     try {
       DocumentSnapshot userDocs = await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
 
@@ -81,7 +81,7 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
   // void dbCheckerForPayInParts() async {
   //   try {
   //     DocumentSnapshot userDocs = await FirebaseFirestore.instance
-  //         .collection('Users')
+  //         .collection("Users_dataly")
   //         .doc(FirebaseAuth.instance.currentUser!.uid)
   //         .get();
   //     // print(map['payInPartsDetails'][id]['outStandingAmtPaid']);

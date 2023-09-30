@@ -31,7 +31,7 @@ class _ComboCourseState extends State<ComboCourse> {
 
   // bool statusOfPayInParts(String id) async {
   //   DocumentSnapshot userDocs = await FirebaseFirestore.instance
-  //       .collection('Users')
+  //       .collection("Users_dataly")
   //       .doc(FirebaseAuth.instance.currentUser!.uid)
   //       .get();
   //   Map userData = userDocs.data() as Map<String, dynamic>;
@@ -52,7 +52,7 @@ class _ComboCourseState extends State<ComboCourse> {
 
   void dbCheckerForPayInParts() async {
     DocumentSnapshot userDocs = await FirebaseFirestore.instance
-        .collection('Users')
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     // print(map['payInPartsDetails'][id]['outStandingAmtPaid']);

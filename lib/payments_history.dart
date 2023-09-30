@@ -26,7 +26,7 @@ class _PaymentHistoryState extends State<PaymentHistory> {
   void fetchCourses() async {
     try{
       await FirebaseFirestore.instance
-          .collection('Users')
+          .collection("Users_dataly")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) {
@@ -46,7 +46,7 @@ class _PaymentHistoryState extends State<PaymentHistory> {
 
   void dbCheckerForPayInParts() async {
     DocumentSnapshot userDocs = await FirebaseFirestore.instance
-        .collection('Users')
+        .collection("Users_dataly")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     setState(() {

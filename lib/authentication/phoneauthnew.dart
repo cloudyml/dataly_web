@@ -437,7 +437,7 @@ class _PhoneAuthenticationState extends State<PhoneAuthentication> {
                           if (user != null) {
                             DocumentSnapshot userDocs = await FirebaseFirestore
                                 .instance
-                                .collection('Users')
+                                .collection("Users_dataly")
                                 .doc(FirebaseAuth.instance.currentUser!.uid)
                                 .get();
                             if (userDocs.data() == null) {
@@ -486,7 +486,7 @@ class _PhoneAuthenticationState extends State<PhoneAuthentication> {
                                     title: 'Welcome to CloudyML',
                                     body: 'It\'s great to have you on CloudyML',
                                     bigPicture: 'asset://assets/HomeImage.png',
-                                    largeIcon: 'asset://assets/logo2.png',
+                                    largeIcon: 'asset://assets/logo.png',
                                     notificationLayout: NotificationLayout.BigPicture,
                                     displayOnForeground: true
                                 )
