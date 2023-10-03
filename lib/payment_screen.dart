@@ -6,6 +6,7 @@ import 'package:cloudyml_app2/screens/flutter_flow/flutter_flow_util.dart';
 import 'package:cloudyml_app2/widgets/coupon_code.dart';
 import 'package:cloudyml_app2/widgets/inter_payment_portal.dart';
 import 'package:cloudyml_app2/widgets/payment_portal.dart';
+import 'package:cloudyml_app2/widgets/paypal_payment.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -133,7 +134,6 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
         setState(() {
           print('course id is ${widget.cID}');
           courseMap = value.data()!;
-          print('paymentscree map ${courseMap.toString()} ');
           // print('gste = ${courseMap['gst'].toString()}');
         });
       });
@@ -193,11 +193,12 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
     }
   }
 
+
   @override
   void initState() {
-    super.initState();
     url_del();
     getCourseName();
+    super.initState();
   }
 
   // void setcoursevalue() async {
@@ -262,9 +263,6 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
 
   @override
   Widget build(BuildContext context) {
-
-
-
     return Scaffold(
       // drawer: customDrawer(context),
       appBar: AppBar(
@@ -593,11 +591,20 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                               style: textStyle,
                                             ),
                                             Text(
+                                              courseMap['dataly_actual_price'] != null ?
+                                              'CAD ${courseMap['dataly_actual_price']}' :
                                               courseMap['gst'] != null
                                                   ? '₹${courseMap['Amount Payable']}/-'
                                                   : courseMap[
                                               'Amount Payable'],
-                                              style: textStyle,
+                                              style: TextStyle(
+                                                  color: Color.fromARGB(223, 48, 48, 49),
+                                                  fontFamily: 'Poppins',
+                                                  decoration: TextDecoration.lineThrough,
+                                                  fontSize: 14,
+                                                  letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
+                                                  fontWeight: FontWeight.w500,
+                                                  height: 1),
                                             ),
                                           ],
                                         ),
@@ -611,6 +618,8 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                               style: textStyle,
                                             ),
                                             Text(
+                                              courseMap['dataly_discounted_price'] != null ?
+                                              'CAD ${courseMap['dataly_discounted_price']}' :
                                               courseMap['gst'] != null
                                                   ? '₹${courseMap['Course Price']}/-'
                                                   : courseMap['Course Price'],
@@ -619,7 +628,7 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                           ],
                                         ),
                                         SizedBox(height: 5),
-                                        Row(
+                                        courseMap['dataly_actual_price'] != null ? Container() : Row(
                                           mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                           children: [
@@ -1168,6 +1177,8 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                                 style: textStyle,
                                               ),
                                               Text(
+                                                courseMap['dataly_discounted_price'] != null ?
+                                                'CAD ${courseMap['dataly_discounted_price']}' :
                                                 NoCouponApplied
                                                     ? courseMap['gst'] != null
                                                     ? '₹${totalAmount.round().toString()}/-'
@@ -1184,12 +1195,15 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                             )),
                                         SizedBox(height: 15 * verticalScale),
                                         Center(
-                                          child: PaymentButton(
+                                          child: PaypalPaymentButton(
                                             couponCode: coupontext,
                                             couponcodeused: !errorOnCoupon,
                                             coursePriceMoneyRef:
                                             int.parse(courseprice),
-                                            amountString: (double.parse(NoCouponApplied
+                                            amountString:
+                                            courseMap['dataly_discounted_price'] != null ?
+                                            'CAD ${courseMap['dataly_discounted_price']}' :
+                                            (double.parse(NoCouponApplied
                                                 ? courseMap['gst'] != null
                                                 ? '${totalAmount.round().toString()}'
                                                 : "${int.parse(courseprice) - int.parse(discountvalue)}"
@@ -1200,7 +1214,6 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                                 ? courseMap['gst'] != null
                                                 ? 'PAY ₹${totalAmount.round().toString()}/-'
                                                 : 'PAY ₹${int.parse(courseprice) - int.parse(discountvalue)}/-' //${courseMap['Course Price']}
-
                                                 : 'PAY ${finalamountToDisplay}',
                                             buttonTextForCode:
                                             "$finalamountToDisplay",
@@ -1229,6 +1242,8 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                               print(NoCouponApplied);
                                             },
                                             outStandingAmountString:
+                                            courseMap['dataly_discounted_price'] != null ?
+                                            'CAD ${courseMap['dataly_discounted_price']}' :
                                             (double.parse(NoCouponApplied
                                                 ? courseMap[
                                             'Amount_Payablepay']
@@ -1246,153 +1261,157 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                             couponCodeController.text,
                                           ),
                                         ),
+
+                                        // Center(child: ElevatedButton(onPressed: (){
+                                        //   Navigator.push(context, MaterialPageRoute(builder: (context) => PaypalPaymentButton() ));
+                                        // }, child: Text('Submit')),),
                                         SizedBox(height: 7.5.sp),
-                                        InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              loadingpayment.value = true;
-                                            });
-                                            alertForPayment = true;
-                                            setState(() {});
-                                            showDialog(
-                                              context: context,
-                                              builder: (context) {
-                                                return Dialog(
-                                                  shape:
-                                                  RoundedRectangleBorder(
-                                                    borderRadius:
-                                                    BorderRadius.circular(
-                                                        20),
-                                                  ),
-                                                  child: Container(
-                                                    width: screenWidth / 2.5,
-                                                    padding:
-                                                    EdgeInsets.all(20),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                      MainAxisSize.min,
-                                                      children: [
-                                                        Text(
-                                                          'Payment',
-                                                          style: TextStyle(
-                                                            color:
-                                                            Colors.black,
-                                                            fontFamily:
-                                                            'Poppins',
-                                                            fontSize: 20,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .bold,
-                                                          ),
-                                                        ),
-                                                        SizedBox(height: 20),
-
-                                                        RazorPayInternationalBtn(
-                                                          courseDescription:
-                                                          courseMap[
-                                                          'description'],
-                                                          international:
-                                                          false,
-                                                          coursePriceMoneyRef:
-                                                          int.parse(
-                                                              courseprice),
-                                                          courseId:
-                                                          courseMap['id'],
-                                                          NoCouponApplied:
-                                                          NoCouponApplied,
-                                                          couponCodeText:
-                                                          couponCodeController
-                                                              .text,
-                                                          amountString: (double.parse(NoCouponApplied
-                                                              ? courseMap['gst'] != null
-                                                              ? '${totalAmount.round().toString()}'
-                                                              : "${int.parse(courseprice) - int.parse(discountvalue)}"
-                                                              : finalAmountToPay) * //courseMap['Amount_Payablepay']
-                                                              100)
-                                                              .toString(),
-                                                          courseName:
-                                                          courseMap[
-                                                          'name'],
-                                                          courseImageUrl:
-                                                          courseMap[
-                                                          'image_url'],
-                                                        )
-
-                                                        // PaymentButtonn(
-                                                        //   label: 'Razorpay',
-                                                        //   icon: Icons.attach_money,
-                                                        //   color: Colors.green,
-                                                        //   onTap: () {
-                                                        //     // Handle Razorpay payment
-                                                        //   },
-                                                        // ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                          },
-                                          child: Center(
-                                            child: Container(
-                                              width: screenWidth,
-                                              height: Device.screenType ==
-                                                  ScreenType.mobile
-                                                  ? 30.sp
-                                                  : 20.sp,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(5),
-                                                color: Colors
-                                                    .deepPurple.shade600,
-                                              ),
-                                              child: Center(
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      'Pay Now',
-                                                      style: TextStyle(
-                                                          color:
-                                                          Color.fromRGBO(
-                                                              255,
-                                                              255,
-                                                              255,
-                                                              1),
-                                                          fontFamily:
-                                                          'Poppins',
-                                                          fontSize: 20 *
-                                                              verticalScale,
-                                                          letterSpacing:
-                                                          0 /*percentages not used in flutter. defaulting to zero*/,
-                                                          fontWeight:
-                                                          FontWeight.bold,
-                                                          height: 1),
-                                                    ),
-                                                    Text(
-                                                      '(For International Students)',
-                                                      style: TextStyle(
-                                                          color:
-                                                          Color.fromRGBO(
-                                                              255,
-                                                              255,
-                                                              255,
-                                                              1),
-                                                          fontFamily:
-                                                          'Poppins',
-                                                          fontSize: 15 *
-                                                              verticalScale,
-                                                          letterSpacing:
-                                                          0 /*percentages not used in flutter. defaulting to zero*/,
-                                                          fontWeight:
-                                                          FontWeight.bold,
-                                                          height: 1),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                                        // InkWell(
+                                        //   onTap: () {
+                                        //     setState(() {
+                                        //       loadingpayment.value = true;
+                                        //     });
+                                        //     alertForPayment = true;
+                                        //     setState(() {});
+                                        //     showDialog(
+                                        //       context: context,
+                                        //       builder: (context) {
+                                        //         return Dialog(
+                                        //           shape:
+                                        //           RoundedRectangleBorder(
+                                        //             borderRadius:
+                                        //             BorderRadius.circular(
+                                        //                 20),
+                                        //           ),
+                                        //           child: Container(
+                                        //             width: screenWidth / 2.5,
+                                        //             padding:
+                                        //             EdgeInsets.all(20),
+                                        //             child: Column(
+                                        //               mainAxisSize:
+                                        //               MainAxisSize.min,
+                                        //               children: [
+                                        //                 Text(
+                                        //                   'Payment',
+                                        //                   style: TextStyle(
+                                        //                     color:
+                                        //                     Colors.black,
+                                        //                     fontFamily:
+                                        //                     'Poppins',
+                                        //                     fontSize: 20,
+                                        //                     fontWeight:
+                                        //                     FontWeight
+                                        //                         .bold,
+                                        //                   ),
+                                        //                 ),
+                                        //                 SizedBox(height: 20),
+                                        //
+                                        //                 RazorPayInternationalBtn(
+                                        //                   courseDescription:
+                                        //                   courseMap[
+                                        //                   'description'],
+                                        //                   international:
+                                        //                   false,
+                                        //                   coursePriceMoneyRef:
+                                        //                   int.parse(
+                                        //                       courseprice),
+                                        //                   courseId:
+                                        //                   courseMap['id'],
+                                        //                   NoCouponApplied:
+                                        //                   NoCouponApplied,
+                                        //                   couponCodeText:
+                                        //                   couponCodeController
+                                        //                       .text,
+                                        //                   amountString: (double.parse(NoCouponApplied
+                                        //                       ? courseMap['gst'] != null
+                                        //                       ? '${totalAmount.round().toString()}'
+                                        //                       : "${int.parse(courseprice) - int.parse(discountvalue)}"
+                                        //                       : finalAmountToPay) * //courseMap['Amount_Payablepay']
+                                        //                       100)
+                                        //                       .toString(),
+                                        //                   courseName:
+                                        //                   courseMap[
+                                        //                   'name'],
+                                        //                   courseImageUrl:
+                                        //                   courseMap[
+                                        //                   'image_url'],
+                                        //                 )
+                                        //
+                                        //                 // PaymentButtonn(
+                                        //                 //   label: 'Razorpay',
+                                        //                 //   icon: Icons.attach_money,
+                                        //                 //   color: Colors.green,
+                                        //                 //   onTap: () {
+                                        //                 //     // Handle Razorpay payment
+                                        //                 //   },
+                                        //                 // ),
+                                        //               ],
+                                        //             ),
+                                        //           ),
+                                        //         );
+                                        //       },
+                                        //     );
+                                        //   },
+                                        //   child: Center(
+                                        //     child: Container(
+                                        //       width: screenWidth,
+                                        //       height: Device.screenType ==
+                                        //           ScreenType.mobile
+                                        //           ? 30.sp
+                                        //           : 20.sp,
+                                        //       decoration: BoxDecoration(
+                                        //         borderRadius:
+                                        //         BorderRadius.circular(5),
+                                        //         color: Colors
+                                        //             .deepPurple.shade600,
+                                        //       ),
+                                        //       child: Center(
+                                        //         child: Column(
+                                        //           children: [
+                                        //             Text(
+                                        //               'Pay Now',
+                                        //               style: TextStyle(
+                                        //                   color:
+                                        //                   Color.fromRGBO(
+                                        //                       255,
+                                        //                       255,
+                                        //                       255,
+                                        //                       1),
+                                        //                   fontFamily:
+                                        //                   'Poppins',
+                                        //                   fontSize: 20 *
+                                        //                       verticalScale,
+                                        //                   letterSpacing:
+                                        //                   0 /*percentages not used in flutter. defaulting to zero*/,
+                                        //                   fontWeight:
+                                        //                   FontWeight.bold,
+                                        //                   height: 1),
+                                        //             ),
+                                        //             Text(
+                                        //               '(For International Students)',
+                                        //               style: TextStyle(
+                                        //                   color:
+                                        //                   Color.fromRGBO(
+                                        //                       255,
+                                        //                       255,
+                                        //                       255,
+                                        //                       1),
+                                        //                   fontFamily:
+                                        //                   'Poppins',
+                                        //                   fontSize: 15 *
+                                        //                       verticalScale,
+                                        //                   letterSpacing:
+                                        //                   0 /*percentages not used in flutter. defaulting to zero*/,
+                                        //                   fontWeight:
+                                        //                   FontWeight.bold,
+                                        //                   height: 1),
+                                        //             ),
+                                        //           ],
+                                        //         ),
+                                        //       ),
+                                        //     ),
+                                        //   ),
+                                        // ),
                                       ],
                                     ),
                                   ),

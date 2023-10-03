@@ -133,7 +133,6 @@ class _InternationalPaymentScreenState extends State<InternationalPaymentScreen>
         setState(() {
           print('course id is ${widget.cID}');
           courseMap = value.data()!;
-          print('paymentscree map ${courseMap.toString()} ');
           // print('gste = ${courseMap['gst'].toString()}');
         });
       });
