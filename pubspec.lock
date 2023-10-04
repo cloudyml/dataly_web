@@ -1168,6 +1168,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.13.6"
+  http_auth:
+    dependency: "direct main"
+    description:
+      name: http_auth
+      sha256: b63ab2b2874970e92b76b7d23c805e74d7c534e8528088da75cf32c18e9abe25
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   http_multi_server:
     dependency: transitive
     description:
@@ -1656,6 +1664,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.0"
+  paypal_sdk:
+    dependency: "direct main"
+    description:
+      name: paypal_sdk
+      sha256: "768e95f6cfd39a6ced6de18b49aa04dba7a81f103b1670bfc0d25e37dcb648b0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
   percent_indicator:
     dependency: "direct main"
     description:

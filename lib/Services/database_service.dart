@@ -54,6 +54,8 @@ class DatabaseServices {
                   findex: documentSnapshot.data()['fIndex'],
                   multiCombo: documentSnapshot.data()['multiCombo'],
                   international: documentSnapshot.data()['international'],
+                  dataly_actual_price: documentSnapshot.data()['dataly_actual_price'] ?? null,
+                  dataly_discounted_price: documentSnapshot.data()['dataly_discounted_price'] ?? null
                 ),
               )
               .toList(),

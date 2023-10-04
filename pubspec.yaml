@@ -31,6 +31,8 @@ dependencies:
     sdk: flutter
 
 
+  paypal_sdk:
+  http_auth:
   hive_flutter: ^1.1.0
   flutter_rating_bar: ^4.0.0
   renderer_switcher: ^0.1.0

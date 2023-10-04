@@ -171,7 +171,6 @@ class _NewFeatureState extends State<NewFeature> {
       setState(() {
         comboMap = value.data()!;
         international = value.data()!['international'];
-        print('this is $comboMap');
         print('cid is ${comboMap['trialCourse']} ${int.parse(widget.id!)}');
 
       });
@@ -268,7 +267,7 @@ class _NewFeatureState extends State<NewFeature> {
       bottomSheet:
       comboMap['trialCourse']! != null && comboMap['trialCourse']!
           ? PayNowBottomSheetfeature(
-        coursePrice: international != null && international == true ? '\$${((double.parse(comboMap['Course Price'])/82)+5).round().toString()}/-' : '₹${widget.courseP!}/-',
+        coursePrice: comboMap['dataly_discounted_price'] != null ? 'CAD ${comboMap['dataly_discounted_price']}' :  international != null && international == true ? '\$${((double.parse(comboMap['Course Price'])/82)+5).round().toString()}/-' : '₹${widget.courseP!}/-',
         international: international == null ||  international == false ? false : international,
         map: comboMap,
         isItComboCourse: true,
@@ -284,16 +283,6 @@ class _NewFeatureState extends State<NewFeature> {
         cID: widget.cID!,
       ),
 
-      // appBar: appBar(context),
-      // drawer: width<650?
-      // Drawer(
-      //   width: 40,
-      //   child: Column(
-      //     children: [
-      //       Text("Hii")
-      //     ],
-      //   ),
-      // ):null,
       body: LayoutBuilder(
         builder: (context, constraints) {
           return Container(

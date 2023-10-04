@@ -180,10 +180,6 @@ class _splashState extends State<splash> {
       final pattern = RegExp('.{1,800}');
       pattern.allMatches(s).forEach((match) => print("${match.group(0)}\n"));
     }
-
-    prints("coursemodulemap : ${json.encode(coursemodule)}");
-    print("modulenameijfioew : $moduelnamelist");
-    print("coursenamelist : ${json.encode(coursenamelist)}");
     globals.moduleList = moduelnamelist;
     globals.courseList = coursenamelist;
     globals.coursemoduelmap = coursemodule;

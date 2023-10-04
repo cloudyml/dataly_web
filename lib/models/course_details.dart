@@ -24,6 +24,8 @@ class CourseDetails {
   String? findex;
   bool? multiCombo;
   bool? international;
+  String? dataly_actual_price;
+  String? dataly_discounted_price;
 
   CourseDetails({
     required this.courseName,
@@ -50,6 +52,8 @@ class CourseDetails {
     this.duration,
     this.findex,
     this.multiCombo,
-    this.international
+    this.international,
+    this.dataly_actual_price,
+    this.dataly_discounted_price
   });
 }
