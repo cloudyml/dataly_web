@@ -68,7 +68,7 @@ Future<void> main() async {
   }
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   LocalNotificationService.initialize();
-  FBMessaging().init();
+  //FBMessaging().init();
 
   runApp(MyApp(
     loginState: state,

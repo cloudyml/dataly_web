@@ -15,6 +15,9 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:star_rating/star_rating.dart';
 import 'package:http/http.dart' as http;
 
+import 'payment/stripe/checkout.dart';
+
+
 
 class PaymentScreen extends StatefulWidget {
   // final Map<String, dynamic>? map;
@@ -282,6 +285,8 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
           ),
         ),
         backgroundColor: Colors.deepPurple,
+   
+    
       ),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
@@ -1393,6 +1398,15 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                             ),
                                           ),
                                         ),
+
+                                        ElevatedButton(
+          onPressed: () => redirectToCheckout(context),
+          child: Text('Stripe Checkout in Flutter!'),
+        ),
+
+
+                
+                                        
                                       ],
                                     ),
                                   ),

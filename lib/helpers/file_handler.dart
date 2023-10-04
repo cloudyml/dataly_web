@@ -13,7 +13,7 @@ Future<File?> downloadFile(String url, String name, file) async {
       options: Options(
         responseType: ResponseType.bytes,
         followRedirects: false,
-        receiveTimeout: 0,
+        receiveTimeout: Duration(seconds: 0),
       ),
     );
 

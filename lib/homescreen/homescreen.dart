@@ -1,23 +1,17 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:math';
 import 'package:cloudyml_app2/homescreen/clipper.dart';
 import 'package:cloudyml_app2/widgets/notification_popup.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
+
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 // import 'package:showcaseview/showcaseview.dart';
-import 'package:toast/toast.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:package_info_plus/package_info_plus.dart';
-import '../Services/code_generator.dart';
 import '../Services/deeplink_service.dart';
-import '../catalogue_screen.dart';
 import '../combo/combo_course.dart';
 import '../combo/combo_store.dart';
 import '../global_variable.dart';
-import '../models/referal_model.dart';
 import '../module/pdf_course.dart';
 import '../module/video_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -27,13 +21,11 @@ import 'package:cloudyml_app2/api/firebase_api.dart';
 import 'package:cloudyml_app2/authentication/firebase_auth.dart';
 import 'package:cloudyml_app2/models/course_details.dart';
 import 'package:cloudyml_app2/router/login_state_check.dart';
-import 'package:cloudyml_app2/screens/exlusive_offer/seasons_offer_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:cloudyml_app2/fun.dart';
 import 'package:cloudyml_app2/models/firebase_file.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hive/hive.dart';
@@ -41,12 +33,14 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:cloudyml_app2/globals.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:star_rating/star_rating.dart';
 // import 'package:showcaseview/src/showcase.dart';
 import 'package:cloudyml_app2/global_variable.dart' as globals;
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:html' as html;
+
+import '../payment/stripe/checkout.dart';
+
 
 var rewardCount = 0;
 String? linkMessage;
@@ -884,6 +878,7 @@ class _LandingScreenState extends State<LandingScreen> {
     return Scaffold(
             // resizeToAvoidBottomInset: false,
             key: _scaffoldKey,
+      
             drawer: //kIsWeb ? Container() :
                 customDrawer(context),
             floatingActionButton: Device.screenType == ScreenType.mobile
@@ -1072,11 +1067,15 @@ class _LandingScreenState extends State<LandingScreen> {
                                     right: 16.sp,
                                     top: 8.sp,
                                     child: InkWell(
-                                      onTap: () {
+                                      onTap: ()
+                                      
+                                      {
                                         setState(() {
                                           showToolTip = false;
                                         });
-                                      },
+        
+                                      
+                                     },
                                       child: Container(
                                         decoration: BoxDecoration(
                                             color: Colors.red,
