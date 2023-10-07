@@ -384,7 +384,7 @@ class _PaypalPaymentButtonState extends State<PaypalPaymentButton> with CouponCo
     return isLoading
         ? Center(child: CircularProgressIndicator())
         : Container(
-      width: screenWidth / 3.5,
+      width: screenWidth ,
       height: Device.screenType == ScreenType.mobile ? 30.sp : 22.5.sp,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
@@ -434,7 +434,7 @@ class _PaypalPaymentButtonState extends State<PaypalPaymentButton> with CouponCo
                 ),
                 child: Center(
                   child: Text(
-                    "Pay Now",
+                    "Pay With PayPal",
                     style: TextStyle(
                         color: Color.fromRGBO(255, 255, 255, 1),
                         fontFamily: 'Poppins',

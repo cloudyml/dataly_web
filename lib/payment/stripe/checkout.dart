@@ -2,96 +2,80 @@
 library stripe;
 
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:js/js.dart';
 
-
-
-  var stripe = Stripe('pk_test_51NHOUASEcX5gh53hu30jRpWYF0EOSLw16gV4OlH9gx0YV6MnyPeAtR01cFljzT7qEn07y6OTDYyxCm8D08zFwQjB00cTztW0EH');
-
+var stripe;
 
 String sessionId = '';
-void redirectToCheckout(BuildContext _) async {
+void redirectToCheckout(BuildContext _, {required String amount, required String courseId}) async {
+  await getPublishKey();
 
-await generateSessionId(amount: '1550',productId:  'prod_O4IiCkwPjfYaEl');
+  await generateSessionId(amount: "3590", productId: 'prod_OlMAp4Vi1uwazG');
 
-
-sessionId.isNotEmpty ?
-
- await stripe.redirectToCheckout(CheckoutOptions(
-    // lineItems: [
-    //   LineItem(
-    //  price: 'price_1NIA6fSEcX5gh53hF4EqAo9t', quantity: 1
-    //     // amount: 1000,
-    //     // currency: 'inr'
-    //     ),
-    // ],
-    sessionId: sessionId,
-  //mode: 'payment',
-  // currency: 'usd',
-   // amount: 1000,
- //  clientSecret: 'sk_test_51NHOUASEcX5gh53hRThS1URuCleeUNZtTty7Wa8c47Jep0LXVFEUz1CYiYkLuU5Bojgfqx2iEzqOSExgl2Vk4b6T00HDNYqWox',
-  //  successUrl: 'http://localhost:51612/home',
-   // cancelUrl: 'http://localhost:51612/home',
-  
-  )) : null;
-
-
-
-
-
-//  final text = result.when(
-//         success: (){
-//           print('Paid success');
-//           return 'Paid';
-//         },
-//         canceled: () {
-//           print('Paid erroe');
-//           return 'Paid error';
-//         },
-//         error: (e) => 'Error $e',
-//         redirected: () => 'Redirected succesfully',
-//       );
-//        ScaffoldMessenger.of(_).showSnackBar(
-//         SnackBar(content: Text(text)),
-//       );
+  sessionId.isNotEmpty
+      ? await stripe.redirectToCheckout(CheckoutOptions(
+          sessionId: sessionId,
+        ))
+      : null;
 }
 
- Future<String> generateSessionId(
-       {required String amount,required String productId}) async {
-   // var authn = 'Basic ' + base64Encode(utf8.encode('$key:$secret'));
+Future<String> generateSessionId(
+    {required String amount, required String productId}) async {
+  // var authn = 'Basic ' + base64Encode(utf8.encode('$key:$secret'));
 
-    var headers = {
-      'Content-type': 'application/json',
-      'Authorization': 'No auth',
-    };
+  var headers = {
+    'Content-type': 'application/json',
+    'Authorization': 'No auth',
+  };
 
-    var data =
-        '{ "amount": $amount, "product_id": $productId}'; // as per my experience the receipt doesn't play any role in helping you generate a certain pattern in your Order ID!!
+  var data =
+      '{ "amount": "$amount", "product_id": "$productId"}'; // as per my experience the receipt doesn't play any role in helping you generate a certain pattern in your Order ID!!
 
-    var res = await http.post(
-        Uri.parse(
-            'https://us-central1-cloudyml-app.cloudfunctions.net/stripeorder/stripeorder'),
-        headers: headers,
-        body: data);
-    if (res.statusCode != 200)
-      throw Exception('http.post error: statusCode= ${res.statusCode}');
-    print('ORDER ID response => ${res.body}');
+  var res = await http.post(
+      Uri.parse(
+          'https://us-central1-cloudyml-app.cloudfunctions.net/stripeorder/stripeorder'),
+      headers: headers,
+      body: data);
+  if (res.statusCode != 200)
+    throw Exception('http.post error: statusCode= ${res.statusCode}');
+  print('ORDER ID response => ${res.body}');
+  sessionId = json.decode(res.body)['Session'].toString();
+  return json.decode(res.body)['Session'].toString();
+}
 
-    // setState(() {
-    //   order_id=json.decode(res.body)['id'].toString();
-    // });
+getPublishKey() async {
+  try {
+    await FirebaseFirestore.instance
+        .collection('Notice')
+        .doc('stripe_key')
+        .get()
+        .then((value) {
+      stripe = Stripe(value.get('publish_key'));
+    });
+  } catch (e) {
+    debugPrint('Error in fetching stripe publish key');
+  }
+}
 
-    sessionId = json.decode(res.body)['Session'].toString();
+getProductId({required String courseId})async{
+    try {
+    await FirebaseFirestore.instance
+        .collection('courses').where('id', isEqualTo: courseId).get().then((value) {
 
-   // print("SESS ID :  ${json.decode(res.body)['Session'].toString()}");
-
-    return json.decode(res.body)['Session'].toString();
+          print('Course : ${value.docs[0].get('name')}');
+         
+        });
+        
+  } catch (e) {
+    debugPrint('Error in fetching stripe publish key');
   }
 
-
+}
 
 @JS()
 class Stripe {
@@ -103,16 +87,15 @@ class Stripe {
 @JS()
 @anonymous
 class CheckoutOptions {
-external List<LineItem> get lineItems;
+  external List<LineItem> get lineItems;
 
-   //external String get clientSecret;
+  //external String get clientSecret;
 
   external String get mode;
 
   external String get sessionId;
 
-
-   external String get successUrl;
+  external String get successUrl;
 
   // external String get currency;
 
@@ -123,15 +106,15 @@ external List<LineItem> get lineItems;
   external String get cancelUrl;
 
   external factory CheckoutOptions({
-List<LineItem> lineItems,
-  //  String clientSecret,
+    List<LineItem> lineItems,
+    //  String clientSecret,
     String mode,
-   String sessionId,
-  
-  //  double amount,
+    String sessionId,
+
+    //  double amount,
     String successUrl,
     String cancelUrl,
-   // String sessionId,
+    // String sessionId,
   });
 }
 
@@ -144,9 +127,7 @@ class LineItem {
 
   external String get currency;
   external double get amount;
-  
-  
- 
 
-  external factory LineItem({String price, int quantity, String currency, double amount});
+  external factory LineItem(
+      {String price, int quantity, String currency, double amount});
 }
