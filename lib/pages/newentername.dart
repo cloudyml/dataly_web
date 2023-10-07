@@ -6,6 +6,7 @@ import 'package:cloudyml_app2/globals.dart';
 import 'package:cloudyml_app2/pages/PhoneName.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class newEnterName extends StatefulWidget {
   const newEnterName({Key? key}) : super(key: key);
@@ -35,11 +36,24 @@ class _newEnterNameState extends State<newEnterName> {
                     height: verticalScale * 76,
                   ),
                   Center(
-                      child: Image.asset(
-                        'assets/logo.png',
-                        height: verticalScale * 80,
-                        width: horizontalScale * 238,
-                      )),
+                      child: SizedBox(
+                        width: Adaptive.w(18.5),
+                        child: Stack(
+                          children: [
+                            Image.asset(
+                              'assets/logo.png',
+                              height: 75,
+                              width: 110,
+                              cacheWidth: 82,
+                              cacheHeight: 56,
+                            ),
+                            Positioned(
+                                bottom: 0.sp,
+                                right: 0,
+                                child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
+                          ],
+                        ),
+                      ),),
                   SizedBox(
                     height: verticalScale * 50,
                   ),

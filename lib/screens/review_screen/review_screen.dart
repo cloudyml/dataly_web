@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:cloudyml_app2/models/firebase_file.dart';
 import 'package:cloudyml_app2/globals.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../authentication/firebase_auth.dart';
 import '../../router/login_state_check.dart';
 import '/global_variable.dart' as globals;
@@ -73,18 +74,23 @@ class _Review1State extends State<ReviewsScreen> {
                       onTap: () {
                         GoRouter.of(context).pushNamed('home');
                       },
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            "assets/logo.png",
-                            width: 75,
-                            height: 55,
-                          ),
-                          Text(
-                            "CloudyML",
-                            style: textStyle,
-                          ),
-                        ],
+                      child: SizedBox(
+                        width: Adaptive.w(18.5),
+                        child: Stack(
+                          children: [
+                            Image.asset(
+                              'assets/logo.png',
+                              height: 75,
+                              width: 110,
+                              cacheWidth: 82,
+                              cacheHeight: 56,
+                            ),
+                            Positioned(
+                                bottom: 0.sp,
+                                right: 0,
+                                child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
+                          ],
+                        ),
                       ),
                     ),
                     Spacer(),

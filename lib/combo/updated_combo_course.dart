@@ -1601,7 +1601,7 @@ try {
               //                     children: [
               //                       Expanded(flex:width<600?4:3,child: Padding(
               //                         padding: EdgeInsets.all(5),
-              //                         child: Image.asset("assets/logo.png"),
+              //                         child: Image.asset("assets/DATALY Logo.png"),
               //                       )),
               //
               //                       Expanded(flex: width<600?6:4,
@@ -1789,7 +1789,7 @@ try {
               //       //     children: [
               //       //       Expanded(flex:width<600?4:3,child: Padding(
               //       //         padding: EdgeInsets.all(5),
-              //       //         child: Image.asset("assets/logo.png"),
+              //       //         child: Image.asset("assets/DATALY Logo.png"),
               //       //       )),
               //       //
               //       //       Expanded(flex: width<600?6:4,
@@ -1970,7 +1970,7 @@ try {
               //       //     children: [
               //       //       Expanded(flex:width<600?4:3,child: Padding(
               //       //         padding: EdgeInsets.all(5),
-              //       //         child: Image.asset("assets/logo.png"),
+              //       //         child: Image.asset("assets/DATALY Logo.png"),
               //       //       )),
               //       //
               //       //       Expanded(flex: width<600?6:4,
@@ -2151,7 +2151,7 @@ try {
               //       //     children: [
               //       //       Expanded(flex:width<600?4:3,child: Padding(
               //       //         padding: EdgeInsets.all(5),
-              //       //         child: Image.asset("assets/logo.png"),
+              //       //         child: Image.asset("assets/DATALY Logo.png"),
               //       //       )),
               //       //
               //       //       Expanded(flex: width<600?6:4,
@@ -2332,7 +2332,7 @@ try {
               //       //     children: [
               //       //       Expanded(flex:width<600?4:3,child: Padding(
               //       //         padding: EdgeInsets.all(5),
-              //       //         child: Image.asset("assets/logo.png"),
+              //       //         child: Image.asset("assets/DATALY Logo.png"),
               //       //       )),
               //       //
               //       //       Expanded(flex: width<600?6:4,
@@ -2513,7 +2513,7 @@ try {
               //       //     children: [
               //       //       Expanded(flex:width<600?4:3,child: Padding(
               //       //         padding: EdgeInsets.all(5),
-              //       //         child: Image.asset("assets/logo.png"),
+              //       //         child: Image.asset("assets/DATALY Logo.png"),
               //       //       )),
               //       //
               //       //       Expanded(flex: width<600?6:4,
@@ -2694,7 +2694,7 @@ try {
               //       //     children: [
               //       //       Expanded(flex:width<600?4:3,child: Padding(
               //       //         padding: EdgeInsets.all(5),
-              //       //         child: Image.asset("assets/logo.png"),
+              //       //         child: Image.asset("assets/DATALY Logo.png"),
               //       //       )),
               //       //
               //       //       Expanded(flex: width<600?6:4,
@@ -2875,7 +2875,7 @@ try {
               //       //     children: [
               //       //       Expanded(flex:width<600?4:3,child: Padding(
               //       //         padding: EdgeInsets.all(5),
-              //       //         child: Image.asset("assets/logo.png"),
+              //       //         child: Image.asset("assets/DATALY Logo.png"),
               //       //       )),
               //       //
               //       //       Expanded(flex: width<600?6:4,
@@ -3056,7 +3056,7 @@ try {
               //       //     children: [
               //       //       Expanded(flex:width<600?4:3,child: Padding(
               //       //         padding: EdgeInsets.all(5),
-              //       //         child: Image.asset("assets/logo.png"),
+              //       //         child: Image.asset("assets/DATALY Logo.png"),
               //       //       )),
               //       //
               //       //       Expanded(flex: width<600?6:4,

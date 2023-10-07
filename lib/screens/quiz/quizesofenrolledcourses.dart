@@ -128,14 +128,14 @@ class _QuizesOfEnrolledCoursesState extends State<QuizesOfEnrolledCourses> {
   setFeaturedCourse(List<CourseDetails> course) {
     featuredCourse.clear();
     course.forEach((element) {
-      if (element.FcSerialNumber.isNotEmpty &&
-          element.FcSerialNumber != null &&
+      if (element.dataly_FcSerialNumber!.isNotEmpty &&
+          element.dataly_FcSerialNumber != null &&
           element.isItComboCourse == true) {
         featuredCourse.add(element);
       }
     });
     featuredCourse.sort((a, b) {
-      return int.parse(a.FcSerialNumber).compareTo(int.parse(b.FcSerialNumber));
+      return int.parse(a.dataly_FcSerialNumber!).compareTo(int.parse(b.dataly_FcSerialNumber!));
     });
   }
 

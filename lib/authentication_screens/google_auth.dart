@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../authentication/firebase_auth.dart';
 import '../globals.dart';
@@ -102,10 +103,23 @@ class _GoogleAuthLoginState extends State<GoogleAuthLogin> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Image.asset(
-                                  'assets/logo.png',
-                                  height: 75,
-                                  width: 110,
+                                SizedBox(
+                                  width: Adaptive.w(18.5),
+                                  child: Stack(
+                                    children: [
+                                      Image.asset(
+                                        'assets/logo.png',
+                                        height: 75,
+                                        width: 110,
+                                        cacheWidth: 82,
+                                        cacheHeight: 56,
+                                      ),
+                                      Positioned(
+                                          bottom: 0.sp,
+                                          right: 0,
+                                          child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
+                                    ],
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 5,

@@ -55,7 +55,8 @@ class DatabaseServices {
                   multiCombo: documentSnapshot.data()['multiCombo'],
                   international: documentSnapshot.data()['international'],
                   dataly_actual_price: documentSnapshot.data()['dataly_actual_price'] ?? null,
-                  dataly_discounted_price: documentSnapshot.data()['dataly_discounted_price'] ?? null
+                  dataly_discounted_price: documentSnapshot.data()['dataly_discounted_price'] ?? null,
+                  dataly_FcSerialNumber: documentSnapshot.data()['dataly_FcSerialNumber'] ?? ''
                 ),
               )
               .toList(),

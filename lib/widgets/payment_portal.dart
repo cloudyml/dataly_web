@@ -521,7 +521,7 @@ class _PaymentButtonState extends State<PaymentButton> with CouponCodeMixin {
     //         title: widget.courseName,
     //         body: 'You bought ${widget.courseName}.Go to My courses.',
     //         bigPicture: widget.courseImageUrl,
-    //         largeIcon: 'asset://assets/logo2.png',
+    //         largeIcon: 'asset://assets/DATALY Logo.png',
     //         notificationLayout: NotificationLayout.BigPicture,
     //         displayOnForeground: true));
 

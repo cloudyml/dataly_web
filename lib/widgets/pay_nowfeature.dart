@@ -65,7 +65,6 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
     featuredCourse.clear();
 
     course.forEach((element) {
-      print('element is $element ');
       if (element.courseDocumentId == widget.cID) {
         featuredCourse.add(element);
         // featuredCourse.add(element.courses);
@@ -76,24 +75,6 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
     print('function ');
   }
 
-  // Map userMap = Map<String, dynamic>();
-
-  // void dbCheckerForPayInParts() async {
-  //   try {
-  //     DocumentSnapshot userDocs = await FirebaseFirestore.instance
-  //         .collection("Users_dataly")
-  //         .doc(FirebaseAuth.instance.currentUser!.uid)
-  //         .get();
-  //     // print(map['payInPartsDetails'][id]['outStandingAmtPaid']);
-  //     // setState(() {
-  //     userMap = userDocs.data() as Map<String, dynamic>;
-  //     // whetherSubScribedToPayInParts =
-  //     //     !(!(map['payInPartsDetails']['outStandingAmtPaid'] == null));
-  //     // });
-  //   } catch (e) {
-  //     print("ggggggggggg $e");
-  //   }
-  // }
 
   void trialCourse() async {
     print(
@@ -101,7 +82,7 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
 
     try {
       var url = Uri.parse(
-          'https://us-central1-cloudyml-app.cloudfunctions.net/exceluser/trialAccess');
+          'https://us-central1-cloudyml-app.cloudfunctions.net/exceluser/trialAccesscanada');
       final response = await http.post(url, headers: {
         "Access-Control-Allow-Origin": "*", // Required for CORS support to work
         "Access-Control-Allow-Methods": "GET, POST",
@@ -164,14 +145,18 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
                       child: Center(
                         child: widget.usermap['paidCourseNames'] != null &&
                                 widget.usermap['paidCourseNames']
-                                    .contains(featuredCourse[0].courseId)
+                                      .contains(featuredCourse[0].courseId)
                             ? InkWell(
                                 onTap: () {
-                                  // GoRouter.of(context).pushReplacementNamed('myCourses');
 
-                                  // if(featuredCourse[0].findex=='40')
-                                  // {
                                   mainCourseId = featuredCourse[0].courseId;
+                                  mainCourseId == 'DSPAPCAD1' ?
+                                  GoRouter.of(context).pushNamed('MultiComboCourseScreen', queryParams: {
+                                    'courseName': featuredCourse[0].courseName,
+                                    'id': featuredCourse[0].courseId,
+                                  })
+                                      :
+
                                   GoRouter.of(context).pushNamed(
                                       'NewComboCourseScreen',
                                       queryParams: {
@@ -385,7 +370,9 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
                                                           } else if (widget
                                                                           .usermap[
                                                                       'trialCourseList'] !=
-                                                                  null &&
+                                                                  null && widget
+                                                              .usermap[
+                                                          'trialCourseList'].isNotEmpty &&
                                                               widget.usermap[
                                                                       'trialCourseList']
                                                                   .contains(
@@ -407,39 +394,21 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
                                                                       seconds:
                                                                           2),
                                                                   () => {
-                                                                        // if(featuredCourse[0].findex=='40')
-                                                                        // {
+
                                                                         mainCourseId =
                                                                             featuredCourse[0].courseId,
+                                                                    mainCourseId == 'DSPAPCAD1' ?
+                                                                    GoRouter.of(context).pushNamed('MultiComboCourseScreen', queryParams: {
+                                                                      'courseName': featuredCourse[0].courseName,
+                                                                      'id': featuredCourse[0].courseId,
+                                                                    })
+                                                                        :
                                                                         GoRouter.of(context).pushNamed(
                                                                             'NewComboCourseScreen',
                                                                             queryParams: {
                                                                               'courseName': featuredCourse[0].courseName,
                                                                               'courseId': featuredCourse[0].courseId,
                                                                             })
-                                                                        // }
-                                                                        // else if(featuredCourse[0].findex=='14')
-                                                                        // {
-                                                                        //            GoRouter.of(context).pushNamed(
-                                                                        //     'newcomboCourse',
-                                                                        //     queryParams: {
-                                                                        //       'courseName':
-                                                                        //           featuredCourse[0]
-                                                                        //               .courseName,
-                                                                        //       'id': "14",
-                                                                        //     })
-                                                                        // }
-
-                                                                        // GoRouter.of(context).pushReplacementNamed('myCourses')
-
-                                                                        //  GoRouter.of(context).pushNamed(
-                                                                        // 'newcomboCourse',
-                                                                        // queryParams: {
-                                                                        //   'courseName':
-                                                                        //       featuredCourse[0]
-                                                                        //           .courseName,
-                                                                        //   'id': "40",
-                                                                        // })
                                                                       });
                                                             });
                                                           }
@@ -575,9 +544,18 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
                                         .contains(featuredCourse[0].courseId)
                                 ? InkWell(
                                     onTap: () {
-                                      // if(featuredCourse[0].findex=='40')
-                                      // {
                                       mainCourseId = featuredCourse[0].courseId;
+                                      setState(() {
+
+                                      });
+
+
+                                      mainCourseId == 'DSPAPCAD1' ?
+                                      GoRouter.of(context).pushNamed('MultiComboCourseScreen', queryParams: {
+                                        'id': featuredCourse[0].courseId,
+                                        'courseName': featuredCourse[0].courseName,
+                                      })
+                                          :
                                       GoRouter.of(context).pushNamed(
                                           'NewComboCourseScreen',
                                           queryParams: {
@@ -586,29 +564,6 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
                                             'courseId':
                                                 featuredCourse[0].courseId,
                                           });
-                                      // }
-                                      // else if(featuredCourse[0].findex=='14')
-                                      // {
-                                      //            GoRouter.of(context).pushNamed(
-                                      //     'newcomboCourse',
-                                      //     queryParams: {
-                                      //       'courseName':
-                                      //           featuredCourse[0]
-                                      //               .courseName,
-                                      //       'id': "14",
-                                      //     });
-                                      // }
-
-                                      // GoRouter.of(context).pushReplacementNamed('myCourses');
-
-                                      // GoRouter.of(context).pushNamed(
-                                      //                                       'newcomboCourse',
-                                      //                                       queryParams: {
-                                      //                                         'courseName':
-                                      //                                             featuredCourse[0]
-                                      //                                                 .courseName,
-                                      //                                         'id': "40",
-                                      //                                       });
                                     },
                                     child: Center(
                                       child: Container(
@@ -827,37 +782,19 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
                                                                           seconds:
                                                                               2),
                                                                       () => {
-                                                                            // GoRouter.of(context).pushReplacementNamed('myCourses')
 
-                                                                            // if(featuredCourse[0].findex=='40')
-                                                                            // {
-                                                                            mainCourseId =
-                                                                                featuredCourse[0].courseId,
+                                                                            mainCourseId = featuredCourse[0].courseId,
+
+                                                                        mainCourseId == 'DSPAPCAD1' ?
+                                                                      GoRouter.of(context).pushNamed('MultiComboCourseScreen', queryParams: {
+                                                                    'courseName': featuredCourse[0].courseName,
+                                                                    'id': featuredCourse[0].courseId,
+                                                                  })
+                                                                      :
                                                                             GoRouter.of(context).pushNamed('NewComboCourseScreen', queryParams: {
                                                                               'courseName': featuredCourse[0].courseName,
                                                                               'courseId': featuredCourse[0].courseId,
                                                                             })
-                                                                            // }
-                                                                            // else if(featuredCourse[0].findex=='14')
-                                                                            // {
-                                                                            //            GoRouter.of(context).pushNamed(
-                                                                            //     'newcomboCourse',
-                                                                            //     queryParams: {
-                                                                            //       'courseName':
-                                                                            //           featuredCourse[0]
-                                                                            //               .courseName,
-                                                                            //       'id': "14",
-                                                                            //     })
-                                                                            // }
-
-                                                                            //  GoRouter.of(context).pushNamed(
-                                                                            //     'newcomboCourse',
-                                                                            //     queryParams: {
-                                                                            //       'courseName':
-                                                                            //           featuredCourse[0]
-                                                                            //               .courseName,
-                                                                            //       'id': "40",
-                                                                            //     })
                                                                           });
                                                                 });
                                                               }
