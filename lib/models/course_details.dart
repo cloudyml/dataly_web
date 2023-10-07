@@ -26,6 +26,7 @@ class CourseDetails {
   bool? international;
   String? dataly_actual_price;
   String? dataly_discounted_price;
+  String? dataly_FcSerialNumber;
 
   CourseDetails({
     required this.courseName,
@@ -54,6 +55,7 @@ class CourseDetails {
     this.multiCombo,
     this.international,
     this.dataly_actual_price,
-    this.dataly_discounted_price
+    this.dataly_discounted_price,
+    this.dataly_FcSerialNumber
   });
 }

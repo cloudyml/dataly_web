@@ -10,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:star_rating/star_rating.dart';
 import '../global_variable.dart' as globals;
 import 'authentication/firebase_auth.dart';
@@ -150,18 +151,23 @@ class _StoreScreenState extends State<StoreScreen> {
                           onTap: () {
                             GoRouter.of(context).pushNamed('home');
                           },
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "assets/logo.png",
-                                width: 75,
-                                height: 55,
-                              ),
-                              Text(
-                                "Dataly",
-                                style: textStyle,
-                              ),
-                            ],
+                          child: SizedBox(
+                            width: Adaptive.w(18.5),
+                            child: Stack(
+                              children: [
+                                Image.asset(
+                                  'assets/logo.png',
+                                  height: 75,
+                                  width: 110,
+                                  cacheWidth: 82,
+                                  cacheHeight: 56,
+                                ),
+                                Positioned(
+                                    bottom: 0.sp,
+                                    right: 0,
+                                    child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
+                              ],
+                            ),
                           ),
                         ),
                         Spacer(),
@@ -336,7 +342,7 @@ class _StoreScreenState extends State<StoreScreen> {
                   //       width: horizontalScale * 15,
                   //     ),
                   //     Image.asset(
-                  //       "assets/logo2.png",
+                  //       "assets/DATALY Logo.png",
                   //       width: 30,
                   //       height: 30,
                   //     ),

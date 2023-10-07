@@ -467,7 +467,7 @@ class _phoneVerifyState extends State<phoneVerify> {
                       //         title: 'Welcome to CloudyML',
                       //         body: 'It\'s great to have you on CloudyML',
                       //         bigPicture: 'asset://assets/HomeImage.png',
-                      //         largeIcon: 'asset://assets/logo2.png',
+                      //         largeIcon: 'asset://assets/DATALY Logo.png',
                       //         notificationLayout: NotificationLayout.BigPicture,
                       //         displayOnForeground: true
                       //     )

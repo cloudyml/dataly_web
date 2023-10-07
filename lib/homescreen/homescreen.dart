@@ -223,12 +223,12 @@ class _LandingScreenState extends State<LandingScreen> {
   setFeaturedCourse(List<CourseDetails> course) {
     featuredCourse.clear();
     course.forEach((element) {
-      if (element.FcSerialNumber.isNotEmpty && element.FcSerialNumber != null) {
+      if (element.dataly_FcSerialNumber!.isNotEmpty && element.dataly_FcSerialNumber != null) {
         featuredCourse.add(element);
       }
     });
     featuredCourse.sort((a, b) {
-      return int.parse(a.FcSerialNumber).compareTo(int.parse(b.FcSerialNumber));
+      return int.parse(a.dataly_FcSerialNumber!).compareTo(int.parse(b.dataly_FcSerialNumber!));
     });
   }
 
@@ -3330,99 +3330,99 @@ class _LandingScreenState extends State<LandingScreen> {
                             SizedBox(
                               height: 25 * verticalScale,
                             ),
-                            Container(
-                              // height: 38,
-                              width: screenWidth,
-                              color: Colors.deepPurpleAccent[300],
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 10.0,
-                                  bottom: 4,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        launch(
-                                            'https://apps.apple.com/app/cloudyml-data-science-course/id6444130328');
-                                      },
-                                      child: Container(
-                                        padding: EdgeInsets.all(5),
-                                        decoration: BoxDecoration(
-                                          color: Colors.black,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.apple_outlined,
-                                              color: Colors.white,
-                                              size: 40,
-                                            ),
-                                            Column(
-                                              children: [
-                                                Text(
-                                                  'Download our IOS app from',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 15),
-                                                ),
-                                                Text('APPLE STORE',
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 12)),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 25,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        launch(
-                                            'https://play.google.com/store/apps/details?id=com.cloudyml.cloudymlapp');
-                                      },
-                                      child: Container(
-                                        padding: EdgeInsets.all(5),
-                                        decoration: BoxDecoration(
-                                          color: Colors.black,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.play_arrow,
-                                              color: Colors.white,
-                                              size: 40,
-                                            ),
-                                            Column(
-                                              children: [
-                                                Text(
-                                                  'Download our Android app from',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 15),
-                                                ),
-                                                Text('GOOGLE PLAY',
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 12)),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            // Container(
+                            //   // height: 38,
+                            //   width: screenWidth,
+                            //   color: Colors.deepPurpleAccent[300],
+                            //   child: Padding(
+                            //     padding: const EdgeInsets.only(
+                            //       top: 10.0,
+                            //       bottom: 4,
+                            //     ),
+                            //     child: Row(
+                            //       mainAxisAlignment: MainAxisAlignment.center,
+                            //       children: [
+                            //         InkWell(
+                            //           onTap: () {
+                            //             launch(
+                            //                 'https://apps.apple.com/app/cloudyml-data-science-course/id6444130328');
+                            //           },
+                            //           child: Container(
+                            //             padding: EdgeInsets.all(5),
+                            //             decoration: BoxDecoration(
+                            //               color: Colors.black,
+                            //               borderRadius:
+                            //                   BorderRadius.circular(10),
+                            //             ),
+                            //             child: Row(
+                            //               children: [
+                            //                 Icon(
+                            //                   Icons.apple_outlined,
+                            //                   color: Colors.white,
+                            //                   size: 40,
+                            //                 ),
+                            //                 Column(
+                            //                   children: [
+                            //                     Text(
+                            //                       'Download our IOS app from',
+                            //                       style: TextStyle(
+                            //                           color: Colors.white,
+                            //                           fontSize: 15),
+                            //                     ),
+                            //                     Text('APPLE STORE',
+                            //                         style: TextStyle(
+                            //                             color: Colors.white,
+                            //                             fontSize: 12)),
+                            //                   ],
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //           ),
+                            //         ),
+                            //         SizedBox(
+                            //           width: 25,
+                            //         ),
+                            //         InkWell(
+                            //           onTap: () {
+                            //             launch(
+                            //                 'https://play.google.com/store/apps/details?id=com.cloudyml.cloudymlapp');
+                            //           },
+                            //           child: Container(
+                            //             padding: EdgeInsets.all(5),
+                            //             decoration: BoxDecoration(
+                            //               color: Colors.black,
+                            //               borderRadius:
+                            //                   BorderRadius.circular(10),
+                            //             ),
+                            //             child: Row(
+                            //               children: [
+                            //                 Icon(
+                            //                   Icons.play_arrow,
+                            //                   color: Colors.white,
+                            //                   size: 40,
+                            //                 ),
+                            //                 Column(
+                            //                   children: [
+                            //                     Text(
+                            //                       'Download our Android app from',
+                            //                       style: TextStyle(
+                            //                           color: Colors.white,
+                            //                           fontSize: 15),
+                            //                     ),
+                            //                     Text('GOOGLE PLAY',
+                            //                         style: TextStyle(
+                            //                             color: Colors.white,
+                            //                             fontSize: 12)),
+                            //                   ],
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
@@ -3483,23 +3483,23 @@ class _LandingScreenState extends State<LandingScreen> {
                               child: Padding(
                                 padding:
                                     EdgeInsets.only(top: 15 * verticalScale),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/logo.png",
-                                      width: 60,
-                                      height: 50,
-                                    ),
-                                    Text(
-                                      "Dataly",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        fontSize: 26 * verticalScale,
-                                        fontFamily: "Semibold",
+                                child: SizedBox(
+                                  width: Adaptive.w(18.5),
+                                  child: Stack(
+                                    children: [
+                                      Image.asset(
+                                        'assets/logo.png',
+                                        height: 75,
+                                        width: 110,
+                                        cacheWidth: 82,
+                                        cacheHeight: 56,
                                       ),
-                                    ),
-                                  ],
+                                      Positioned(
+                                          bottom: 0.sp,
+                                          right: 0,
+                                          child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -5605,104 +5605,104 @@ class _LandingScreenState extends State<LandingScreen> {
                               ),
                             ),
 
-                            Positioned(
-                              bottom: 70,
-                              left: 15,
-                              right: 15,
-                              child: Container(
-                                height: 75 * verticalScale,
-                                width: screenWidth,
-                                color: Colors.deepPurpleAccent[300],
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 15.0,
-                                    bottom: 4,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          launch(
-                                              'https://apps.apple.com/app/cloudyml-data-science-course/id6444130328');
-                                        },
-                                        child: Container(
-                                          padding: EdgeInsets.all(5),
-                                          decoration: BoxDecoration(
-                                            color: Colors.black,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              Icon(
-                                                Icons.apple_outlined,
-                                                color: Colors.white,
-                                                size: 25,
-                                              ),
-                                              Column(
-                                                children: [
-                                                  Text(
-                                                    'Download our IOS app from',
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 8),
-                                                  ),
-                                                  Text('APPLE STORE',
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 12)),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 10 * horizontalScale,
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          launch(
-                                              'https://play.google.com/store/apps/details?id=com.cloudyml.cloudymlapp');
-                                        },
-                                        child: Container(
-                                          padding: EdgeInsets.all(5),
-                                          decoration: BoxDecoration(
-                                            color: Colors.black,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              Icon(
-                                                Icons.play_arrow,
-                                                color: Colors.white,
-                                                size: 25,
-                                              ),
-                                              Column(
-                                                children: [
-                                                  Text(
-                                                    'Download our Android app from',
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 8),
-                                                  ),
-                                                  Text('GOOGLE PLAY',
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 12)),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
+                            // Positioned(
+                            //   bottom: 70,
+                            //   left: 15,
+                            //   right: 15,
+                            //   child: Container(
+                            //     height: 75 * verticalScale,
+                            //     width: screenWidth,
+                            //     color: Colors.deepPurpleAccent[300],
+                            //     child: Padding(
+                            //       padding: const EdgeInsets.only(
+                            //         top: 15.0,
+                            //         bottom: 4,
+                            //       ),
+                            //       child: Row(
+                            //         mainAxisAlignment: MainAxisAlignment.center,
+                            //         children: [
+                            //           InkWell(
+                            //             onTap: () {
+                            //               launch(
+                            //                   'https://apps.apple.com/app/cloudyml-data-science-course/id6444130328');
+                            //             },
+                            //             child: Container(
+                            //               padding: EdgeInsets.all(5),
+                            //               decoration: BoxDecoration(
+                            //                 color: Colors.black,
+                            //                 borderRadius:
+                            //                     BorderRadius.circular(10),
+                            //               ),
+                            //               child: Row(
+                            //                 children: [
+                            //                   Icon(
+                            //                     Icons.apple_outlined,
+                            //                     color: Colors.white,
+                            //                     size: 25,
+                            //                   ),
+                            //                   Column(
+                            //                     children: [
+                            //                       Text(
+                            //                         'Download our IOS app from',
+                            //                         style: TextStyle(
+                            //                             color: Colors.white,
+                            //                             fontSize: 8),
+                            //                       ),
+                            //                       Text('APPLE STORE',
+                            //                           style: TextStyle(
+                            //                               color: Colors.white,
+                            //                               fontSize: 12)),
+                            //                     ],
+                            //                   ),
+                            //                 ],
+                            //               ),
+                            //             ),
+                            //           ),
+                            //           SizedBox(
+                            //             width: 10 * horizontalScale,
+                            //           ),
+                            //           InkWell(
+                            //             onTap: () {
+                            //               launch(
+                            //                   'https://play.google.com/store/apps/details?id=com.cloudyml.cloudymlapp');
+                            //             },
+                            //             child: Container(
+                            //               padding: EdgeInsets.all(5),
+                            //               decoration: BoxDecoration(
+                            //                 color: Colors.black,
+                            //                 borderRadius:
+                            //                     BorderRadius.circular(10),
+                            //               ),
+                            //               child: Row(
+                            //                 children: [
+                            //                   Icon(
+                            //                     Icons.play_arrow,
+                            //                     color: Colors.white,
+                            //                     size: 25,
+                            //                   ),
+                            //                   Column(
+                            //                     children: [
+                            //                       Text(
+                            //                         'Download our Android app from',
+                            //                         style: TextStyle(
+                            //                             color: Colors.white,
+                            //                             fontSize: 8),
+                            //                       ),
+                            //                       Text('GOOGLE PLAY',
+                            //                           style: TextStyle(
+                            //                               color: Colors.white,
+                            //                               fontSize: 12)),
+                            //                     ],
+                            //                   ),
+                            //                 ],
+                            //               ),
+                            //             ),
+                            //           ),
+                            //         ],
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),

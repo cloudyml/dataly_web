@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloudyml_app2/globals.dart';
-import 'package:cloudyml_app2/payment/stripe/checkout.dart';
 import 'package:cloudyml_app2/screens/flutter_flow/flutter_flow_util.dart';
 import 'package:cloudyml_app2/widgets/coupon_code.dart';
 import 'package:cloudyml_app2/widgets/inter_payment_portal.dart';
@@ -12,7 +11,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:dotted_line/dotted_line.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:star_rating/star_rating.dart';
@@ -772,8 +770,16 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                                               if (value['result']['couponValue']['type'] == 'percentage') {
                                                                 // code for percentage type of coupon
                                                                 var percentageValue = int.parse(value['result']['couponValue']['value']) * 0.01;
+
                                                                 print('this is value in $percentageValue');
-                                                                discountvalue = (totalAmount * percentageValue).toString();
+
+                                                                if(courseMap['dataly_discounted_price'] != null) {
+                                                                  discountvalue = (int.parse(courseMap['dataly_discounted_price']) * percentageValue).toString();
+                                                                } else {
+                                                                  discountvalue = (totalAmount * percentageValue).toString();
+                                                                }
+
+
                                                                 print(totalAmount);
                                                                 print(discountvalue);
 
@@ -848,7 +854,11 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                                                 // code for percentage type of coupon
                                                                 var percentageValue = int.parse(value['result']['couponValue']['value']) * 0.01;
                                                                 print('this is value in $percentageValue');
-                                                                discountvalue = (totalAmount * percentageValue).toString();
+                                                                if(courseMap['dataly_discounted_price'] != null) {
+                                                                  discountvalue = (int.parse(courseMap['dataly_discounted_price']) * percentageValue).toString();
+                                                                } else {
+                                                                  discountvalue = (totalAmount * percentageValue).toString();
+                                                                }
                                                                 print(totalAmount);
                                                                 print(discountvalue);
 
@@ -921,7 +931,12 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                                                 // code for percentage type of coupon
                                                                 var percentageValue = int.parse(value['result']['couponValue']['value']) * 0.01;
                                                                 print('this is value in $percentageValue');
-                                                                discountvalue = (totalAmount * percentageValue).toString();
+                                                                if(courseMap['dataly_discounted_price'] != null) {
+                                                                  discountvalue = (int.parse(courseMap['dataly_discounted_price']) * percentageValue).toString();
+                                                                } else {
+                                                                  discountvalue = (totalAmount * percentageValue).toString();
+                                                                }
+
                                                                 print(totalAmount);
                                                                 print(discountvalue);
                                                                 setState(() {
@@ -1115,7 +1130,8 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                                     color: Colors
                                                         .deepPurple,
                                                     fontWeight:
-                                                    FontWeight.bold),
+                                                    FontWeight
+                                                        .bold),
                                               )),
                                         ),
                                         SizedBox(height: 7.sp),
@@ -1150,6 +1166,8 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                           alignment:
                                           Alignment.centerRight,
                                           child: Text(
+                                              courseMap['dataly_discounted_price'] != null ?
+                                              'Yay! You have got an extra discount of CAD ${double.parse(discountvalue).round().toString()}. This code will expire on $expiredDate.' :
                                               typeOfCouponExpired
                                                   ? 'Yay! You have got an extra discount of ₹${double.parse(discountvalue).round().toString()}. This code will expire on $expiredDate.'
                                                   : 'Yay! You have got an extra discount of ₹${double.parse(discountvalue).round().toString()}. This code will expire at $expiredDate.',
@@ -1178,6 +1196,9 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                                 style: textStyle,
                                               ),
                                               Text(
+                                                  couponCodeApplied && courseMap['dataly_discounted_price'] != null ?
+                                                 'CAD' + ' ${int.parse(courseMap['dataly_discounted_price']) - double.parse(discountvalue)}'
+                                                      :
                                                 courseMap['dataly_discounted_price'] != null ?
                                                 'CAD ${courseMap['dataly_discounted_price']}' :
                                                 NoCouponApplied
@@ -1195,148 +1216,18 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                               color: Colors.black,
                                             )),
                                         SizedBox(height: 15 * verticalScale),
-
-                                        InkWell(
-                                          onTap: (){
-                                        //      showDialog(
-                                        //       context: context,
-                                        //       builder: (context) {
-                                        //         return Dialog(
-                                        //           shape:
-                                        //           RoundedRectangleBorder(
-                                        //             borderRadius:
-                                        //             BorderRadius.circular(
-                                        //                 20),
-                                        //           ),
-                                        //           child: Container(
-                                        //             width: screenWidth / 2.5,
-                                        //             padding:
-                                        //             EdgeInsets.all(20),
-                                        //             child: Column(
-                                        //               mainAxisSize:
-                                        //               MainAxisSize.min,
-                                        //               children: [
-                                        //                 Text(
-                                        //                   'Payment',
-                                        //                   style: TextStyle(
-                                        //                     color:
-                                        //                     Colors.black,
-                                        //                     fontFamily:
-                                        //                     'Poppins',
-                                        //                     fontSize: 20,
-                                        //                     fontWeight:
-                                        //                     FontWeight
-                                        //                         .bold,
-                                        //                   ),
-                                        //                 ),
-                                        //                 SizedBox(height: 20),
-                                        //                    Center(
-                                        //   child: PaypalPaymentButton(
-                                        //     couponCode: coupontext,
-                                        //     couponcodeused: !errorOnCoupon,
-                                        //     coursePriceMoneyRef:
-                                        //     int.parse(courseprice),
-                                        //     amountString:
-                                        //     courseMap['dataly_discounted_price'] != null ?
-                                        //     'CAD ${courseMap['dataly_discounted_price']}' :
-                                        //     (double.parse(NoCouponApplied
-                                        //         ? courseMap['gst'] != null
-                                        //         ? '${totalAmount.round().toString()}'
-                                        //         : "${int.parse(courseprice) - int.parse(discountvalue)}"
-                                        //         : finalAmountToPay) *
-                                        //         100)
-                                        //         .toString(),
-                                        //     buttonText: NoCouponApplied
-                                        //         ? courseMap['gst'] != null
-                                        //         ? 'PAY ₹${totalAmount.round().toString()}/-'
-                                        //         : 'PAY ₹${int.parse(courseprice) - int.parse(discountvalue)}/-' //${courseMap['Course Price']}
-                                        //         : 'PAY ${finalamountToDisplay}',
-                                        //     buttonTextForCode:
-                                        //     "$finalamountToDisplay",
-                                        //     changeState: () {
-                                        //       alertForPayment = true;
-                                        //       setState(() {});
-                                        //     },
-                                        //     courseDescription:
-                                        //     courseMap['description'],
-                                        //     courseName: courseMap['name'],
-                                        //     isPayButtonPressed:
-                                        //     isPayButtonPressed,
-                                        //     NoCouponApplied: NoCouponApplied,
-                                        //     scrollController:
-                                        //     _scrollController,
-                                        //     updateCourseIdToCouponDetails:
-                                        //         () {
-                                        //       void addCourseId() {
-                                        //         setState(() {
-                                        //           id = courseMap['id'];
-                                        //           alertForPayment = true;
-                                        //         });
-                                        //       }
-
-                                        //       addCourseId();
-                                        //       print(NoCouponApplied);
-                                        //     },
-                                        //     outStandingAmountString:
-                                        //     courseMap['dataly_discounted_price'] != null ?
-                                        //     'CAD ${courseMap['dataly_discounted_price']}' :
-                                        //     (double.parse(NoCouponApplied
-                                        //         ? courseMap[
-                                        //     'Amount_Payablepay']
-                                        //         : finalAmountToPay) -
-                                        //         1000)
-                                        //         .toStringAsFixed(2),
-                                        //     courseId: courseMap['id'],
-                                        //     courseImageUrl:
-                                        //     courseMap['image_url'],
-                                        //     couponCodeText:
-                                        //     couponCodeController.text,
-                                        //     isItComboCourse:
-                                        //     widget.isItComboCourse,
-                                        //     whichCouponCode:
-                                        //     couponCodeController.text,
-                                        //   ),
-                                        // ),
-                                        //   SizedBox(height: 10),
-                                        // InkWell(
-                                        //   onTap: () => redirectToCheckout(context),
-                                        //   child: Container(
-                                        //                   width: screenWidth,
-                                        //                   height: Device.screenType == ScreenType.mobile
-                                        //                       ? 30.sp
-                                        //                       : 22.5.sp,
-                                        //                   decoration: BoxDecoration(
-                                        //                     borderRadius: BorderRadius.circular(5),
-                                        //                     color: Colors.deepPurple.shade600,
-                                        //                   ),
-                                        //                   child: Center(
-                                        //                     child: Text(
-                                        //                       "Pay With Stripe",
-                                        //                       style: TextStyle(
-                                        //                           color: Color.fromRGBO(255, 255, 255, 1),
-                                        //                           fontFamily: 'Poppins',
-                                        //                           fontSize: 24 * verticalScale,
-                                        //                           letterSpacing:
-                                        //                           0 /*percentages not used in flutter. defaulting to zero*/,
-                                        //                           fontWeight: FontWeight.bold,
-                                        //                           height: 1),
-                                        //                     ),
-                                        //                   ),
-                                        //                 ),
-                                        // )
-
-
-                                                    
-                                        //               ],
-                                        //             ),
-                                        //           ),
-                                        //         );
-                                        //       },
-                                        //     );
-                                        
-                                     redirectToCheckout(context,
-                                     amount: courseMap['dataly_discounted_price'] != null ?
-                                            '${int.parse(courseMap['dataly_discounted_price'])*100}' :
+                                        Center(
+                                          child: PaypalPaymentButton(
+                                            couponCode: coupontext,
+                                            couponcodeused: !errorOnCoupon,
+                                            coursePriceMoneyRef:
+                                            int.parse(courseprice),
+                                            amountString:
+                                            couponCodeApplied && courseMap['dataly_discounted_price'] != null ?
+                                            '${int.parse(courseMap['dataly_discounted_price']) - double.parse(discountvalue)}'
+                                                :
+                                            courseMap['dataly_discounted_price'] != null ?
+                                            '${courseMap['dataly_discounted_price']}' :
                                             (double.parse(NoCouponApplied
                                                 ? courseMap['gst'] != null
                                                 ? '${totalAmount.round().toString()}'
@@ -1344,47 +1235,57 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                                 : finalAmountToPay) *
                                                 100)
                                                 .toString(),
-                                                courseId: courseMap['id']
-                                     
-                                     
-                                     );
+                                            buttonText: NoCouponApplied
+                                                ? courseMap['gst'] != null
+                                                ? 'PAY ₹${totalAmount.round().toString()}/-'
+                                                : 'PAY ₹${int.parse(courseprice) - int.parse(discountvalue)}/-' //${courseMap['Course Price']}
+                                                : 'PAY ${finalamountToDisplay}',
+                                            buttonTextForCode:
+                                            "$finalamountToDisplay",
+                                            changeState: () {
+                                              alertForPayment = true;
+                                              setState(() {});
+                                            },
+                                            courseDescription:
+                                            courseMap['description'],
+                                            courseName: courseMap['name'],
+                                            isPayButtonPressed:
+                                            isPayButtonPressed,
+                                            NoCouponApplied: NoCouponApplied,
+                                            scrollController:
+                                            _scrollController,
+                                            updateCourseIdToCouponDetails:
+                                                () {
+                                              void addCourseId() {
+                                                setState(() {
+                                                  id = courseMap['id'];
+                                                  alertForPayment = true;
+                                                });
+                                              }
 
-                                   
-
-                                    
-
-
-                                         // GoRouter.of(context).push('/success');
-                                        
-                                          },
-                                          child: Container(
-                                                        width: screenWidth,
-                                                        height: Device.screenType == ScreenType.mobile
-                                                            ? 30.sp
-                                                            : 22.5.sp,
-                                                        decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.circular(5),
-                                                          color: Colors.deepPurple.shade600,
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "Pay Now",
-                                                            style: TextStyle(
-                                                                color: Color.fromRGBO(255, 255, 255, 1),
-                                                                fontFamily: 'Poppins',
-                                                                fontSize: 24 * verticalScale,
-                                                                letterSpacing:
-                                                                0 /*percentages not used in flutter. defaulting to zero*/,
-                                                                fontWeight: FontWeight.bold,
-                                                                height: 1),
-                                                          ),
-                                                        ),
-                                                      ),
+                                              addCourseId();
+                                              print(NoCouponApplied);
+                                            },
+                                            outStandingAmountString:
+                                            courseMap['dataly_discounted_price'] != null ?
+                                            'CAD ${courseMap['dataly_discounted_price']}' :
+                                            (double.parse(NoCouponApplied
+                                                ? courseMap[
+                                            'Amount_Payablepay']
+                                                : finalAmountToPay) -
+                                                1000)
+                                                .toStringAsFixed(2),
+                                            courseId: courseMap['id'],
+                                            courseImageUrl:
+                                            courseMap['image_url'],
+                                            couponCodeText:
+                                            couponCodeController.text,
+                                            isItComboCourse:
+                                            widget.isItComboCourse,
+                                            whichCouponCode:
+                                            couponCodeController.text,
+                                          ),
                                         ),
-
-
-
-                                     
 
                                         // Center(child: ElevatedButton(onPressed: (){
                                         //   Navigator.push(context, MaterialPageRoute(builder: (context) => PaypalPaymentButton() ));
@@ -1838,10 +1739,19 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                         FittedBox(
                                           fit: BoxFit.fitWidth,
                                           child: Text(
+                                            courseMap['dataly_actual_price'] != null ?
+                                            'CAD ${courseMap['dataly_actual_price']}' :
                                             courseMap['gst'] != null
                                                 ? '₹${courseMap['Amount Payable']}/-'
                                                 : courseMap['Amount Payable'],
-                                            style: textStyle,
+                                            style: TextStyle(
+                                                color: Color.fromARGB(223, 48, 48, 49),
+                                                fontFamily: 'Poppins',
+                                                decoration: TextDecoration.lineThrough,
+                                                fontSize: 14,
+                                                letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
+                                                fontWeight: FontWeight.w500,
+                                                height: 1),
                                           ),
                                         ),
                                       ],
@@ -1861,6 +1771,8 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                         FittedBox(
                                           fit: BoxFit.fitWidth,
                                           child: Text(
+                                            courseMap['dataly_discounted_price'] != null ?
+                                            'CAD ${courseMap['dataly_discounted_price']}' :
                                             courseMap['gst'] != null
                                                 ? '₹${courseMap['Course Price']}/-'
                                                 : courseMap['Course Price'],
@@ -1870,7 +1782,7 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                       ],
                                     ),
                                     SizedBox(height: 5 * verticalScale),
-                                    Row(
+                                    courseMap['dataly_actual_price'] != null ? Container():   Row(
                                       mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                       children: [
@@ -2190,7 +2102,11 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                                           // code for percentage type of coupon
                                                           var percentageValue = int.parse(value['result']['couponValue']['value']) * 0.01;
                                                           print('this is value in $percentageValue');
-                                                          discountvalue = (totalAmount * percentageValue).toString();
+                                                          if(courseMap['dataly_discounted_price'] != null) {
+                                                            discountvalue = (int.parse(courseMap['dataly_discounted_price']) * percentageValue).toString();
+                                                          } else {
+                                                            discountvalue = (totalAmount * percentageValue).toString();
+                                                          }
                                                           print(totalAmount);
                                                           print(discountvalue);
 
@@ -2567,6 +2483,8 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                         ? Align(
                                       alignment: Alignment.centerRight,
                                       child: Text(
+                                          courseMap['dataly_discounted_price'] != null ?
+                                          'Yay! You have got an extra discount of CAD ${double.parse(discountvalue).round().toString()}. This code will expire on $expiredDate.' :
                                           typeOfCouponExpired
                                               ? 'Yay! You have got an extra discount of ₹${double.parse(discountvalue).round().toString()}. This code will expire on $expiredDate.'
                                               : 'Yay! You have got an extra discount of ₹${double.parse(discountvalue).round().toString()}. This code valid till $expiredDate.',
@@ -2598,6 +2516,11 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                           FittedBox(
                                             fit: BoxFit.fitWidth,
                                             child: Text(
+                                              couponCodeApplied && courseMap['dataly_discounted_price'] != null ?
+                                              'CAD' + ' ${int.parse(courseMap['dataly_discounted_price']) - double.parse(discountvalue)}'
+                                                  :
+                                              courseMap['dataly_discounted_price'] != null ?
+                                              'CAD ${courseMap['dataly_discounted_price']}' :
                                               NoCouponApplied
                                                   ? courseMap['gst'] != null
                                                   ? '₹${totalAmount.round().toString()}/-'
@@ -2615,12 +2538,16 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                     SizedBox(height: 25 * verticalScale),
                                     Container(
                                       width: screenWidth,
-                                      child: PaymentButton(
+                                      child: PaypalPaymentButton(
                                         couponCode: coupontext,
                                         couponcodeused: !errorOnCoupon,
                                         coursePriceMoneyRef:
                                         int.parse(courseprice),
-                                        amountString: (double.parse(NoCouponApplied
+                                        amountString: couponCodeApplied && courseMap['dataly_discounted_price'] != null ?
+                                        '${int.parse(courseMap['dataly_discounted_price']) - double.parse(discountvalue)}'
+                                            :
+                                        courseMap['dataly_discounted_price'] != null ?
+                                        '${courseMap['dataly_discounted_price']}' : (double.parse(NoCouponApplied
                                             ? courseMap['gst'] != null
                                             ? '${totalAmount.round().toString()}'
                                             : "${int.parse(courseprice) - int.parse(discountvalue)}"
@@ -2658,7 +2585,8 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                           addCourseId();
                                           print(NoCouponApplied);
                                         },
-                                        outStandingAmountString:
+                                        outStandingAmountString: courseMap['dataly_discounted_price'] != null ?
+                                        'CAD ${courseMap['dataly_discounted_price']}' :
                                         (double.parse(NoCouponApplied
                                             ? courseMap[
                                         'Amount_Payablepay']
@@ -2679,135 +2607,135 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                     SizedBox(
                                       height: 15,
                                     ),
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          print(
-                                              "loadingpaymetn: ${loadingpayment}");
-                                          loadingpayment.value = true;
-                                        });
-                                        alertForPayment = true;
-                                        setState(() {});
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return Dialog(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                BorderRadius.circular(20),
-                                              ),
-                                              child: Container(
-                                                width: screenWidth / 2.5,
-                                                padding: EdgeInsets.all(20),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                  MainAxisSize.min,
-                                                  children: [
-                                                    Text(
-                                                      'Payment',
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                        FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                    SizedBox(height: 20),
-
-                                                    RazorPayInternationalBtn(
-                                                      courseDescription:
-                                                      courseMap[
-                                                      'description'],
-                                                      international: false,
-                                                      coursePriceMoneyRef:
-                                                      int.parse(
-                                                          courseprice),
-                                                      courseId:
-                                                      courseMap['id'],
-                                                      NoCouponApplied:
-                                                      NoCouponApplied,
-                                                      couponCodeText:
-                                                      couponCodeController
-                                                          .text,
-                                                      amountString: (double.parse(NoCouponApplied
-                                                          ? courseMap['gst'] != null
-                                                          ? '${totalAmount.round().toString()}'
-                                                          : "${int.parse(courseprice) - int.parse(discountvalue)}"
-                                                          : finalAmountToPay) * //courseMap['Amount_Payablepay']
-                                                          100)
-                                                          .toString(),
-                                                      courseName:
-                                                      courseMap['name'],
-                                                      courseImageUrl:
-                                                      courseMap[
-                                                      'image_url'],
-                                                    )
-
-                                                    // PaymentButtonn(
-                                                    //   label: 'Razorpay',
-                                                    //   icon: Icons.attach_money,
-                                                    //   color: Colors.green,
-                                                    //   onTap: () {
-                                                    //     // Handle Razorpay payment
-                                                    //   },
-                                                    // ),
-                                                  ],
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      },
-                                      child: Center(
-                                        child: Container(
-                                          width: screenWidth,
-                                          height: Device.screenType ==
-                                              ScreenType.mobile
-                                              ? 30.sp
-                                              : 20.sp,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(5),
-                                            color: Colors.deepPurple.shade600,
-                                          ),
-                                          child: Center(
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  'Pay Now',
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          255, 255, 255, 1),
-                                                      fontFamily: 'Poppins',
-                                                      fontSize:
-                                                      20 * verticalScale,
-                                                      letterSpacing:
-                                                      0 /*percentages not used in flutter. defaulting to zero*/,
-                                                      fontWeight:
-                                                      FontWeight.bold,
-                                                      height: 1),
-                                                ),
-                                                Text(
-                                                  '(For International Students)',
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          255, 255, 255, 1),
-                                                      fontFamily: 'Poppins',
-                                                      fontSize:
-                                                      15 * verticalScale,
-                                                      letterSpacing:
-                                                      0 /*percentages not used in flutter. defaulting to zero*/,
-                                                      fontWeight:
-                                                      FontWeight.bold,
-                                                      height: 1),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                                    // InkWell(
+                                    //   onTap: () {
+                                    //     setState(() {
+                                    //       print(
+                                    //           "loadingpaymetn: ${loadingpayment}");
+                                    //       loadingpayment.value = true;
+                                    //     });
+                                    //     alertForPayment = true;
+                                    //     setState(() {});
+                                    //     showDialog(
+                                    //       context: context,
+                                    //       builder: (context) {
+                                    //         return Dialog(
+                                    //           shape: RoundedRectangleBorder(
+                                    //             borderRadius:
+                                    //             BorderRadius.circular(20),
+                                    //           ),
+                                    //           child: Container(
+                                    //             width: screenWidth / 2.5,
+                                    //             padding: EdgeInsets.all(20),
+                                    //             child: Column(
+                                    //               mainAxisSize:
+                                    //               MainAxisSize.min,
+                                    //               children: [
+                                    //                 Text(
+                                    //                   'Payment',
+                                    //                   style: TextStyle(
+                                    //                     color: Colors.black,
+                                    //                     fontFamily: 'Poppins',
+                                    //                     fontSize: 20,
+                                    //                     fontWeight:
+                                    //                     FontWeight.bold,
+                                    //                   ),
+                                    //                 ),
+                                    //                 SizedBox(height: 20),
+                                    //
+                                    //                 RazorPayInternationalBtn(
+                                    //                   courseDescription:
+                                    //                   courseMap[
+                                    //                   'description'],
+                                    //                   international: false,
+                                    //                   coursePriceMoneyRef:
+                                    //                   int.parse(
+                                    //                       courseprice),
+                                    //                   courseId:
+                                    //                   courseMap['id'],
+                                    //                   NoCouponApplied:
+                                    //                   NoCouponApplied,
+                                    //                   couponCodeText:
+                                    //                   couponCodeController
+                                    //                       .text,
+                                    //                   amountString: (double.parse(NoCouponApplied
+                                    //                       ? courseMap['gst'] != null
+                                    //                       ? '${totalAmount.round().toString()}'
+                                    //                       : "${int.parse(courseprice) - int.parse(discountvalue)}"
+                                    //                       : finalAmountToPay) * //courseMap['Amount_Payablepay']
+                                    //                       100)
+                                    //                       .toString(),
+                                    //                   courseName:
+                                    //                   courseMap['name'],
+                                    //                   courseImageUrl:
+                                    //                   courseMap[
+                                    //                   'image_url'],
+                                    //                 )
+                                    //
+                                    //                 // PaymentButtonn(
+                                    //                 //   label: 'Razorpay',
+                                    //                 //   icon: Icons.attach_money,
+                                    //                 //   color: Colors.green,
+                                    //                 //   onTap: () {
+                                    //                 //     // Handle Razorpay payment
+                                    //                 //   },
+                                    //                 // ),
+                                    //               ],
+                                    //             ),
+                                    //           ),
+                                    //         );
+                                    //       },
+                                    //     );
+                                    //   },
+                                    //   child: Center(
+                                    //     child: Container(
+                                    //       width: screenWidth,
+                                    //       height: Device.screenType ==
+                                    //           ScreenType.mobile
+                                    //           ? 30.sp
+                                    //           : 20.sp,
+                                    //       decoration: BoxDecoration(
+                                    //         borderRadius:
+                                    //         BorderRadius.circular(5),
+                                    //         color: Colors.deepPurple.shade600,
+                                    //       ),
+                                    //       child: Center(
+                                    //         child: Column(
+                                    //           children: [
+                                    //             Text(
+                                    //               'Pay Now',
+                                    //               style: TextStyle(
+                                    //                   color: Color.fromRGBO(
+                                    //                       255, 255, 255, 1),
+                                    //                   fontFamily: 'Poppins',
+                                    //                   fontSize:
+                                    //                   20 * verticalScale,
+                                    //                   letterSpacing:
+                                    //                   0 /*percentages not used in flutter. defaulting to zero*/,
+                                    //                   fontWeight:
+                                    //                   FontWeight.bold,
+                                    //                   height: 1),
+                                    //             ),
+                                    //             Text(
+                                    //               '(For International Students)',
+                                    //               style: TextStyle(
+                                    //                   color: Color.fromRGBO(
+                                    //                       255, 255, 255, 1),
+                                    //                   fontFamily: 'Poppins',
+                                    //                   fontSize:
+                                    //                   15 * verticalScale,
+                                    //                   letterSpacing:
+                                    //                   0 /*percentages not used in flutter. defaulting to zero*/,
+                                    //                   fontWeight:
+                                    //                   FontWeight.bold,
+                                    //                   height: 1),
+                                    //             ),
+                                    //           ],
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //   ),
+                                    // ),
                                     alertForPayment
                                         ? SizedBox(
                                       height: 15,

@@ -843,18 +843,23 @@ Widget customMenuBar(BuildContext context) {
           onTap: () {
             GoRouter.of(context).pushNamed('home');
           },
-          child: Row(
-            children: [
-              Image.asset(
-                "assets/logo.png",
-                width: 75,
-                height: 55,
-              ),
-              Text(
-                "Dataly",
-                style: textStyle,
-              ),
-            ],
+          child: SizedBox(
+            width: Adaptive.w(18.5),
+            child: Stack(
+              children: [
+                Image.asset(
+                  'assets/logo.png',
+                  height: 75,
+                  width: 110,
+                  cacheWidth: 82,
+                  cacheHeight: 56,
+                ),
+                Positioned(
+                    bottom: 0.sp,
+                    right: 0,
+                    child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
+              ],
+            ),
           ),
         ),
         Spacer(),

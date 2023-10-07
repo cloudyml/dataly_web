@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:toast/toast.dart';
 
 import 'global_variable.dart' as globals;
@@ -153,14 +154,14 @@ class _HomeState extends State<Home> {
   setFeaturedCourse(List<CourseDetails> course) {
     featuredCourse.clear();
     course.forEach((element) {
-      if (element.FcSerialNumber.isNotEmpty &&
-          element.FcSerialNumber != null &&
+      if (element.dataly_FcSerialNumber!.isNotEmpty &&
+          element.dataly_FcSerialNumber != null &&
           element.isItComboCourse == true) {
         featuredCourse.add(element);
       }
     });
     featuredCourse.sort((a, b) {
-      return int.parse(a.FcSerialNumber).compareTo(int.parse(b.FcSerialNumber));
+      return int.parse(a.dataly_FcSerialNumber!).compareTo(int.parse(b.dataly_FcSerialNumber!));
     });
   }
 
@@ -692,14 +693,23 @@ class _HomeState extends State<Home> {
                           SizedBox(
                             width: horizontalScale * 15,
                           ),
-                          Image.asset(
-                            "assets/logo2.png",
-                            width: 50,
-                            height: 40,
-                          ),
-                          Text(
-                            "Dataly",
-                            style: textStyle,
+                          SizedBox(
+                            width: Adaptive.w(18.5),
+                            child: Stack(
+                              children: [
+                                Image.asset(
+                                  'assets/logo.png',
+                                  height: 75,
+                                  width: 110,
+                                  cacheWidth: 82,
+                                  cacheHeight: 56,
+                                ),
+                                Positioned(
+                                    bottom: 0.sp,
+                                    right: 0,
+                                    child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
+                              ],
+                            ),
                           ),
                           Spacer(),
                           ElevatedButton(
@@ -2252,7 +2262,7 @@ class _HomeState extends State<Home> {
                         child: Row(
                           children: [
                             // Image.asset(
-                            //   "assets/logo2.png",
+                            //   "assets/DATALY Logo.png",
                             //   width: 25,
                             //   height: 20,
                             // ),

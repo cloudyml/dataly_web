@@ -12,6 +12,7 @@ import 'package:lottie/lottie.dart';
 import 'package:cloudyml_app2/theme.dart';
 import 'package:cloudyml_app2/global_variable.dart' as globals;
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:toast/toast.dart';
 
 import '../router/login_state_check.dart';
@@ -122,10 +123,23 @@ class _SigninPasswordPageState extends State<SigninPasswordPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Image.asset(
-                                  'assets/logo.png',
-                                  height: 75,
-                                  width: 110,
+                                SizedBox(
+                                  width: Adaptive.w(18.5),
+                                  child: Stack(
+                                    children: [
+                                      Image.asset(
+                                        'assets/logo.png',
+                                        height: 75,
+                                        width: 110,
+                                        cacheWidth: 82,
+                                        cacheHeight: 56,
+                                      ),
+                                      Positioned(
+                                          bottom: 0.sp,
+                                          right: 0,
+                                          child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
+                                    ],
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 5,

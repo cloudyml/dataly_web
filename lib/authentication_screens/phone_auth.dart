@@ -16,6 +16,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:cloudyml_app2/theme.dart';
 import 'package:cloudyml_app2/global_variable.dart' as globals;
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:toast/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -135,13 +136,24 @@ class _LoginPageState extends State<LoginPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Image.asset(
-                                'assets/logo.png',
-                                height: 75,
-                                width: 110,
-                                cacheWidth: 82,
-                                cacheHeight: 56,
-                              ),
+                         SizedBox(
+                           width: Adaptive.w(18.5),
+                           child: Stack(
+                             children: [
+                               Image.asset(
+                                 'assets/logo.png',
+                                 height: 75,
+                                 width: 110,
+                                 cacheWidth: 82,
+                                 cacheHeight: 56,
+                               ),
+                               Positioned(
+                                 bottom: 0.sp,
+                                   right: 0,
+                                   child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
+                             ],
+                           ),
+                         ),
                               SizedBox(
                                 height: 5,
                               ),
