@@ -93,70 +93,22 @@ Future<void> main() async {
   if (Uri.base.path == '/comboPaymentPortal') {
     print('abc home');
 
-    if (Uri.base.queryParameters['cID'] == 'aEGX6kMfHzQrVgP3WCwU') {
+    if (Uri.base.queryParameters['cID'] == 'mIXvDqDBLfmjtvUnHxfn') {
       final url = Uri.base.queryParameters['cID'];
       FirebaseFirestore.instance
           .collection("Notice")
-          .doc("NBrEm6KGry8gxOJJkegG_redirect_pay")
+          .doc("cDQnMz6hENvxZVfLyUoq_dataly1")
           .set({'url': url});
-    } else if (Uri.base.queryParameters['cID'] == 'RIUjOvGBV6YSzMTpMWEG') {
-      final url = Uri.base.queryParameters['cID'];
-      FirebaseFirestore.instance
-          .collection("Notice")
-          .doc("HX4neryeAOB1dzUeIAg1_prompt")
-          .set({'url': url});
-    }else if (Uri.base.queryParameters['cID'] == 'F9gxnjW9nf5Lxg5A6758') {
-      final url = Uri.base.queryParameters['cID'];
-      FirebaseFirestore.instance
-          .collection("Notice")
-          .doc("M2jEwYyiWdzYWE9gJd8s_de_pay")
-          .set({'url': url});
-    } else if (Uri.base.queryParameters['cID'] == 'XSNqt0oNpuY7i2kb7zsW') {
-      final url = Uri.base.queryParameters['cID'];
-      FirebaseFirestore.instance
-          .collection("Notice")
-          .doc("o1Hw1CebDH9I4VfpKuiC_sup_pay")
-          .set({'url': url});
-    }
-
+    } 
     final url = Uri.base.path;
 
     print('pushed');
-  } else if (Uri.base.path == '/InternationalPaymentScreen') {
-    final url = Uri.base.path;
-    FirebaseFirestore.instance
-        .collection("Notice")
-        .doc("7A85zuoLi4YQpbXlbOAh_redirect")
-        .set({'url': url});
-
-    print('pushed');
-  } else if (Uri.base.path == '/NewFeature') {
-    if (Uri.base.queryParameters['cID'] == 'aEGX6kMfHzQrVgP3WCwU') {
+  }  else if (Uri.base.path == '/multiComboFeatureScreen') {
+    if (Uri.base.queryParameters['cID'] == 'mIXvDqDBLfmjtvUnHxfn') {
       final url = Uri.base.queryParameters['cID'];
       FirebaseFirestore.instance
           .collection("Notice")
-          .doc("XdYtk2DJBIkRGx0ASthZ_newfeaturecourse")
-          .set({'url': url});
-    } else if (Uri.base.queryParameters['cID'] == 'F9gxnjW9nf5Lxg5A6758') {
-      final url = Uri.base.queryParameters['cID'];
-      FirebaseFirestore.instance
-          .collection("Notice")
-          .doc("fSU4MLz1E0858ft8m7F5_dataeng")
-          .set({'url': url});
-    } else if (Uri.base.queryParameters['cID'] == 'mPqg2Z2BdNHvwaqAEfA0') {
-      final url = Uri.base.queryParameters['cID'];
-      FirebaseFirestore.instance
-          .collection("Notice")
-          .doc("ZL5fDjF0pzsgpNu92BKc_intrntnl_course")
-          .set({'url': url});
-    }
-    print('pushed');
-  } else if (Uri.base.path == '/multiComboFeatureScreen') {
-    if (Uri.base.queryParameters['cID'] == 'XSNqt0oNpuY7i2kb7zsW') {
-      final url = Uri.base.queryParameters['cID'];
-      FirebaseFirestore.instance
-          .collection("Notice")
-          .doc("JnCFQ1bT36xl0xKjDL3a_superstar")
+          .doc("gMAzwcnKV1o7zVwUdLV0_datalyfeature1")
           .set({'url': url});
     }
   }
