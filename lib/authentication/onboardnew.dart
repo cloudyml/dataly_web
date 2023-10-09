@@ -153,10 +153,6 @@ class _OnboardewState extends State<Onboardew> {
                                     cacheWidth: 82,
                                     cacheHeight: 56,
                                   ),
-                                  Positioned(
-                                      bottom: 0.sp,
-                                      right: 0,
-                                      child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
                                 ],
                               ),
                             ),

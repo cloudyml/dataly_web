@@ -162,10 +162,6 @@ class _StoreScreenState extends State<StoreScreen> {
                                   cacheWidth: 82,
                                   cacheHeight: 56,
                                 ),
-                                Positioned(
-                                    bottom: 0.sp,
-                                    right: 0,
-                                    child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
                               ],
                             ),
                           ),
