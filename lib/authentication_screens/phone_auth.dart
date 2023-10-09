@@ -644,7 +644,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         Container(
                             margin: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Text('CloudyML',
+                            child: Text('Dataly',
                                 style: TextStyle(
                                     color: MyColors.primaryColor,
                                     fontSize: 25,

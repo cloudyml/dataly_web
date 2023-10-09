@@ -300,7 +300,9 @@ class MyRouter {
             return MaterialPage<void>(
                 key: state.pageKey,
                 child: CatelogueScreen(
-                    courses: course[int.parse(id)].courses, id: id, cID: cID));
+                    courses: course[int.parse(id)].courses,
+                    id: id,
+                    cID: cID));
           },
         ),
         GoRoute(

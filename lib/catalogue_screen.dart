@@ -100,7 +100,6 @@ class _CatelogueScreenState extends State<CatelogueScreen>
   void initState() {
     dbCheckerForPayInParts();
     getCourseName();
-    lookformoneyref();
     super.initState();
   }
 
@@ -167,7 +166,7 @@ class _CatelogueScreenState extends State<CatelogueScreen>
     width = size.width;
     List<CourseDetails> course = Provider.of<List<CourseDetails>>(context);
     return Scaffold(
-      bottomSheet:
+      bottomSheet: fromMultiCombo ? null :
           courseMap['trialCourse']! != null && courseMap['trialCourse']!
               ? PayNowBottomSheetfeature(
                   coursePrice: '₹${coursePrice}/-',
@@ -177,7 +176,8 @@ class _CatelogueScreenState extends State<CatelogueScreen>
                   international: international,
                   // id: widget.id!,
                   usermap: userMap as Map<String, dynamic>)
-              : NonTrialCourseBottomSheet(
+              :
+          NonTrialCourseBottomSheet(
                   coursePrice: '₹${coursePrice}/-',
                   map: courseMap,
                   isItComboCourse: true,

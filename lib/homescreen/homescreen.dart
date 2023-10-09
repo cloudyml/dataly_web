@@ -3480,18 +3480,18 @@ class _LandingScreenState extends State<LandingScreen> {
                               color: HexColor('440F87'),
                             ),
                             Align(
-                              alignment: Alignment.center,
+                              alignment: Alignment.centerLeft,
                               child: Padding(
                                 padding:
                                     EdgeInsets.only(top: 15 * verticalScale),
                                 child: SizedBox(
-                                  width: Adaptive.w(18.5),
+                                  width: Adaptive.w(35),
                                   child: Stack(
                                     children: [
                                       Image.asset(
                                         'assets/logo.png',
-                                        height: 75,
-                                        width: 110,
+                                        height: 50,
+                                        width: 80,
                                         cacheWidth: 82,
                                         cacheHeight: 56,
                                       ),
