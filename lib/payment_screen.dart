@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloudyml_app2/globals.dart';
+import 'package:cloudyml_app2/payment/stripe/checkout.dart';
 import 'package:cloudyml_app2/screens/flutter_flow/flutter_flow_util.dart';
 import 'package:cloudyml_app2/widgets/coupon_code.dart';
 import 'package:cloudyml_app2/widgets/inter_payment_portal.dart';
@@ -1217,74 +1218,119 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                             )),
                                         SizedBox(height: 15 * verticalScale),
                                         Center(
-                                          child: PaypalPaymentButton(
-                                            couponCode: coupontext,
-                                            couponcodeused: !errorOnCoupon,
-                                            coursePriceMoneyRef:
-                                            int.parse(courseprice),
-                                            amountString:
-                                            couponCodeApplied && courseMap['dataly_discounted_price'] != null ?
+                                          child: 
+                                          InkWell(
+                                            onTap: (){
+                                              redirectToCheckout(context, 
+                                              amount:  couponCodeApplied && courseMap['dataly_discounted_price'] != null ?
                                             '${int.parse(courseMap['dataly_discounted_price']) - double.parse(discountvalue)}'
                                                 :
                                             courseMap['dataly_discounted_price'] != null ?
-                                            '${courseMap['dataly_discounted_price']}' :
+                                            '${double.parse(courseMap['dataly_discounted_price'])*100}' :
                                             (double.parse(NoCouponApplied
                                                 ? courseMap['gst'] != null
                                                 ? '${totalAmount.round().toString()}'
                                                 : "${int.parse(courseprice) - int.parse(discountvalue)}"
                                                 : finalAmountToPay) *
                                                 100)
-                                                .toString(),
-                                            buttonText: NoCouponApplied
-                                                ? courseMap['gst'] != null
-                                                ? 'PAY ₹${totalAmount.round().toString()}/-'
-                                                : 'PAY ₹${int.parse(courseprice) - int.parse(discountvalue)}/-' //${courseMap['Course Price']}
-                                                : 'PAY ${finalamountToDisplay}',
-                                            buttonTextForCode:
-                                            "$finalamountToDisplay",
-                                            changeState: () {
-                                              alertForPayment = true;
-                                              setState(() {});
+                                                .toString(), 
+                                              courseId:  courseMap['id']);
                                             },
-                                            courseDescription:
-                                            courseMap['description'],
-                                            courseName: courseMap['name'],
-                                            isPayButtonPressed:
-                                            isPayButtonPressed,
-                                            NoCouponApplied: NoCouponApplied,
-                                            scrollController:
-                                            _scrollController,
-                                            updateCourseIdToCouponDetails:
-                                                () {
-                                              void addCourseId() {
-                                                setState(() {
-                                                  id = courseMap['id'];
-                                                  alertForPayment = true;
-                                                });
-                                              }
+                                            child: Container(
+                                                                width: screenWidth,
+                                                                height: Device.screenType == ScreenType.mobile
+                                                                    ? 30.sp
+                                                                    : 22.5.sp,
+                                                                decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.circular(5),
+                                                                  color: Colors.deepPurple.shade600,
+                                                                ),
+                                                                child: Center(
+                                                                  child: Text(
+                                                                    "Pay Now",
+                                                                    style: TextStyle(
+                                                                        color: Color.fromRGBO(255, 255, 255, 1),
+                                                                        fontFamily: 'Poppins',
+                                                                        fontSize: 24 * verticalScale,
+                                                                        letterSpacing:
+                                                                            0 /*percentages not used in flutter. defaulting to zero*/,
+                                                                        fontWeight: FontWeight.bold,
+                                                                        height: 1),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                          )
+                                          
+                                          // PaypalPaymentButton(
+                                          //   couponCode: coupontext,
+                                          //   couponcodeused: !errorOnCoupon,
+                                          //   coursePriceMoneyRef:
+                                          //   int.parse(courseprice),
+                                          //   amountString:
+                                          //   couponCodeApplied && courseMap['dataly_discounted_price'] != null ?
+                                          //   '${int.parse(courseMap['dataly_discounted_price']) - double.parse(discountvalue)}'
+                                          //       :
+                                          //   courseMap['dataly_discounted_price'] != null ?
+                                          //   '${courseMap['dataly_discounted_price']}' :
+                                          //   (double.parse(NoCouponApplied
+                                          //       ? courseMap['gst'] != null
+                                          //       ? '${totalAmount.round().toString()}'
+                                          //       : "${int.parse(courseprice) - int.parse(discountvalue)}"
+                                          //       : finalAmountToPay) *
+                                          //       100)
+                                          //       .toString(),
+                                          //   buttonText: NoCouponApplied
+                                          //       ? courseMap['gst'] != null
+                                          //       ? 'PAY ₹${totalAmount.round().toString()}/-'
+                                          //       : 'PAY ₹${int.parse(courseprice) - int.parse(discountvalue)}/-' //${courseMap['Course Price']}
+                                          //       : 'PAY ${finalamountToDisplay}',
+                                          //   buttonTextForCode:
+                                          //   "$finalamountToDisplay",
+                                          //   changeState: () {
+                                          //     alertForPayment = true;
+                                          //     setState(() {});
+                                          //   },
+                                          //   courseDescription:
+                                          //   courseMap['description'],
+                                          //   courseName: courseMap['name'],
+                                          //   isPayButtonPressed:
+                                          //   isPayButtonPressed,
+                                          //   NoCouponApplied: NoCouponApplied,
+                                          //   scrollController:
+                                          //   _scrollController,
+                                          //   updateCourseIdToCouponDetails:
+                                          //       () {
+                                          //     void addCourseId() {
+                                          //       setState(() {
+                                          //         id = courseMap['id'];
+                                          //         alertForPayment = true;
+                                          //       });
+                                          //     }
 
-                                              addCourseId();
-                                              print(NoCouponApplied);
-                                            },
-                                            outStandingAmountString:
-                                            courseMap['dataly_discounted_price'] != null ?
-                                            'CAD ${courseMap['dataly_discounted_price']}' :
-                                            (double.parse(NoCouponApplied
-                                                ? courseMap[
-                                            'Amount_Payablepay']
-                                                : finalAmountToPay) -
-                                                1000)
-                                                .toStringAsFixed(2),
-                                            courseId: courseMap['id'],
-                                            courseImageUrl:
-                                            courseMap['image_url'],
-                                            couponCodeText:
-                                            couponCodeController.text,
-                                            isItComboCourse:
-                                            widget.isItComboCourse,
-                                            whichCouponCode:
-                                            couponCodeController.text,
-                                          ),
+                                          //     addCourseId();
+                                          //     print(NoCouponApplied);
+                                          //   },
+                                          //   outStandingAmountString:
+                                          //   courseMap['dataly_discounted_price'] != null ?
+                                          //   'CAD ${courseMap['dataly_discounted_price']}' :
+                                          //   (double.parse(NoCouponApplied
+                                          //       ? courseMap[
+                                          //   'Amount_Payablepay']
+                                          //       : finalAmountToPay) -
+                                          //       1000)
+                                          //       .toStringAsFixed(2),
+                                          //   courseId: courseMap['id'],
+                                          //   courseImageUrl:
+                                          //   courseMap['image_url'],
+                                          //   couponCodeText:
+                                          //   couponCodeController.text,
+                                          //   isItComboCourse:
+                                          //   widget.isItComboCourse,
+                                          //   whichCouponCode:
+                                          //   couponCodeController.text,
+                                          // ),
+                                      
+                                      
                                         ),
 
                                         // Center(child: ElevatedButton(onPressed: (){
