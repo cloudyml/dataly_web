@@ -405,7 +405,7 @@ class _LandingScreenState extends State<LandingScreen> {
           .collection('Notice')
           .doc('sessionExpiryDays')
           .get();
-      numberOfLearners = learners['numberOfLearners'];
+      numberOfLearners = learners['dataly_numberOfLearners'];
       sessionExpiryDays = learners['sessionExpiryDays'];
       print('uid is ${FirebaseAuth.instance.currentUser!.uid}');
 
