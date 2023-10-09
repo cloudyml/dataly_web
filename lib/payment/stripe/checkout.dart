@@ -3,7 +3,6 @@ library stripe;
 
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
@@ -12,10 +11,12 @@ import 'package:js/js.dart';
 var stripe;
 
 String sessionId = '';
+String productId = '';
 void redirectToCheckout(BuildContext _, {required String amount, required String courseId}) async {
   await getPublishKey();
+  await getProductId(courseId: courseId);
 
-  await generateSessionId(amount: "3590", productId: 'prod_OlMAp4Vi1uwazG');
+  await generateSessionId(amount: "$amount", productId: '$productId');
 
   sessionId.isNotEmpty
       ? await stripe.redirectToCheckout(CheckoutOptions(
@@ -54,8 +55,11 @@ getPublishKey() async {
         .collection('Notice')
         .doc('stripe_key')
         .get()
-        .then((value) {
-      stripe = Stripe(value.get('publish_key'));
+        .then((value)async {
+
+
+          final val = await value.get('publish_key');
+      stripe = Stripe(val);
     });
   } catch (e) {
     debugPrint('Error in fetching stripe publish key');
@@ -65,9 +69,9 @@ getPublishKey() async {
 getProductId({required String courseId})async{
     try {
     await FirebaseFirestore.instance
-        .collection('courses').where('id', isEqualTo: courseId).get().then((value) {
-
-          print('Course : ${value.docs[0].get('name')}');
+        .collection('courses').where('id', isEqualTo: courseId).get().then((value) async{
+final val = await value.docs[0].get('product_id');
+         productId = val;
          
         });
         
