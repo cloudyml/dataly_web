@@ -404,49 +404,11 @@ class _PaypalPaymentButtonState extends State<PaypalPaymentButton>
                         setState(() {});
                         print('executeUrl $executeUrl');
                         print('checkoutUrl $checkoutUrl');
-                        launch(checkoutUrl!);
+                        // launch(checkoutUrl!);
                       } catch (e) {
                         print('erorr = $e');
                       }
                     });
-
-                    // showDialog(
-                    //     context: context,
-                    //     builder: (context) {
-                    //       return AlertDialog(
-                    //         content: Container(
-                    //           width: Adaptive.w(75),
-                    //           child: WebViewElement(),
-                    //           // child: WebView(
-                    //           //   initialUrl: checkoutUrl,
-                    //           //   javascriptMode: JavascriptMode.unrestricted,
-                    //           //   navigationDelegate:
-                    //           //       (NavigationRequest request) {
-                    //           //     if (request.url.contains(returnURL)) {
-                    //           //       final uri = Uri.parse(request.url);
-                    //           //       final payerID =
-                    //           //           uri.queryParameters['PayerID'];
-                    //           //       if (payerID != null) {
-                    //           //         payPalServices
-                    //           //             .executePayment(executeUrl,
-                    //           //                 payerID, accessToken1)
-                    //           //             .then((id) {
-                    //           //           Navigator.of(context).pop();
-                    //           //         });
-                    //           //       } else {
-                    //           //         Navigator.of(context).pop();
-                    //           //       }
-                    //           //       Navigator.of(context).pop();
-                    //           //     }
-                    //           //     if (request.url.contains(cancelURL)) {
-                    //           //       Navigator.of(context).pop();
-                    //           //     }
-                    //           //     return NavigationDecision.navigate;
-                    //           //   },
-                    //           // ),
-                    //         ),
-                    //       );
-                    //     });
 
                     setState(() {
                       isLoading = false;
