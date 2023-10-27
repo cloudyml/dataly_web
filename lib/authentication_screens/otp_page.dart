@@ -148,7 +148,7 @@ class _OtpPageState extends State<OtpPage> {
 
     payurl = await FirebaseFirestore.instance
         .collection("Notice")
-        .doc("NBrEm6KGry8gxOJJkegG_redirect_pay")
+        .doc("cDQnMz6hENvxZVfLyUoq_dataly1")
         .get()
         .then((value) {
       print(value.data()!.values.first);
@@ -157,31 +157,11 @@ class _OtpPageState extends State<OtpPage> {
 
     print("url is=====$payurl");
 
-    depayurl = await FirebaseFirestore.instance
-        .collection("Notice")
-        .doc("M2jEwYyiWdzYWE9gJd8s_de_pay")
-        .get()
-        .then((value) {
-      print(value.data()!.values.first);
-      return value.data()!.values.first;
-    });
-
-    print("url is=====$depayurl");
-
-    suppayurl = await FirebaseFirestore.instance
-        .collection("Notice")
-        .doc("o1Hw1CebDH9I4VfpKuiC_sup_pay")
-        .get()
-        .then((value) {
-      print(value.data()!.values.first);
-      return value.data()!.values.first;
-    });
-
-    print("url is=====$suppayurl");
+    
 
     feaurl = await FirebaseFirestore.instance
         .collection("Notice")
-        .doc("XdYtk2DJBIkRGx0ASthZ_newfeaturecourse")
+        .doc("gMAzwcnKV1o7zVwUdLV0_datalyfeature1")
         .get()
         .then((value) {
       print(value.data()!.values.first);
@@ -190,27 +170,7 @@ class _OtpPageState extends State<OtpPage> {
 
     print("url is=====$feaurl");
 
-    deurl = await FirebaseFirestore.instance
-        .collection("Notice")
-        .doc("fSU4MLz1E0858ft8m7F5_dataeng")
-        .get()
-        .then((value) {
-      print(value.data()!.values.first);
-      return value.data()!.values.first;
-    });
-
-    print("url is=====$deurl");
-
-    supurl = await FirebaseFirestore.instance
-        .collection("Notice")
-        .doc("JnCFQ1bT36xl0xKjDL3a_superstar")
-        .get()
-        .then((value) {
-      print(value.data()!.values.first);
-      return value.data()!.values.first;
-    });
-
-    print("url is=====$supurl");
+    
   }
 
   Widget _otpTextField(BuildContext context, bool autoFocus, int position) {
@@ -789,90 +749,22 @@ class _OtpPageState extends State<OtpPage> {
                 // GoRouter.of(context).pushReplacement('/home');
                 String location = GoRouter.of(context).location;
 
-                if (feaurl == 'aEGX6kMfHzQrVgP3WCwU') {
+                if (feaurl == 'mIXvDqDBLfmjtvUnHxfn') {
                   final id = "0";
-                  final cID = "aEGX6kMfHzQrVgP3WCwU";
+                  final cID = "mIXvDqDBLfmjtvUnHxfn";
                   final courseName =
-                      "Data Science & Analytics Placement Assurance Program";
-                  final courseP = "11999";
+                      "Data Superstar Placement Guarantee Program";
+                  final courseP = "999";
                   GoRouter.of(context).goNamed('NewFeature', queryParams: {
                     'cID': cID,
                     'courseName': courseName,
                     'id': id,
                     'coursePrice': courseP
                   });
-                } else if (deurl == 'F9gxnjW9nf5Lxg5A6758') {
-                  final id = "0";
-                  final cID = "F9gxnjW9nf5Lxg5A6758";
-                  final courseName =
-                      "Data Engineering Placement Assurance Program";
-                  final courseP = "12000";
-                  GoRouter.of(context).goNamed('NewFeature', queryParams: {
-                    'cID': cID,
-                    'courseName': courseName,
-                    'id': id,
-                    'coursePrice': courseP
-                  });
-                } else if (supurl == 'XSNqt0oNpuY7i2kb7zsW') {
-                  final id = "0";
-                  final cID = "XSNqt0oNpuY7i2kb7zsW";
-                  final courseName =
-                      "Data Superstar Placement Assurance Program";
-                  final courseP = "20000";
-                  GoRouter.of(context).goNamed('NewFeature', queryParams: {
-                    'cID': cID,
-                    'courseName': courseName,
-                    'id': id,
-                    'coursePrice': courseP
-                  });
-                } else if (interntnl == 'mPqg2Z2BdNHvwaqAEfA0') {
-                  final id = "0";
-                  final cID = "mPqg2Z2BdNHvwaqAEfA0";
-                  final courseName = "Data Superstar(International)";
-                  final courseP = "399";
-                  GoRouter.of(context).goNamed('NewFeature', queryParams: {
-                    'cID': cID,
-                    'courseName': courseName,
-                    'id': id,
-                    'coursePrice': courseP
-                  });
-                } else if (diurl == '/InternationalPaymentScreen') {
-                  print("i am in otp else");
-                  final cID = "aEGX6kMfHzQrVgP3WCwU";
+                }  else if (payurl == 'mIXvDqDBLfmjtvUnHxfn') {
+                  final cID = "mIXvDqDBLfmjtvUnHxfn";
                   GoRouter.of(context).go(
-                    '/InternationalPaymentScreen?cID=mPqg2Z2BdNHvwaqAEfA0',
-                    // queryParams: {
-                    //   'cID': cID,
-                    //   }
-                  );
-                } else if (payurl == 'aEGX6kMfHzQrVgP3WCwU') {
-                  final cID = "aEGX6kMfHzQrVgP3WCwU";
-                  GoRouter.of(context).go(
-                    '/comboPaymentPortal?cID=aEGX6kMfHzQrVgP3WCwU',
-                    // queryParams: {
-                    //   'cID': cID,
-                    //   }
-                  );
-                } else if (promEng == 'RIUjOvGBV6YSzMTpMWEG') {
-                  final cID = "RIUjOvGBV6YSzMTpMWEG";
-                  GoRouter.of(context).go(
-                    '/comboPaymentPortal?cID=RIUjOvGBV6YSzMTpMWEG',
-                    // queryParams: {
-                    //   'cID': cID,
-                    //   }
-                  );
-                }else if (depayurl == 'F9gxnjW9nf5Lxg5A6758') {
-                  final cID = "F9gxnjW9nf5Lxg5A6758";
-                  GoRouter.of(context).go(
-                    '/comboPaymentPortal?cID=F9gxnjW9nf5Lxg5A6758',
-                    // queryParams: {
-                    //   'cID': cID,
-                    //   }
-                  );
-                } else if (suppayurl == 'XSNqt0oNpuY7i2kb7zsW') {
-                  final cID = "XSNqt0oNpuY7i2kb7zsW";
-                  GoRouter.of(context).go(
-                    '/comboPaymentPortal?cID=XSNqt0oNpuY7i2kb7zsW',
+                    '/comboPaymentPortal?cID=mIXvDqDBLfmjtvUnHxfn',
                     // queryParams: {
                     //   'cID': cID,
                     //   }

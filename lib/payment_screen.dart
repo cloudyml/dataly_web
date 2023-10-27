@@ -81,6 +81,8 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
 
   bool alertForPayment = false;
 
+  bool getcheckout=false;
+
   var gstAmount;
   var totalAmount;
   var totalAmountAfterCoupon;
@@ -96,33 +98,17 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
 
   void url_del() {
     FirebaseFirestore.instance.collection('Notice')
-      ..doc("7A85zuoLi4YQpbXlbOAh_redirect")
+      ..doc("gMAzwcnKV1o7zVwUdLV0_datalyfeature1")
           .update({'url': ""}).whenComplete(() {
         print('feature Deleted');
       });
 
     FirebaseFirestore.instance.collection('Notice')
-      ..doc("NBrEm6KGry8gxOJJkegG_redirect_pay")
+      ..doc("cDQnMz6hENvxZVfLyUoq_dataly1")
           .update({'url': ""}).whenComplete(() {
         print('pay Deleted');
       });
 
-    FirebaseFirestore.instance.collection('Notice')
-      ..doc("HX4neryeAOB1dzUeIAg1_prompt")
-          .update({'url': ""}).whenComplete(() {
-        print('prompt pay Deleted');
-      });
-
-    FirebaseFirestore.instance.collection('Notice')
-      ..doc("o1Hw1CebDH9I4VfpKuiC_sup_pay")
-          .update({'url': ""}).whenComplete(() {
-        print('sup pay Deleted');
-      });
-
-    FirebaseFirestore.instance.collection('Notice')
-      ..doc("M2jEwYyiWdzYWE9gJd8s_de_pay").update({'url': ""}).whenComplete(() {
-        print('Data engineering pay Deleted');
-      });
   }
 
   void getCourseName() async {
@@ -1220,7 +1206,12 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                         Center(
                                             child:
                                             InkWell(
-                                              onTap: (){
+                                              onTap: ()  {
+                                                setState(() {
+                                               getcheckout=true;
+                                               print(getcheckout);
+                                                    });
+                                                
                                                 redirectToCheckout(context,
                                                     amount:  couponCodeApplied && courseMap['dataly_discounted_price'] != null ?
                                                     '${int.parse(courseMap['dataly_discounted_price']) - double.parse(discountvalue)}'
@@ -1235,6 +1226,12 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                                         100)
                                                         .toString(),
                                                     courseId:  courseMap['id']);
+
+                                                    Future.delayed(const Duration(milliseconds: 5000), () {
+                                                    setState(() {
+                                               getcheckout=false;
+                                               print(getcheckout);
+                                                    });});
                                               },
                                               child: Container(
                                                 width: screenWidth,
@@ -1246,7 +1243,8 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                                   color: Colors.deepPurple.shade600,
                                                 ),
                                                 child: Center(
-                                                  child: Text(
+                                                  child: getcheckout?CircularProgressIndicator(color: Colors.white,):
+                                                  Text(
                                                     "Pay Now",
                                                     style: TextStyle(
                                                         color: Color.fromRGBO(255, 255, 255, 1),
@@ -1256,7 +1254,7 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                                         0 /*percentages not used in flutter. defaulting to zero*/,
                                                         fontWeight: FontWeight.bold,
                                                         height: 1),
-                                                  ),
+                                                  )
                                                 ),
                                               ),
                                             )
@@ -2584,71 +2582,59 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
                                     SizedBox(height: 25 * verticalScale),
                                     Container(
                                       width: screenWidth,
-                                      child: PaypalPaymentButton(
-                                        couponCode: coupontext,
-                                        couponcodeused: !errorOnCoupon,
-                                        coursePriceMoneyRef:
-                                        int.parse(courseprice),
-                                        amountString: couponCodeApplied && courseMap['dataly_discounted_price'] != null ?
-                                        '${int.parse(courseMap['dataly_discounted_price']) - double.parse(discountvalue)}'
-                                            :
-                                        courseMap['dataly_discounted_price'] != null ?
-                                        '${courseMap['dataly_discounted_price']}' : (double.parse(NoCouponApplied
-                                            ? courseMap['gst'] != null
-                                            ? '${totalAmount.round().toString()}'
-                                            : "${int.parse(courseprice) - int.parse(discountvalue)}"
-                                            : finalAmountToPay) * //courseMap['Amount_Payablepay']
-                                            100)
-                                            .toString(),
-                                        buttonText: NoCouponApplied
-                                            ? courseMap['gst'] != null
-                                            ? 'PAY ₹${totalAmount.round().toString()}/-'
-                                            : 'PAY ₹${int.parse(courseprice) - int.parse(discountvalue)}/-' //${courseMap['Course Price']}
-
-                                            : 'PAY ${finalamountToDisplay}',
-                                        buttonTextForCode:
-                                        "PAY $finalamountToDisplay",
-                                        changeState: () {
-                                          setState(() {
-                                            // isLoading = !isLoading;
-                                          });
-                                        },
-                                        courseDescription:
-                                        courseMap['description'],
-                                        courseName: courseMap['name'],
-                                        isPayButtonPressed:
-                                        isPayButtonPressed,
-                                        NoCouponApplied: NoCouponApplied,
-                                        scrollController: _scrollController,
-                                        updateCourseIdToCouponDetails: () {
-                                          void addCourseId() {
-                                            setState(() {
-                                              id = courseMap['id'];
-                                              alertForPayment = true;
-                                            });
-                                          }
-
-                                          addCourseId();
-                                          print(NoCouponApplied);
-                                        },
-                                        outStandingAmountString: courseMap['dataly_discounted_price'] != null ?
-                                        'CAD ${courseMap['dataly_discounted_price']}' :
-                                        (double.parse(NoCouponApplied
-                                            ? courseMap[
-                                        'Amount_Payablepay']
-                                            : finalAmountToPay) -
-                                            1000)
-                                            .toStringAsFixed(2),
-                                        courseId: courseMap['id'],
-                                        courseImageUrl:
-                                        courseMap['image_url'],
-                                        couponCodeText:
-                                        couponCodeController.text,
-                                        isItComboCourse:
-                                        widget.isItComboCourse,
-                                        whichCouponCode:
-                                        couponCodeController.text,
-                                      ),
+                                      child:  InkWell(
+                                              onTap: ()  {
+                                                setState(() {
+                                               getcheckout=true;
+                                               print(getcheckout);
+                                                    });
+                                                
+                                                redirectToCheckout(context,
+                                                    amount:  couponCodeApplied && courseMap['dataly_discounted_price'] != null ?
+                                                    '${int.parse(courseMap['dataly_discounted_price']) - double.parse(discountvalue)}'
+                                                        :
+                                                    courseMap['dataly_discounted_price'] != null ?
+                                                    '${double.parse(courseMap['dataly_discounted_price'])*100}' :
+                                                    (double.parse(NoCouponApplied
+                                                        ? courseMap['gst'] != null
+                                                        ? '${totalAmount.round().toString()}'
+                                                        : "${int.parse(courseprice) - int.parse(discountvalue)}"
+                                                        : finalAmountToPay) *
+                                                        100)
+                                                        .toString(),
+                                                    courseId:  courseMap['id']);
+                                                    
+                                                    Future.delayed(const Duration(milliseconds: 5000), () {
+                                                    setState(() {
+                                               getcheckout=false;
+                                               print(getcheckout);
+                                                    });});
+                                              },
+                                              child: Container(
+                                                width: screenWidth,
+                                                height: Device.screenType == ScreenType.mobile
+                                                    ? 30.sp
+                                                    : 22.5.sp,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(5),
+                                                  color: Colors.deepPurple.shade600,
+                                                ),
+                                                child: Center(
+                                                  child: getcheckout?CircularProgressIndicator(color: Colors.white,):
+                                                  Text(
+                                                    "Pay Now",
+                                                    style: TextStyle(
+                                                        color: Color.fromRGBO(255, 255, 255, 1),
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 24 * verticalScale,
+                                                        letterSpacing:
+                                                        0 /*percentages not used in flutter. defaulting to zero*/,
+                                                        fontWeight: FontWeight.bold,
+                                                        height: 1),
+                                                  )
+                                                ),
+                                              ),
+                                            )
                                     ),
                                     SizedBox(
                                       height: 15,
