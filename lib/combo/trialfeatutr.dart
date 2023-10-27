@@ -71,7 +71,7 @@ class _NewFeatureState extends State<NewFeature> {
   var courseData = null;
   // getPercentageOfCourse() async {
   //   var data = await FirebaseFirestore.instance
-  //       .collection("courseprogress")
+  //       .collection("courseprogress_dataly")
   //       .doc(FirebaseAuth.instance.currentUser!.uid)
   //       .get();
   //   setState(() {

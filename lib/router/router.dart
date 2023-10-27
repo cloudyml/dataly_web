@@ -45,7 +45,9 @@ import '../screens/quiz/quiz_panel.dart';
 import '../screens/quiz/quizentry.dart';
 import '../screens/quiz/quizesofenrolledcourses.dart';
 import '../screens/review_screen/review_screen.dart';
+import '../screens/student_review/review_screen.dart';
 import 'login_state_check.dart';
+import 'dart:html' as html;
 
 class MyRouter {
   final LoginState loginState;
@@ -62,15 +64,30 @@ class MyRouter {
 
         // final pc=state.location==('/featuredCourses?cID=aEGX6kMfHzQrVgP3WCwU&courseName=Data+Science+%26+Analytics+Placement+Assurance+Program&id=0&coursePrice=9999');
 
-        if (!loggedIn && !goingToLogin) {
-          return ('/');
-        } else if (loggedIn && goingToLogin) {
-          return ('/home');
+        String currentURL = html.window.location.href;
+        print('currentURL: $currentURL');
+        if (currentURL.contains("/students/review")) {
+          return ('/students/review');
         } else {
-          return null;
+          if (!loggedIn && !goingToLogin) {
+            return ('/');
+          } else if (loggedIn && goingToLogin) {
+            return ('/home');
+          } else {
+            return null;
+          }
         }
+
+
       },
       routes: <RouteBase>[
+        GoRoute(
+          name: 'review',
+          path: '/students/review',
+          pageBuilder: (context, state) {
+            return MaterialPage(child: StudentReviewScreen());
+          },
+        ),
         GoRoute(
             path: '/',
             pageBuilder: (context, state) {

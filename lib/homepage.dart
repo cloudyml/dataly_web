@@ -211,7 +211,7 @@ class _HomeState extends State<Home> {
       var getData;
       try {
         var data = await FirebaseFirestore.instance
-            .collection("courseprogress")
+            .collection("courseprogress_dataly")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .get()
             .then((value) {
