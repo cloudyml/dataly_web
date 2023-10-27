@@ -287,7 +287,7 @@ class _MultiComboFeatureScreenState extends State<MultiComboFeatureScreen> {
                     onPressed: () async {
                    if (controller.courseList[index]['combo']) {
 
-
+                     fromMultiCombo = true;
                                       final id = index.toString();
                                       final cID = controller.courseList[index]['docid'];
                                       final courseName =controller.courseList[index]['name'];

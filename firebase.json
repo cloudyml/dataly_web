@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site":"dataly",
     "public": "build/web",
     "ignore": [
       "firebase.json",

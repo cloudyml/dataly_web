@@ -392,7 +392,7 @@ class _LandingScreenState extends State<LandingScreen> {
 
   var ref;
   var userDocData;
-  String numberoflearnerdataly = '';
+  String numberOfLearners = '';
   var sessionExpiryDays;
   userData() async {
     try {
@@ -405,7 +405,7 @@ class _LandingScreenState extends State<LandingScreen> {
           .collection('Notice')
           .doc('sessionExpiryDays')
           .get();
-      numberoflearnerdataly = learners['numberoflearnerdataly'];
+      numberOfLearners = learners['dataly_numberOfLearners'];
       sessionExpiryDays = learners['sessionExpiryDays'];
       print('uid is ${FirebaseAuth.instance.currentUser!.uid}');
 
@@ -1284,7 +1284,7 @@ class _LandingScreenState extends State<LandingScreen> {
                                       SizedBox(
                                         width: 5,
                                       ),
-                                      Text('Trusted by $numberoflearnerdataly',
+                                      Text('Trusted by $numberOfLearners',
                                           style: TextStyle(
                                               fontSize: 12,
                                               fontWeight: FontWeight.normal,
@@ -3595,7 +3595,7 @@ class _LandingScreenState extends State<LandingScreen> {
                                                   width: 5 * verticalScale,
                                                 ),
                                                 Text(
-                                                    'Trusted by $numberoflearnerdataly',
+                                                    'Trusted by $numberOfLearners',
                                                     style: TextStyle(
                                                         fontSize: 12,
                                                         fontWeight:
