@@ -2,7 +2,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloudyml_app2/combo/controller/multi_combo_feature_controller.dart';
 import 'package:cloudyml_app2/combo/non_trial_course_paynowbtsheet.dart';
-import 'package:cloudyml_app2/globals.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -287,7 +286,7 @@ class _MultiComboFeatureScreenState extends State<MultiComboFeatureScreen> {
                     onPressed: () async {
                    if (controller.courseList[index]['combo']) {
 
-                     fromMultiCombo = true;
+
                                       final id = index.toString();
                                       final cID = controller.courseList[index]['docid'];
                                       final courseName =controller.courseList[index]['name'];
@@ -302,14 +301,11 @@ class _MultiComboFeatureScreenState extends State<MultiComboFeatureScreen> {
                                             'coursePrice': courseP
                                           });
                                     }   else {
-                                      courseId = controller.courseList[index]['docid'];
-                                      final cID = controller.courseList[index]['docid'];
                                       final id = index.toString();
-                                      fromMultiCombo = true;
                                       GoRouter.of(context)
                                           .pushNamed('catalogue', queryParams: {
                                         'id': id,
-                                        'cID': cID,
+                                        'cID':controller.courseList[index]['docid']
                                       });
                                     }
                     },

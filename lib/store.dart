@@ -66,7 +66,7 @@ class _StoreScreenState extends State<StoreScreen> {
     print("course list: ${courseList}");
 
     for (CourseDetails element in courseList) {
-      print("show${element.dataly_show}");
+      print("show${element.show}");
       print(userCourse);
       print(userCourse?.paidCoursesId);
 
@@ -111,7 +111,7 @@ class _StoreScreenState extends State<StoreScreen> {
 
       for (var i in course) {
         try {
-          if (i.dataly_show == true) {
+          if (i.show == true) {
             cou.add(i);
           }
         } catch (e) {
@@ -162,6 +162,10 @@ class _StoreScreenState extends State<StoreScreen> {
                                   cacheWidth: 82,
                                   cacheHeight: 56,
                                 ),
+                                Positioned(
+                                    bottom: 0.sp,
+                                    right: 0,
+                                    child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
                               ],
                             ),
                           ),
@@ -323,6 +327,66 @@ class _StoreScreenState extends State<StoreScreen> {
                       ],
                     ),
                   ),
+
+                  // Row(
+                  //   children: [
+                  //     IconButton(
+                  //         onPressed: () {
+                  //           Scaffold.of(context).openDrawer();
+                  //         },
+                  //         icon: Icon(
+                  //           Icons.menu,
+                  //           color: Colors.white,
+                  //         )),
+                  //     SizedBox(
+                  //       width: horizontalScale * 15,
+                  //     ),
+                  //     Image.asset(
+                  //       "assets/DATALY Logo.png",
+                  //       width: 30,
+                  //       height: 30,
+                  //     ),
+                  //     Text(
+                  //       "CloudyML",
+                  //       style: textStyle,
+                  //     ),
+                  //     SizedBox(
+                  //       width: horizontalScale * 25,
+                  //     ),
+                  //     // SizedBox(
+                  //     //   height: 30,
+                  //     //   width: screenWidth / 3,
+                  //     //   child: TextField(
+                  //     //     style: TextStyle(
+                  //     //         color: HexColor("A7A7A7"), fontSize: 12),
+                  //     //     decoration: InputDecoration(
+                  //     //         contentPadding: EdgeInsets.all(5.0),
+                  //     //         hintText: "Search Courses",
+                  //     //         focusedBorder: OutlineInputBorder(
+                  //     //             borderSide: BorderSide(
+                  //     //                 color: Colors.white, width: 1)),
+                  //     //         disabledBorder: OutlineInputBorder(
+                  //     //             borderSide: BorderSide(
+                  //     //                 color: Colors.white, width: 1)),
+                  //     //         hintStyle: TextStyle(
+                  //     //             color: HexColor("A7A7A7"), fontSize: 12),
+                  //     //         border: OutlineInputBorder(
+                  //     //             borderSide: BorderSide(
+                  //     //                 color: Colors.white, width: 1)),
+                  //     //         enabledBorder: OutlineInputBorder(
+                  //     //             borderSide: BorderSide(
+                  //     //                 color: Colors.white, width: 1)),
+                  //     //         prefixIcon: IconButton(
+                  //     //             onPressed: () {},
+                  //     //             icon: Icon(
+                  //     //               Icons.search_outlined,
+                  //     //               size: 14,
+                  //     //               color: Colors.white,
+                  //     //             ))),
+                  //     //   ),
+                  //     // )
+                  //   ],
+                  // ),
                 ),
                 Container(
                   width: screenWidth,
@@ -425,7 +489,7 @@ class _StoreScreenState extends State<StoreScreen> {
                             child: Text('This is a container'),
                           );
                         }
-                        if (cou[index].dataly_show == true)
+                        if (cou[index].show == true)
                           return GestureDetector(
                               onTap: () {
                                 setState(() {

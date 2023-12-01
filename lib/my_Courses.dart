@@ -185,7 +185,7 @@ final Scrollcontroller = ScrollController();
       var getData;
       try {
         var data = await FirebaseFirestore.instance
-            .collection("courseprogress_dataly")
+            .collection("courseprogress")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .get()
             .then((value) {

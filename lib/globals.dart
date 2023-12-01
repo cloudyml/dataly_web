@@ -10,7 +10,6 @@ bool submitting = false;
 String? passwordttt;
 List<dynamic> coursesname = [];
 String? courseId;
-bool fromMultiCombo = false;
 const String loggedInKey = 'LoggedIn';
 String? moduleId;
 String? topicId;

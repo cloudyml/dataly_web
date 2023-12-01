@@ -28,10 +28,7 @@ class AssignmentScreen extends StatefulWidget {
       this.assignmentSolutionVideo,
       this.assignmentTrackBoolMap,
       this.assignmentDescription,
-      this.showDescription,
-        this.userEmail,
-        this.userName
-      })
+      this.showDescription})
       : super(key: key);
 
   final courseData;
@@ -45,8 +42,6 @@ class AssignmentScreen extends StatefulWidget {
   final assignmentSolutionVideo;
   final assignmentTrackBoolMap;
   final showDescription;
-  final userEmail;
-  final userName;
 
   @override
   State<AssignmentScreen> createState() => _AssignmentScreenState();
@@ -128,7 +123,7 @@ class _AssignmentScreenState extends State<AssignmentScreen> {
 
   Future downloadFile(String fileUrl) async {
     FirebaseStorage _storage = FirebaseStorage.instance;
-    await _storage.ref('Assignments_dataly/${widget.userEmail}/${fileUrl}');
+    await _storage.ref('Assignments/${user.toString()}/${fileUrl}');
   }
 
   @override
@@ -150,26 +145,26 @@ class _AssignmentScreenState extends State<AssignmentScreen> {
     try {
       var storageRef = FirebaseStorage.instance
           .ref()
-          .child('Assignments_dataly')
-          .child('${widget.userEmail}')
+          .child('Assignments')
+          .child('${user.toString()}')
           .child(fileName!);
 
-      var sentData = await _reference.collection('assignment_dataly').add({
-        "email": widget.userEmail,
-        "name": widget.userName,
+      var sentData = await _reference.collection('assignment').add({
+        "email": FirebaseAuth.instance.currentUser?.email,
+        "name": FirebaseAuth.instance.currentUser?.displayName,
         "student id": FirebaseAuth.instance.currentUser?.uid,
         "date of submission": FieldValue.serverTimestamp(),
         "filename": fileName!,
         "link": '',
+        // "note": noteText.text,
         'assignmentName': widget.assignmentName,
-        'reviewed': false,
       });
 
       final UploadTask uploadTask = storageRef.putData(uploadedFile!);
 
       final TaskSnapshot downloadUrl = await uploadTask;
       final String fileURL = (await downloadUrl.ref.getDownloadURL());
-      await sentData.update({"link": fileURL, "documentId": sentData.id});
+      await sentData.update({"link": fileURL});
       print('Assignment file link is here: $fileURL');
 
       await _reference

@@ -7,6 +7,8 @@ import 'package:cloudyml_app2/combo/multi_combo_course.dart';
 import 'package:cloudyml_app2/combo/multi_combo_feature_screen.dart';
 import 'package:cloudyml_app2/combo/new_combo_course.dart';
 import 'package:cloudyml_app2/combo/updated_combo_course.dart';
+import 'package:cloudyml_app2/home.dart';
+import 'package:cloudyml_app2/homepage.dart';
 import 'package:cloudyml_app2/homescreen/homescreen.dart';
 import 'package:cloudyml_app2/live_doubt_screen/live_doubt_session.dart';
 import 'package:cloudyml_app2/module/review%20resume/review_resume.dart';
@@ -25,6 +27,7 @@ import 'package:cloudyml_app2/screens/splash.dart';
 import 'package:cloudyml_app2/store.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import '../authentication_screens/phone_auth.dart';
 import '../catalogue_screen.dart';
@@ -45,9 +48,7 @@ import '../screens/quiz/quiz_panel.dart';
 import '../screens/quiz/quizentry.dart';
 import '../screens/quiz/quizesofenrolledcourses.dart';
 import '../screens/review_screen/review_screen.dart';
-import '../screens/student_review/review_screen.dart';
 import 'login_state_check.dart';
-import 'dart:html' as html;
 
 class MyRouter {
   final LoginState loginState;
@@ -64,30 +65,15 @@ class MyRouter {
 
         // final pc=state.location==('/featuredCourses?cID=aEGX6kMfHzQrVgP3WCwU&courseName=Data+Science+%26+Analytics+Placement+Assurance+Program&id=0&coursePrice=9999');
 
-        String currentURL = html.window.location.href;
-        print('currentURL: $currentURL');
-        if (currentURL.contains("/students/review")) {
-          return ('/students/review');
+        if (!loggedIn && !goingToLogin) {
+          return ('/');
+        } else if (loggedIn && goingToLogin) {
+          return ('/home');
         } else {
-          if (!loggedIn && !goingToLogin) {
-            return ('/');
-          } else if (loggedIn && goingToLogin) {
-            return ('/home');
-          } else {
-            return null;
-          }
+          return null;
         }
-
-
       },
       routes: <RouteBase>[
-        GoRoute(
-          name: 'review',
-          path: '/students/review',
-          pageBuilder: (context, state) {
-            return MaterialPage(child: StudentReviewScreen());
-          },
-        ),
         GoRoute(
             path: '/',
             pageBuilder: (context, state) {
@@ -323,9 +309,7 @@ class MyRouter {
             return MaterialPage<void>(
                 key: state.pageKey,
                 child: CatelogueScreen(
-                    courses: course[int.parse(id)].courses,
-                    id: id,
-                    cID: cID));
+                    courses: course[int.parse(id)].courses, id: id, cID: cID));
           },
         ),
         GoRoute(

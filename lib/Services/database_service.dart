@@ -56,8 +56,7 @@ class DatabaseServices {
                   international: documentSnapshot.data()['international'],
                   dataly_actual_price: documentSnapshot.data()['dataly_actual_price'] ?? null,
                   dataly_discounted_price: documentSnapshot.data()['dataly_discounted_price'] ?? null,
-                  dataly_FcSerialNumber: documentSnapshot.data()['dataly_FcSerialNumber'] ?? '',
-                  dataly_show: documentSnapshot.data()['dataly_show'] ?? false,
+                  dataly_FcSerialNumber: documentSnapshot.data()['dataly_FcSerialNumber'] ?? ''
                 ),
               )
               .toList(),

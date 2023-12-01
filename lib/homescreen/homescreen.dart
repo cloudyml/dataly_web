@@ -278,7 +278,7 @@ class _LandingScreenState extends State<LandingScreen> {
       var getData;
       try {
         var data = await FirebaseFirestore.instance
-            .collection("courseprogress_dataly")
+            .collection("courseprogress")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .get()
             .then((value) {
@@ -405,7 +405,7 @@ class _LandingScreenState extends State<LandingScreen> {
           .collection('Notice')
           .doc('sessionExpiryDays')
           .get();
-      numberOfLearners = learners['dataly_numberOfLearners'];
+      numberOfLearners = learners['numberOfLearners'];
       sessionExpiryDays = learners['sessionExpiryDays'];
       print('uid is ${FirebaseAuth.instance.currentUser!.uid}');
 
@@ -2899,7 +2899,7 @@ class _LandingScreenState extends State<LandingScreen> {
                             ),
                             Container(
                               margin: EdgeInsets.only(top: 75, bottom: 50),
-                              height: screenHeight / 1.5,
+                              height: screenHeight / 2,
                               child: ListView.builder(
                                   shrinkWrap: true,
                                   scrollDirection: Axis.horizontal,
@@ -3006,8 +3006,8 @@ class _LandingScreenState extends State<LandingScreen> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(10.0),
                                           child: Container(
-                                            height: screenHeight / 1.5,
-                                            width: screenWidth / 3.25,
+                                            height: screenHeight / 2,
+                                            width: screenWidth / 4.5,
                                             decoration: BoxDecoration(
                                               color: Colors.white,
                                               // boxShadow: [
@@ -3030,7 +3030,7 @@ class _LandingScreenState extends State<LandingScreen> {
                                               children: [
                                                 Container(
                                                   // width: screenWidth / 5,
-                                                  // height: screenHeight / 3.5,
+                                                  height: screenHeight / 4,
                                                   child: ClipRRect(
                                                     borderRadius:
                                                         BorderRadius.only(
@@ -3151,149 +3151,157 @@ class _LandingScreenState extends State<LandingScreen> {
                                                     ),
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 12),
-                                                  child: Row(
+                                                Container(
+                                                  height: 45 * verticalScale,
+                                                  width: 80 * horizontalScale,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     mainAxisAlignment:
-                                                    MainAxisAlignment.start,
+                                                        MainAxisAlignment.start,
                                                     children: [
-                                                      ElevatedButton(
-                                                          onPressed: () {
-                                                            setState(() {
-                                                              courseId = featuredCourse[
-                                                              index]
-                                                                  .courseDocumentId;
-                                                            });
-                                                            print(courseId);
-                                                            if (featuredCourse[
-                                                            index]
-                                                                .isItComboCourse) {
-                                                              print(featuredCourse[
-                                                              index]
-                                                                  .courses);
+                                                      Row(
+                                                        children: [
+                                                          ElevatedButton(
+                                                              onPressed: () {
+                                                                setState(() {
+                                                                  courseId = featuredCourse[
+                                                                          index]
+                                                                      .courseDocumentId;
+                                                                });
+                                                                print(courseId);
+                                                                if (featuredCourse[
+                                                                        index]
+                                                                    .isItComboCourse) {
+                                                                  print(featuredCourse[
+                                                                          index]
+                                                                      .courses);
 
-                                                              final id = index
-                                                                  .toString();
-                                                              final cID = featuredCourse[
-                                                              index]
-                                                                  .courseDocumentId;
-                                                              final courseName =
-                                                                  featuredCourse[
-                                                                  index]
-                                                                      .courseName;
-                                                              final courseP =
-                                                                  featuredCourse[
-                                                                  index]
-                                                                      .coursePrice;
-                                                              // GoRouter.of(context).pushNamed(
-                                                              //     'featuredCourses',
-                                                              //     queryParams: {
-                                                              //       'cID': cID,
-                                                              //       'courseName': courseName,
-                                                              //       'id': id,
-                                                              //       'coursePrice': courseP
-                                                              //     });
+                                                                  final id = index
+                                                                      .toString();
+                                                                  final cID = featuredCourse[
+                                                                          index]
+                                                                      .courseDocumentId;
+                                                                  final courseName =
+                                                                      featuredCourse[
+                                                                              index]
+                                                                          .courseName;
+                                                                  final courseP =
+                                                                      featuredCourse[
+                                                                              index]
+                                                                          .coursePrice;
+                                                                  // GoRouter.of(context).pushNamed(
+                                                                  //     'featuredCourses',
+                                                                  //     queryParams: {
+                                                                  //       'cID': cID,
+                                                                  //       'courseName': courseName,
+                                                                  //       'id': id,
+                                                                  //       'coursePrice': courseP
+                                                                  //     });
 
-                                                              //  final id = index.toString();
-                                                              //       final cID = featuredCourse[index].courseDocumentId;
-                                                              //       final courseName = featuredCourse[index].courseName;
-                                                              //       final courseP = featuredCourse[index].coursePrice;
-                                                              GoRouter.of(
-                                                                  context)
-                                                                  .pushNamed(
-                                                                  'NewFeature',
-                                                                  queryParams: {
-                                                                    'cID':
-                                                                    cID,
-                                                                    'courseName':
-                                                                    courseName,
-                                                                    'id':
-                                                                    id,
-                                                                    'coursePrice': featuredCourse[index].international != null &&
-                                                                        featuredCourse[index].international == true
-                                                                        ? ((double.parse(courseP) / 82) + 5).toString()
-                                                                        : courseP
-                                                                  });
+                                                                  //  final id = index.toString();
+                                                                  //       final cID = featuredCourse[index].courseDocumentId;
+                                                                  //       final courseName = featuredCourse[index].courseName;
+                                                                  //       final courseP = featuredCourse[index].coursePrice;
+                                                                  GoRouter.of(
+                                                                          context)
+                                                                      .pushNamed(
+                                                                          'NewFeature',
+                                                                          queryParams: {
+                                                                        'cID':
+                                                                            cID,
+                                                                        'courseName':
+                                                                            courseName,
+                                                                        'id':
+                                                                            id,
+                                                                        'coursePrice': featuredCourse[index].international != null &&
+                                                                                featuredCourse[index].international == true
+                                                                            ? ((double.parse(courseP) / 82) + 5).toString()
+                                                                            : courseP
+                                                                      });
 
-                                                              // Navigator.push(
-                                                              //   context,
-                                                              //   MaterialPageRoute(
-                                                              //     builder: (context) =>
-                                                              //         ComboStore(
-                                                              //           courses:
-                                                              //           course[index].courses,
-                                                              //         ),
-                                                              //   ),
-                                                              // );
-                                                            } else if (featuredCourse[
-                                                            index]
-                                                                .multiCombo ==
-                                                                true) {
-                                                              GoRouter.of(
-                                                                  context)
-                                                                  .pushReplacementNamed(
-                                                                  'multiComboFeatureScreen',
-                                                                  queryParams: {
-                                                                    'cID': featuredCourse[index]
-                                                                        .courseDocumentId,
-                                                                    'courseName':
-                                                                    featuredCourse[index].courseName,
-                                                                    'id': featuredCourse[index]
-                                                                        .courseId,
-                                                                    'coursePrice':
-                                                                    featuredCourse[index].coursePrice
-                                                                  });
-                                                            } else {
-                                                              final id = index
-                                                                  .toString();
-                                                              GoRouter.of(
-                                                                  context)
-                                                                  .pushNamed(
-                                                                  'catalogue',
-                                                                  queryParams: {
-                                                                    'id':
-                                                                    id,
-                                                                    'cID':
-                                                                    courseId,
-                                                                  });
-                                                            }
-                                                          },
-                                                          style:
-                                                          ElevatedButton
-                                                              .styleFrom(
-                                                            backgroundColor:
-                                                            HexColor(
-                                                                "8346E1"),
-                                                            padding: EdgeInsets
-                                                                .only(
-                                                                right:
-                                                                15,
-                                                                left:
-                                                                15),
-                                                            shape: RoundedRectangleBorder(
-                                                                side: BorderSide(
+                                                                  // Navigator.push(
+                                                                  //   context,
+                                                                  //   MaterialPageRoute(
+                                                                  //     builder: (context) =>
+                                                                  //         ComboStore(
+                                                                  //           courses:
+                                                                  //           course[index].courses,
+                                                                  //         ),
+                                                                  //   ),
+                                                                  // );
+                                                                } else if (featuredCourse[
+                                                                            index]
+                                                                        .multiCombo ==
+                                                                    true) {
+                                                                  GoRouter.of(
+                                                                          context)
+                                                                      .pushReplacementNamed(
+                                                                          'multiComboFeatureScreen',
+                                                                          queryParams: {
+                                                                        'cID': featuredCourse[index]
+                                                                            .courseDocumentId,
+                                                                        'courseName':
+                                                                            featuredCourse[index].courseName,
+                                                                        'id': featuredCourse[index]
+                                                                            .courseId,
+                                                                        'coursePrice':
+                                                                            featuredCourse[index].coursePrice
+                                                                      });
+                                                                } else {
+                                                                  final id = index
+                                                                      .toString();
+                                                                  GoRouter.of(
+                                                                          context)
+                                                                      .pushNamed(
+                                                                          'catalogue',
+                                                                          queryParams: {
+                                                                        'id':
+                                                                            id,
+                                                                        'cID':
+                                                                            courseId,
+                                                                      });
+                                                                }
+                                                              },
+                                                              style:
+                                                                  ElevatedButton
+                                                                      .styleFrom(
+                                                                backgroundColor:
+                                                                    HexColor(
+                                                                        "8346E1"),
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            15,
+                                                                        left:
+                                                                            15),
+                                                                shape: RoundedRectangleBorder(
+                                                                    side: BorderSide(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        width:
+                                                                            1),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            15)),
+                                                              ),
+                                                              child: Text(
+                                                                "Learn More",
+                                                                style: TextStyle(
+                                                                    fontSize: 18 *
+                                                                        verticalScale,
                                                                     color: Colors
-                                                                        .black,
-                                                                    width:
-                                                                    1),
-                                                                borderRadius:
-                                                                BorderRadius.circular(
-                                                                    15)),
-                                                          ),
-                                                          child: Text(
-                                                            "Learn More",
-                                                            style: TextStyle(
-                                                                fontSize: 18 *
-                                                                    verticalScale,
-                                                                color: Colors
-                                                                    .white,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                          )),
+                                                                        .white,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              )),
+                                                        ],
+                                                      ),
                                                     ],
                                                   ),
-                                                )
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -3319,6 +3327,9 @@ class _LandingScreenState extends State<LandingScreen> {
                             //             fontWeight: FontWeight.bold),
                             //       )),
                             // ),
+                            SizedBox(
+                              height: 25 * verticalScale,
+                            ),
                             // Container(
                             //   // height: 38,
                             //   width: screenWidth,
@@ -3468,21 +3479,25 @@ class _LandingScreenState extends State<LandingScreen> {
                               color: HexColor('440F87'),
                             ),
                             Align(
-                              alignment: Alignment.centerLeft,
+                              alignment: Alignment.center,
                               child: Padding(
                                 padding:
                                     EdgeInsets.only(top: 15 * verticalScale),
                                 child: SizedBox(
-                                  width: Adaptive.w(35),
+                                  width: Adaptive.w(18.5),
                                   child: Stack(
                                     children: [
                                       Image.asset(
                                         'assets/logo.png',
-                                        height: 50,
-                                        width: 80,
+                                        height: 75,
+                                        width: 110,
                                         cacheWidth: 82,
                                         cacheHeight: 56,
                                       ),
+                                      Positioned(
+                                          bottom: 0.sp,
+                                          right: 0,
+                                          child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
                                     ],
                                   ),
                                 ),

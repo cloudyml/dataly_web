@@ -71,7 +71,7 @@ class _NewFeatureState extends State<NewFeature> {
   var courseData = null;
   // getPercentageOfCourse() async {
   //   var data = await FirebaseFirestore.instance
-  //       .collection("courseprogress_dataly")
+  //       .collection("courseprogress")
   //       .doc(FirebaseAuth.instance.currentUser!.uid)
   //       .get();
   //   setState(() {
@@ -180,9 +180,21 @@ class _NewFeatureState extends State<NewFeature> {
 
     void url_del() {
     FirebaseFirestore.instance.collection('Notice')
-      ..doc("gMAzwcnKV1o7zVwUdLV0_datalyfeature1")
+      ..doc("XdYtk2DJBIkRGx0ASthZ_newfeaturecourse")
           .update({'url': ""}).whenComplete(() {
         print('New feature Deleted');
+      });
+
+      FirebaseFirestore.instance.collection('Notice')
+      ..doc("fSU4MLz1E0858ft8m7F5_dataeng")
+          .update({'url': ""}).whenComplete(() {
+        print('New feature Deleted');
+      });
+
+       FirebaseFirestore.instance.collection('Notice')
+      ..doc("JnCFQ1bT36xl0xKjDL3a_superstar")
+          .update({'url': ""}).whenComplete(() {
+        print('Data Superstar Deleted');
       });
   }
 
@@ -253,7 +265,6 @@ class _NewFeatureState extends State<NewFeature> {
 
     return Scaffold(
       bottomSheet:
-      fromMultiCombo? null :
       comboMap['trialCourse']! != null && comboMap['trialCourse']!
           ? PayNowBottomSheetfeature(
         coursePrice: comboMap['dataly_discounted_price'] != null ? 'CAD ${comboMap['dataly_discounted_price']}' :  international != null && international == true ? '\$${((double.parse(comboMap['Course Price'])/82)+5).round().toString()}/-' : '₹${widget.courseP!}/-',

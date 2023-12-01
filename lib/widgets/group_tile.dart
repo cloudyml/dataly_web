@@ -24,7 +24,7 @@ class _GroupTileState extends State<GroupTile> {
 
   void getdata() async {
     var vari = await FirebaseFirestore.instance
-        .collection("groups_dataly")
+        .collection('groups')
         .doc(widget.groupData!['id'])
         .collection('chats')
         .orderBy('time', descending: true)
@@ -77,7 +77,7 @@ class _GroupTileState extends State<GroupTile> {
                 : SizedBox(),
             // StreamBuilder(
             //   stream: FirebaseFirestore.instance
-            //       .collection("groups_dataly")
+            //       .collection('groups')
             //       .doc(widget.groupData!['id'])
             //       .collection('chats')
             //       .snapshots(),

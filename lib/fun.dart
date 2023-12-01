@@ -820,7 +820,7 @@ var mentorItems = [
   'Logout'
 ];
 
-var items = ['My Courses', 'My Quizzes', 'My Profile', 'Students Review', 'Logout'];
+var items = ['My Courses', 'My Quizzes', 'My Profile', 'Logout'];
 String dropdownValue = '';
 
 Widget customMenuBar(BuildContext context) {
@@ -854,7 +854,11 @@ Widget customMenuBar(BuildContext context) {
                   cacheWidth: 82,
                   cacheHeight: 56,
                 ),
-               ],
+                Positioned(
+                    bottom: 0.sp,
+                    right: 0,
+                    child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
+              ],
             ),
           ),
         ),
@@ -998,9 +1002,7 @@ Widget customMenuBar(BuildContext context) {
                       .pushReplacementNamed('AssignmentScreenForMentors');
                 } else if (value == 'My Profile') {
                   GoRouter.of(context).pushReplacementNamed('myAccount');
-                } else if (value == 'Students Review') {
-                  GoRouter.of(context).pushReplacement('/reviews');
-                }else if (value == 'Logout') {
+                } else if (value == 'Logout') {
                   logOut(context);
                   saveLoginOutState(context);
                   GoRouter.of(context).pushReplacement('/login');

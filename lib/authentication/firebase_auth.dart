@@ -183,7 +183,7 @@ Future logOut(BuildContext context) async {
 //           "student_name": userName,
 //         };
 //         print(groupData);
-//         FirebaseFirestore.instance.collection("groups_dataly").add(groupData);
+//         FirebaseFirestore.instance.collection('groups').add(groupData);
 //       },
 //     );
 //   }

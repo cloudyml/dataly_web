@@ -432,7 +432,7 @@ class _ChatScreenState extends State<ChatScreen> {
           : "files")
           .child(pickedFileName!);
       //To bring latest msg on top
-      // await _firestore.collection("groups_dataly").doc(gData!["id"]).update(
+      // await _firestore.collection('groups').doc(gData!["id"]).update(
       //   {'time': FieldValue.serverTimestamp()},
       // );
 
@@ -546,7 +546,7 @@ class _ChatScreenState extends State<ChatScreen> {
   //       });
   //   //To bring latest msg on top
   //   // await _firestore
-  //   //     .collection("groups_dataly")
+  //   //     .collection('groups')
   //   //     .doc(gData!["id"])
   //   //     .update({'time': FieldValue.serverTimestamp()});
   // }
@@ -825,7 +825,7 @@ class _ChatScreenState extends State<ChatScreen> {
   // sendNotification(message,senderId)
   // async{
   //   var Id = await _firestore
-  //       .collection("groups_dataly")
+  //       .collection('groups')
   //       .doc(
   //       gData!.id
   //   );
@@ -1543,7 +1543,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                   // : onSendAudioMessage();
                               //To bring latest msg on top
                               // await _firestore
-                              //     .collection("groups_dataly")
+                              //     .collection('groups')
                               //     .doc(gData!.id)
                               //     .update({'time': DateTime.now()});
                             },

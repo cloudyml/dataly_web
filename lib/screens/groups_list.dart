@@ -799,7 +799,7 @@ class _GroupsListState extends State<GroupsList> {
                                                   // );
 
                                                   await _firestore
-                                                      .collection("groups_dataly")
+                                                      .collection('groups')
                                                       .doc(snapshotGroupList.data![index].id)
                                                       .collection('chats')
                                                       .where('sendBy',
@@ -956,7 +956,7 @@ class _GroupsListState extends State<GroupsList> {
                                                                         return StreamBuilder(
                                                                             stream: FirebaseFirestore
                                                                                 .instance
-                                                                                .collection("groups_dataly")
+                                                                                .collection('groups')
                                                                                 .doc(snapshotGroupList.data![index].id)
                                                                                 .collection('chats')
                                                                                 .orderBy(
@@ -1095,7 +1095,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //       ),
                                             //     );
                                             //     await _firestore
-                                            //         .collection("groups_dataly")
+                                            //         .collection('groups')
                                             //         .doc(snapshotGroupList.data!.docs[index].id)
                                             //         .collection('chats')
                                             //         .where('sendBy',
@@ -1198,7 +1198,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //                 return StreamBuilder(
                                             //                     stream: FirebaseFirestore
                                             //                         .instance
-                                            //                         .collection("groups_dataly")
+                                            //                         .collection('groups')
                                             //                         .doc(snapshotGroupList.data!.docs[index].id)
                                             //                         .collection('chats')
                                             //                         .orderBy(
@@ -1296,7 +1296,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //           : SizedBox(),
                                             //       // StreamBuilder(
                                             //       //   stream: FirebaseFirestore.instance
-                                            //       //       .collection("groups_dataly")
+                                            //       //       .collection('groups')
                                             //       //       .doc(snapshotGroupList.data!.docs[index].id)
                                             //       //       .collection('chats')
                                             //       //       .orderBy(
@@ -1419,7 +1419,7 @@ class _GroupsListState extends State<GroupsList> {
 
 
                                                   await _firestore
-                                                      .collection("groups_dataly")
+                                                      .collection('groups')
                                                       .doc(snapshotGroupList.data![index]["id"])
                                                       .collection('chats')
                                                       .where('sendBy',
@@ -1656,7 +1656,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //       ),
                                             //     );
                                             //     await _firestore
-                                            //         .collection("groups_dataly")
+                                            //         .collection('groups')
                                             //         .doc(snapshotGroupList.data!.docs[index].id)
                                             //         .collection('chats')
                                             //         .where('sendBy',
@@ -1759,7 +1759,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //                 return StreamBuilder(
                                             //                     stream: FirebaseFirestore
                                             //                         .instance
-                                            //                         .collection("groups_dataly")
+                                            //                         .collection('groups')
                                             //                         .doc(snapshotGroupList.data!.docs[index].id)
                                             //                         .collection('chats')
                                             //                         .orderBy(
@@ -1857,7 +1857,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //           : SizedBox(),
                                             //       // StreamBuilder(
                                             //       //   stream: FirebaseFirestore.instance
-                                            //       //       .collection("groups_dataly")
+                                            //       //       .collection('groups')
                                             //       //       .doc(snapshotGroupList.data!.docs[index].id)
                                             //       //       .collection('chats')
                                             //       //       .orderBy(
@@ -1985,7 +1985,7 @@ class _GroupsListState extends State<GroupsList> {
                                                   // );
 
                                                   await _firestore
-                                                      .collection("groups_dataly")
+                                                      .collection('groups')
                                                       .doc(snapshotGroupList.data!.docs[index].id)
                                                       .collection('chats')
                                                       .where('sendBy',
@@ -2142,7 +2142,7 @@ class _GroupsListState extends State<GroupsList> {
                                                                         return StreamBuilder(
                                                                             stream: FirebaseFirestore
                                                                                 .instance
-                                                                                .collection("groups_dataly")
+                                                                                .collection('groups')
                                                                                 .doc(snapshotGroupList.data!.docs[index].id)
                                                                                 .collection('chats')
                                                                                 .orderBy(
@@ -2280,7 +2280,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //       ),
                                             //     );
                                             //     await _firestore
-                                            //         .collection("groups_dataly")
+                                            //         .collection('groups')
                                             //         .doc(snapshotGroupList.data!.docs[index].id)
                                             //         .collection('chats')
                                             //         .where('sendBy',
@@ -2383,7 +2383,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //                 return StreamBuilder(
                                             //                     stream: FirebaseFirestore
                                             //                         .instance
-                                            //                         .collection("groups_dataly")
+                                            //                         .collection('groups')
                                             //                         .doc(snapshotGroupList.data!.docs[index].id)
                                             //                         .collection('chats')
                                             //                         .orderBy(
@@ -2481,7 +2481,7 @@ class _GroupsListState extends State<GroupsList> {
                                             //           : SizedBox(),
                                             //       // StreamBuilder(
                                             //       //   stream: FirebaseFirestore.instance
-                                            //       //       .collection("groups_dataly")
+                                            //       //       .collection('groups')
                                             //       //       .doc(snapshotGroupList.data!.docs[index].id)
                                             //       //       .collection('chats')
                                             //       //       .orderBy(
