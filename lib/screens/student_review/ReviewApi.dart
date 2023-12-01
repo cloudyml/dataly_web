@@ -3,7 +3,7 @@ import 'dart:convert';
 
 Future<String> postReview(reviewData) async {
   final String apiUrl =
-      "https://us-central1-cloudyml-app.cloudfunctions.net/postReview";
+      "https://us-central1-cloudyml-app.cloudfunctions.net/postDatalyReview";
 
   // Convert the data to JSON
   String requestBody = json.encode({"data": reviewData});
@@ -41,7 +41,7 @@ getReviewsApi() async {
   var headers = {'Content-Type': 'application/json'};
 
   final response = await http.post(
-    Uri.parse('https://us-central1-cloudyml-app.cloudfunctions.net/getReviews'),
+    Uri.parse('https://us-central1-cloudyml-app.cloudfunctions.net/getDatalyReviews'),
     headers: headers,
     body: '{"data": {}}',
   );

@@ -216,7 +216,7 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
       // get firebase id token for authentication
       String? token = await FirebaseAuth.instance.currentUser!.getIdToken();
       var url = Uri.parse(
-          'https://us-central1-cloudyml-app.cloudfunctions.net/checkCouponCode');
+          'https://us-central1-cloudyml-app.cloudfunctions.net/datalyCheckCouponCode');
       var data = {"couponCode": "$couponCode", "course": cID};
       var body = json.encode({"data": data});
       print(body);

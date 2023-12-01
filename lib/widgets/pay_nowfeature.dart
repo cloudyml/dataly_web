@@ -63,7 +63,6 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
 
   setFeaturedCourse(List<CourseDetails> course) {
     featuredCourse.clear();
-
     course.forEach((element) {
       if (element.courseDocumentId == widget.cID) {
         featuredCourse.add(element);
@@ -356,7 +355,8 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
                                                       child: ElevatedButton(
                                                         onPressed: () {
                                                           var paidcourse;
-                                                          print(userMap);
+                                                          print("paidCourseList = ${widget.usermap[
+                                                          'paidCourseNames']}");
 
                                                           if (widget.usermap[
                                                                   'paidCourseNames']

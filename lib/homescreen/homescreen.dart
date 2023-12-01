@@ -2899,7 +2899,7 @@ class _LandingScreenState extends State<LandingScreen> {
                             ),
                             Container(
                               margin: EdgeInsets.only(top: 75, bottom: 50),
-                              height: screenHeight / 1.75,
+                              height: screenHeight / 1.5,
                               child: ListView.builder(
                                   shrinkWrap: true,
                                   scrollDirection: Axis.horizontal,
@@ -3006,7 +3006,7 @@ class _LandingScreenState extends State<LandingScreen> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(10.0),
                                           child: Container(
-                                            height: screenHeight / 1.75,
+                                            height: screenHeight / 1.5,
                                             width: screenWidth / 3.25,
                                             decoration: BoxDecoration(
                                               color: Colors.white,
@@ -3319,9 +3319,6 @@ class _LandingScreenState extends State<LandingScreen> {
                             //             fontWeight: FontWeight.bold),
                             //       )),
                             // ),
-                            SizedBox(
-                              height: 25 * verticalScale,
-                            ),
                             // Container(
                             //   // height: 38,
                             //   width: screenWidth,

@@ -240,7 +240,7 @@ class _InternationalPaymentScreenState extends State<InternationalPaymentScreen>
       // get firebase id token for authentication
       String? token = await FirebaseAuth.instance.currentUser!.getIdToken();
       var url = Uri.parse(
-          'https://us-central1-cloudyml-app.cloudfunctions.net/checkCouponCode');
+          'https://us-central1-cloudyml-app.cloudfunctions.net/datalyCheckCouponCode');
       var data = {"couponCode": "$couponCode"};
       var body = json.encode({"data": data});
       print(body);
