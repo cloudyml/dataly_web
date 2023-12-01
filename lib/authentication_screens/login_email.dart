@@ -16,7 +16,6 @@ import 'package:lottie/lottie.dart';
 import 'package:cloudyml_app2/theme.dart';
 import 'package:cloudyml_app2/global_variable.dart' as globals;
 import 'package:provider/provider.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:toast/toast.dart';
 import '../Providers/UserProvider.dart';
 import '../authentication/firebase_auth.dart';
@@ -238,23 +237,10 @@ class _LoginEmailPageState extends State<LoginEmailPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                SizedBox(
-                                  width: Adaptive.w(18.5),
-                                  child: Stack(
-                                    children: [
-                                      Image.asset(
-                                        'assets/logo.png',
-                                        height: 75,
-                                        width: 110,
-                                        cacheWidth: 82,
-                                        cacheHeight: 56,
-                                      ),
-                                      Positioned(
-                                          bottom: 0.sp,
-                                          right: 0,
-                                          child: Text('ataly', style: TextStyle(fontSize: 22.sp, color: Colors.white),))
-                                    ],
-                                  ),
+                                Image.asset(
+                                  'assets/logo.png',
+                                  height: 75,
+                                  width: 110,
                                 ),
                                 SizedBox(
                                   height: 5,

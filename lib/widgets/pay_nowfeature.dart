@@ -77,7 +77,7 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
 
   void trialCourse() async {
     print(
-        'this is name  : ${widget.usermap['name']} ${widget.cID} ${FirebaseAuth.instance.currentUser!.uid} "abc"');
+        'this is name  : ${userMap1['name']} ${widget.cID} ${FirebaseAuth.instance.currentUser!.uid} "abc"');
 
     try {
       var url = Uri.parse(
@@ -88,7 +88,7 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
       }, body: {
         "uid": FirebaseAuth.instance.currentUser!.uid,
         "cid": featuredCourse[0].courseId,
-        "uname": widget.usermap['name'],
+        "uname": userMap1['name'],
         "cname": featuredCourse[0].courseName,
       });
       // print('this is body ${body.toString()}');
@@ -142,8 +142,8 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
                       width: screenWidth / 3,
                       color: Color(0xFF7860DC),
                       child: Center(
-                        child: widget.usermap['paidCourseNames'] != null &&
-                                widget.usermap['paidCourseNames']
+                        child: userMap1['paidCourseNames'] != null &&
+                                userMap1['paidCourseNames']
                                       .contains(featuredCourse[0].courseId)
                             ? InkWell(
                                 onTap: () {
@@ -355,10 +355,9 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
                                                       child: ElevatedButton(
                                                         onPressed: () {
                                                           var paidcourse;
-                                                          print("paidCourseList = ${widget.usermap[
-                                                          'paidCourseNames']}");
+                                                          print("paidCourseList = ${userMap1['paidCourseNames']}");
 
-                                                          if (widget.usermap[
+                                                          if (userMap1[
                                                                   'paidCourseNames']
                                                               .contains(
                                                                   featuredCourse[
@@ -373,7 +372,7 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
                                                                   null && widget
                                                               .usermap[
                                                           'trialCourseList'].isNotEmpty &&
-                                                              widget.usermap[
+                                                              userMap1[
                                                                       'trialCourseList']
                                                                   .contains(
                                                                       featuredCourse[
@@ -394,6 +393,7 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
                                                                       seconds:
                                                                           2),
                                                                   () => {
+
 
                                                                         mainCourseId =
                                                                             featuredCourse[0].courseId,
@@ -539,8 +539,8 @@ class _PayNowBottomSheetfeatureState extends State<PayNowBottomSheetfeature> {
                             // SizedBox(
                             //   width: 200,
                             // ),
-                            widget.usermap['paidCourseNames'] != null &&
-                                    widget.usermap['paidCourseNames']
+                            userMap1['paidCourseNames'] != null &&
+                                    userMap1['paidCourseNames']
                                         .contains(featuredCourse[0].courseId)
                                 ? InkWell(
                                     onTap: () {

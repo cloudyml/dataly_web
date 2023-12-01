@@ -124,7 +124,7 @@
 //                                   mainAxisAlignment: MainAxisAlignment.start,
 //                                   children: [
 //                                     Image.asset(
-//                                       'assets/DATALY Logo.png',
+//                                       'assets/logo.png',
 //                                       height: 75,
 //                                       width: 110,
 //                                     ),

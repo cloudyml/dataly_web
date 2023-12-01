@@ -25,10 +25,9 @@ import 'Services/deeplink_service.dart';
 import 'combo/non_trial_course_paynowbtsheet.dart';
 
 class CatelogueScreen extends StatefulWidget {
-  final String? id;
   final String? cID;
   final List<dynamic>? courses;
-  const CatelogueScreen({Key? key, this.id, this.courses, this.cID})
+  const CatelogueScreen({Key? key, this.courses, this.cID})
       : super(key: key);
 
   @override
@@ -49,7 +48,6 @@ class _CatelogueScreenState extends State<CatelogueScreen>
 
   String coursePrice = "";
 
-  String? id;
 
   String couponAppliedResponse = "";
 
@@ -100,7 +98,6 @@ class _CatelogueScreenState extends State<CatelogueScreen>
   void initState() {
     dbCheckerForPayInParts();
     getCourseName();
-    lookformoneyref();
     super.initState();
   }
 
@@ -167,7 +164,7 @@ class _CatelogueScreenState extends State<CatelogueScreen>
     width = size.width;
     List<CourseDetails> course = Provider.of<List<CourseDetails>>(context);
     return Scaffold(
-      bottomSheet:
+      bottomSheet: fromMultiCombo ? null :
           courseMap['trialCourse']! != null && courseMap['trialCourse']!
               ? PayNowBottomSheetfeature(
                   coursePrice: '₹${coursePrice}/-',
@@ -177,7 +174,8 @@ class _CatelogueScreenState extends State<CatelogueScreen>
                   international: international,
                   // id: widget.id!,
                   usermap: userMap as Map<String, dynamic>)
-              : NonTrialCourseBottomSheet(
+              :
+          NonTrialCourseBottomSheet(
                   coursePrice: '₹${coursePrice}/-',
                   map: courseMap,
                   isItComboCourse: true,

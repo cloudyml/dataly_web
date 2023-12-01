@@ -48,12 +48,12 @@ class _GroupPageState extends State<GroupPage> {
   Set<String> newdocuments = {};
 
   Stream<QuerySnapshot> _collectionStream = FirebaseFirestore.instance
-      .collection('groups')
+      .collection("groups_dataly")
       .orderBy('time', descending: true)
       .limit(500)
       .snapshots();
   Stream<QuerySnapshot> _collectionStream1 = FirebaseFirestore.instance
-      .collection('groups')
+      .collection("groups_dataly")
       .where('student_id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
       .orderBy('time', descending: true)
       .limit(500)
@@ -62,7 +62,7 @@ class _GroupPageState extends State<GroupPage> {
     names1.clear();
 
     final snapshot = await FirebaseFirestore.instance
-        .collection('groups')
+        .collection("groups_dataly")
         .orderBy('time', descending: true)
         .get();
     snapshot.docs.forEach((doc) {
@@ -109,7 +109,7 @@ class _GroupPageState extends State<GroupPage> {
         .get();
 
     final QuerySnapshot groupQuerySnapshot = await FirebaseFirestore.instance
-        .collection('groups')
+        .collection("groups_dataly")
         .where('student_id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .get();
 
@@ -318,7 +318,7 @@ class _GroupPageState extends State<GroupPage> {
         _searchController.clear();
 
         _collectionStream = FirebaseFirestore.instance
-            .collection('groups')
+            .collection("groups_dataly")
             //  .where('student_id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
             //.where('student_name', isEqualTo: searchText)
             .orderBy('time', descending: true)
@@ -335,14 +335,14 @@ class _GroupPageState extends State<GroupPage> {
     setState(() {
       if (searchText != "") {
         _collectionStream = FirebaseFirestore.instance
-            .collection('groups')
+            .collection("groups_dataly")
             .where('student_name', isEqualTo: searchText)
             .orderBy('time', descending: true)
             .limit(500)
             .snapshots();
       } else {
         _collectionStream = FirebaseFirestore.instance
-            .collection('groups')
+            .collection("groups_dataly")
             .orderBy('time', descending: true)
             .limit(500)
             .snapshots();
@@ -788,7 +788,7 @@ class _GroupPageState extends State<GroupPage> {
                                       _searchController.clear();
                                       _collectionStream = FirebaseFirestore
                                           .instance
-                                          .collection('groups')
+                                          .collection("groups_dataly")
                                           .orderBy('time', descending: true)
                                           .limit(500)
                                           .snapshots();

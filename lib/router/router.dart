@@ -14,7 +14,6 @@ import 'package:cloudyml_app2/live_doubt_screen/live_doubt_session.dart';
 import 'package:cloudyml_app2/module/review%20resume/review_resume.dart';
 import 'package:cloudyml_app2/module/review%20resume/review_resume_detailed.dart';
 import 'package:cloudyml_app2/module/video_screen.dart';
-import 'package:cloudyml_app2/payment/stripe/thankyou.dart';
 import 'package:cloudyml_app2/payment_screen.dart';
 import 'package:cloudyml_app2/payments_history.dart';
 import 'package:cloudyml_app2/router/error_page.dart';
@@ -174,14 +173,6 @@ class MyRouter {
             pageBuilder: (context, state) {
               return MaterialPage(child: GroupsList());
             }),
-
-            GoRoute(
-          name: 'success',
-          path: '/sucess',
-          pageBuilder: (context, state) {
-            return MaterialPage(child: ThankYouPageStripe());
-          },
-        ),
         GoRoute(
             name: 'MultiComboFeatureScreen',
             path: '/multiComboFeatureScreen',
@@ -309,7 +300,8 @@ class MyRouter {
             return MaterialPage<void>(
                 key: state.pageKey,
                 child: CatelogueScreen(
-                    courses: course[int.parse(id)].courses, id: id, cID: cID));
+                    courses: course[int.parse(id)].courses,
+                    cID: cID));
           },
         ),
         GoRoute(

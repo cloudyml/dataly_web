@@ -464,7 +464,7 @@ class _QuizPageState extends State<QuizPage> {
         }
       }
 
-      await FirebaseFirestore.instance.collection("quizTaken").add({
+      await FirebaseFirestore.instance.collection("quizTaken_dataly").add({
         "uid": FirebaseAuth.instance.currentUser!.uid,
         "quizInfo": quizdata,
         "finishdate": DateTime.now().day.toString() +

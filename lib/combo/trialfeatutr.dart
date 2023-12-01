@@ -265,6 +265,7 @@ class _NewFeatureState extends State<NewFeature> {
 
     return Scaffold(
       bottomSheet:
+      fromMultiCombo? null :
       comboMap['trialCourse']! != null && comboMap['trialCourse']!
           ? PayNowBottomSheetfeature(
         coursePrice: comboMap['dataly_discounted_price'] != null ? 'CAD ${comboMap['dataly_discounted_price']}' :  international != null && international == true ? '\$${((double.parse(comboMap['Course Price'])/82)+5).round().toString()}/-' : '₹${widget.courseP!}/-',

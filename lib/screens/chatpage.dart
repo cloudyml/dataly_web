@@ -129,14 +129,14 @@ class _ChatPageState extends State<ChatPage> {
     setState(() {
       if (searchText != "") {
         _collectionStream = FirebaseFirestore.instance
-            .collection('groups')
+            .collection("groups_dataly")
             .where('student_name', isEqualTo: searchText)
             .orderBy('time', descending: true)
             .limit(500)
             .snapshots();
       } else {
         _collectionStream = FirebaseFirestore.instance
-            .collection('groups')
+            .collection("groups_dataly")
             .orderBy('time', descending: true)
             .limit(500)
             .snapshots();
@@ -510,12 +510,12 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Stream<QuerySnapshot> _collectionStream = FirebaseFirestore.instance
-      .collection('groups')
+      .collection("groups_dataly")
       .orderBy('time', descending: true)
       .limit(500)
       .snapshots();
   Stream<QuerySnapshot> _collectionStream1 = FirebaseFirestore.instance
-      .collection('groups')
+      .collection("groups_dataly")
       .where('student_id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
       .orderBy('time', descending: true)
       .limit(500)
@@ -771,7 +771,7 @@ class _ChatPageState extends State<ChatPage> {
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
+                        return Text('An error has occured while loading data. Please try again later.');
                       }
 
                       switch (snapshot.connectionState) {
