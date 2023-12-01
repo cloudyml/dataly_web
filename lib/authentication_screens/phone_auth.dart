@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
   bool loading = false;
   late String actualCode;
 
-  PhoneNumber number = PhoneNumber(isoCode: 'IN');
+  PhoneNumber number = PhoneNumber(isoCode: 'CA');
   String phonenumber = '';
 
   bool? googleloading = false;
