@@ -5403,7 +5403,7 @@ class _LandingScreenState extends State<LandingScreen> {
                                                                                 : '5.0',
                                                                             style: TextStyle(
                                                                                 fontSize: 12,
-                                                                                color: HexColor('585858'),
+                                                                                color: Colors.white,
                                                                                 fontWeight: FontWeight.normal),
                                                                           ),
                                                                         ),
@@ -5418,22 +5418,21 @@ class _LandingScreenState extends State<LandingScreen> {
                                                                   featuredCourse[
                                                                           index]
                                                                       .courseName,
-                                                                  maxLines: 2,
+                                                                  maxLines: 4,
                                                                   style:
                                                                       TextStyle(
-                                                                    color: HexColor(
-                                                                        '2C2C2C'),
+                                                                    color: Colors.white,
+                                                                    // HexColor(
+                                                                    //     '2C2C2C'),
                                                                     fontFamily:
                                                                         'Medium',
-                                                                    fontSize: 18 *
+                                                                    fontSize: 15 *
                                                                         verticalScale,
                                                                     height: 1,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
+                                                                    
                                                                   ),
                                                                 ),
                                                               ],

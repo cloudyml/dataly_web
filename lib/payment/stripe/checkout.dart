@@ -2,6 +2,7 @@
 library stripe;
 
 import 'dart:convert';
+import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,18 +12,22 @@ import 'package:js/js.dart';
 var stripe;
 
 String sessionId = '';
-String productId = '';
-void redirectToCheckout(BuildContext _, {required String amount, required String courseId}) async {
-  await getPublishKey();
-  await getProductId(courseId: courseId);
-
-  await generateSessionId(amount: "$amount", productId: '$productId');
+String pId = '';
+ redirectToCheckout(BuildContext _, {required String amount, required String courseId}) async {
+try {
+    await getPublishKey();
+    await getProductId(courseId: courseId);
+print('Product : $pId');
+  await generateSessionId(amount: amount, productId: pId);
 
   sessionId.isNotEmpty
       ? await stripe.redirectToCheckout(CheckoutOptions(
           sessionId: sessionId,
         ))
       : null;
+} catch (e) {
+  log('Stripe error :: $e');
+}
 }
 
 Future<String> generateSessionId(
@@ -55,11 +60,8 @@ getPublishKey() async {
         .collection('Notice')
         .doc('stripe_key')
         .get()
-        .then((value)async {
-
-
-          final val = await value.get('publish_key');
-      stripe = Stripe(val);
+        .then((value) {
+      stripe = Stripe(value.get('publish_key'));
     });
   } catch (e) {
     debugPrint('Error in fetching stripe publish key');
@@ -69,14 +71,15 @@ getPublishKey() async {
 getProductId({required String courseId})async{
     try {
     await FirebaseFirestore.instance
-        .collection('courses').where('id', isEqualTo: courseId).get().then((value) async{
-final val = await value.docs[0].get('product_id');
-         productId = val;
+        .collection('courses').where('id', isEqualTo: courseId).get().then((value) {
+print('CId : ${courseId}');
+          print('PId : ${value.docs[0].get('product_id')}');
+          pId = value.docs[0].get('product_id');
          
         });
         
   } catch (e) {
-    debugPrint('Error in fetching stripe publish key');
+    debugPrint('Error in fetching stripe product key');
   }
 
 }

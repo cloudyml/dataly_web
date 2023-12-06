@@ -44,6 +44,16 @@ class _MultiComboFeatureScreenState extends State<MultiComboFeatureScreen> {
       });
     });
   }
+
+
+    void url_del() {
+    FirebaseFirestore.instance.collection('Notice')
+      ..doc("gMAzwcnKV1o7zVwUdLV0_datalyfeature1")
+          .update({'url': ""}).whenComplete(() {
+        print('feature Deleted');
+      });
+
+  }
   Map userMap = Map<String, dynamic>();
 
   void dbCheckerForPayInParts() async {
@@ -72,6 +82,7 @@ class _MultiComboFeatureScreenState extends State<MultiComboFeatureScreen> {
 
   @override
   Widget build(BuildContext context) {
+    url_del();
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       bottomSheet:

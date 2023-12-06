@@ -98,35 +98,13 @@ class _PaymentScreenState extends State<PaymentScreen> with CouponCodeMixin {
 
   Map<String, dynamic> courseMap = {};
 
-  void url_del() {
+   void url_del() {
     FirebaseFirestore.instance.collection('Notice')
-      ..doc("7A85zuoLi4YQpbXlbOAh_redirect")
+      ..doc("cDQnMz6hENvxZVfLyUoq_dataly1")
           .update({'url': ""}).whenComplete(() {
         print('feature Deleted');
       });
 
-    FirebaseFirestore.instance.collection('Notice')
-      ..doc("NBrEm6KGry8gxOJJkegG_redirect_pay")
-          .update({'url': ""}).whenComplete(() {
-        print('pay Deleted');
-      });
-
-    FirebaseFirestore.instance.collection('Notice')
-      ..doc("HX4neryeAOB1dzUeIAg1_prompt")
-          .update({'url': ""}).whenComplete(() {
-        print('prompt pay Deleted');
-      });
-
-    FirebaseFirestore.instance.collection('Notice')
-      ..doc("o1Hw1CebDH9I4VfpKuiC_sup_pay")
-          .update({'url': ""}).whenComplete(() {
-        print('sup pay Deleted');
-      });
-
-    FirebaseFirestore.instance.collection('Notice')
-      ..doc("M2jEwYyiWdzYWE9gJd8s_de_pay").update({'url': ""}).whenComplete(() {
-        print('Data engineering pay Deleted');
-      });
   }
 
   void getCourseName() async {
